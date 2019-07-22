@@ -1,0 +1,29 @@
+{
+  "name": "ai.scanlation",
+  "version": "3.0.0",
+  "license": "MIT",
+  "description": "Scanlation tool for Ai Scanlation",
+  "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "dist": "cross-env NODE_ENV=production nuxt generate && electron-webpack main && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+  },
+  "build": {
+    "appId": "net.ai-vn.application"
+  },
+  "dependencies": {
+    "nuxt": "^2.8.1",
+    "source-map-support": "^0.5.12"
+  },
+  "devDependencies": {
+    "@nuxt/config": "^2.8.1",
+    "cross-env": "^5.2.0",
+    "electron": "5.0.6",
+    "electron-builder": "^21.0.15",
+    "electron-webpack": "^2.7.4",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "~4.35.3"
+  }
+}
