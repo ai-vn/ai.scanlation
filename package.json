@@ -4,10 +4,15 @@
   "license": "MIT",
   "description": "Scanlation tool for Ai Scanlation",
   "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phamhongphuc/ai.scanlation.git"
+  },
   "scripts": {
     "dev": "electron-webpack dev",
     "build": "cross-env NODE_ENV=production nuxt generate && electron-webpack main && electron-builder",
-    "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
+    "release": "yarn build --publish always",
+    "postinstall": "electron-builder install-app-deps",
     "prettier:fix": "prettier ** --write",
     "lint": "run-s lint:*",
     "lint:js": "eslint --ext .ts,.vue .",
@@ -15,7 +20,12 @@
     "type:fix": "run-s prettier:fix \"lint:* --fix\""
   },
   "build": {
-    "appId": "net.ai-vn.application"
+    "appId": "net.ai-vn.application",
+    "win": {
+      "publish": [
+        "github"
+      ]
+    }
   },
   "dependencies": {
     "nuxt": "^2.8.1",
