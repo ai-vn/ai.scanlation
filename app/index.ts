@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable node/no-unpublished-require */
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import http from 'http';
 import path from 'path';
 import { format } from 'url';
@@ -46,6 +50,23 @@ function createWindow() {
 
     window.loadURL(url);
     window.on('closed', () => (main = null));
+
+    // ?  Install `vue-devtools`
+    if (process.env.NODE_ENV === 'development') {
+        window.webContents.openDevTools();
+        window.webContents.on('devtools-opened', () =>
+            setImmediate(() => window.focus()),
+        );
+
+        const installExtension = require('electron-devtools-installer');
+        installExtension
+            .default(installExtension.VUEJS_DEVTOOLS)
+            .then((name: string) => console.log(`Added Extension: ${name}`))
+            .catch((err: any) =>
+                console.log('Unable to install `vue-devtools`: \n', err),
+            );
+        require('devtron').install();
+    }
 
     return window;
 }
