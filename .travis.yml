@@ -11,17 +11,25 @@ cache:
     - $HOME/.cache/electron-builder
 
 stages:
-  - Lint
+  - Lint & Test
   - Build
   - Release
 
 jobs:
   include:
-    #? Lint
-    - stage: Lint
+    #? Lint & Test
+    - stage: Lint & Test
+      env:
+        - ❤ = Lint
       script:
         - yarn lint:js --max-warnings=0
         - yarn lint:css
+
+    - stage: Lint & Test
+      env:
+        - ❤ = Test
+      script:
+        - yarn test
 
     #? Build
     - stage: Build
