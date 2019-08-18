@@ -1,0 +1,59 @@
+{
+    "javascript.validate.enable": false,
+    "javascript.format.enable": false,
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.vscode": true,
+        "**/.nuxt": true,
+        "**/.nyc_output": true,
+        "**/coverage": true,
+        "**/dist": true,
+        "**/yarn-error.log": true,
+        "**/node_modules": true
+    },
+    "files.eol": "\r\n",
+    "files.watcherExclude": {
+        "**/dist/win-unpacked/**": true
+    },
+
+    "vetur.validation.template": false,
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.js": "prettier",
+
+    "prettier.eslintIntegration": true,
+    "prettier.disableLanguages": [],
+
+    "eslint.enable": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.options": {
+        "extensions": [".html", ".vue", ".js", ".jsx", ".ts", ".tsx"]
+    },
+    "eslint.validate": [
+        "javascript",
+        { "language": "html", "autoFix": true },
+        { "language": "vue", "autoFix": true },
+        { "language": "typescript", "autoFix": true }
+    ],
+
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": false,
+    "editor.detectIndentation": false,
+
+    "vsicons.associations.files": [
+        {
+            "filename": true,
+            "icon": "electron",
+            "extensions": [],
+            "filenamesGlob": ["electron-webpack"],
+            "extensionsGlob": ["json"],
+            "format": "svg"
+        }
+    ]
+}
