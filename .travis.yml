@@ -1,0 +1,45 @@
+os: osx
+osx_image: xcode11
+
+language: node_js
+node_js: 10
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
+stages:
+  - Lint
+  - Build
+  - Release
+
+jobs:
+  include:
+    #? Lint
+    - stage: Lint
+      script:
+        - yarn lint:js --max-warnings=0
+        - yarn lint:css
+
+    #? Build
+    - stage: Build
+      before_cache:
+        - rm -rf $HOME/.cache/electron-builder/wine
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      script:
+        - yarn build
+
+    #? Release
+    - stage: Release
+      if: type != pull_request AND (branch = master OR branch =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
+      before_cache:
+        - rm -rf $HOME/.cache/electron-builder/wine
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      script:
+        - yarn release --mac --win
