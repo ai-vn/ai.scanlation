@@ -1,0 +1,47 @@
+{
+  "name": "ai.scanlation",
+  "version": "3.0.0",
+  "license": "MIT",
+  "description": "Scanlation tool for Ai Scanlation",
+  "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development electron-webpack dev",
+    "dev:static": "nuxt build && electron-webpack dev",
+    "dev:security": "cross-env NODE_ENV=development ELECTRON_SECURITY_CHECK=strict electron-webpack dev",
+    "build": "nuxt build && electron-webpack main && electron-builder",
+    "build-run": "yarn build --dir && yarn win",
+    "win": "dist\\win-unpacked\\ai.scanlation.exe",
+    "release": "yarn build --publish always",
+    "postinstall": "electron-builder install-app-deps",
+  },
+  "build": {
+    "appId": "net.ai-vn.application",
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis-web"
+      ],
+      "publish": [
+        "github"
+      ]
+    }
+  },
+  "dependencies": {
+    "nuxt": "^2.8.1",
+    "source-map-support": "^0.5.12"
+  },
+  "devDependencies": {
+    "@nuxt/config": "^2.8.1",
+    "cross-env": "^5.2.0",
+    "electron": "5.0.6",
+    "electron-builder": "^21.0.15",
+    "electron-webpack": "^2.7.4",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "~4.35.3"
+  }
+}
