@@ -1,12 +1,19 @@
 const path = require('path');
 var isWin = require('os').platform() === 'win32';
 
+const packageDir = [
+    path.join('./'),
+    path.join(__dirname, 'node_modules/@nuxt/builder'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-app'),
+    path.join(__dirname, 'node_modules/nuxt'),
+];
+
 const config = {
     env: {
         node: true,
         browser: true,
         es6: true,
-        mocha: true,
+        'jest/globals': true,
     },
     extends: [
         'airbnb-base',
@@ -17,6 +24,8 @@ const config = {
         'plugin:import/warnings',
         'plugin:import/errors',
         'plugin:import/typescript',
+
+        'plugin:jest/all',
 
         'plugin:vue/recommended',
         'plugin:@typescript-eslint/recommended',
@@ -34,7 +43,14 @@ const config = {
             jsx: false,
         },
     },
-    plugins: ['standard', 'vue', 'import', 'node', '@typescript-eslint'],
+    plugins: [
+        'standard',
+        'import',
+        'node',
+        'jest',
+        'vue',
+        '@typescript-eslint',
+    ],
     settings: {
         cache: true,
         'import/resolver': {
@@ -82,12 +98,7 @@ const config = {
                 devDependencies: false,
                 optionalDependencies: false,
                 peerDependencies: false,
-                packageDir: [
-                    path.join('./'),
-                    path.join(__dirname, 'node_modules/@nuxt/builder'),
-                    path.join(__dirname, 'node_modules/@nuxt/vue-app'),
-                    path.join(__dirname, 'node_modules/nuxt'),
-                ],
+                packageDir,
             },
         ],
         'vue/html-self-closing': [
@@ -113,7 +124,10 @@ const config = {
             rules: {
                 'import/no-extraneous-dependencies': [
                     'error',
-                    { devDependencies: true },
+                    {
+                        devDependencies: true,
+                        packageDir,
+                    },
                 ],
             },
         },
