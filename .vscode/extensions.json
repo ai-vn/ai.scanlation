@@ -1,0 +1,63 @@
+{
+    // See http://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+    // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+    // List of extensions which should be recommended for users of this workspace.
+    "recommendations": [
+        // Auto Import
+        "steoates.autoimport",
+        // Bash Beautify
+        "shakram02.bash-beautify",
+        // Better Comments
+        "aaron-bond.better-comments",
+        // Bootstrap 4 & Font awesome snippets for Visual studio code
+        "thekalinga.bootstrap4-vscode",
+        // Bracket Pair Colorizer
+        "CoenraadS.bracket-pair-colorizer",
+        // EditorConfig for VS Code
+        "EditorConfig.EditorConfig",
+        // Eslint
+        "dbaeumer.vscode-eslint",
+        // GitLens — Git supercharged
+        "eamodio.gitlens",
+        // IntelliSense for CSS class names in HTML
+        "gencer.html-slim-scss-css-class-completion",
+        // JavaScript Booster
+        "sburg.vscode-javascript-booster",
+        // JavaScript Snippet Pack
+        "akamud.vscode-javascript-snippet-pack",
+        // JS Refactor
+        "cmstead.jsrefactor",
+        // LineCount
+        "yycalm.linecount",
+        // Markdown All in One
+        "yzhang.markdown-all-in-one",
+        // Move TS - Move TypeScript files and update relative imports
+        "stringham.move-ts",
+        // Path Autocomplete
+        "ionutvmi.path-autocomplete",
+        // Promise snippets
+        "progre.promise-snippets",
+        // Rainbow Brackets
+        "2gua.rainbow-brackets",
+        // Sass
+        "syler.sass-indented",
+        // SCSS IntelliSense
+        "mrmlnc.vscode-scss",
+        // stylelint
+        "shinnn.stylelint",
+        // Travis CI Status
+        "felixrieseberg.vsc-travis-ci-status",
+        // TypeScript Importer
+        "pmneo.tsimporter",
+        // Vetur
+        "octref.vetur",
+        // vscode-icons
+        "vscode-icons-team.vscode-icons",
+        // Vue 2 Snippets
+        "hollowtree.vue-snippets",
+        // Vue Peek
+        "dariofuzinato.vue-peek"
+    ],
+    // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+    "unwantedRecommendations": []
+}
