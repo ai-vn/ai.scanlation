@@ -37,6 +37,7 @@
     }
   },
   "dependencies": {
+    "electron-updater": "^4.1.2",
     "nuxt": "^2.8.1",
     "nuxt-property-decorator": "^2.3.0",
     "pem": "^1.14.2",
@@ -61,6 +62,7 @@
     "electron": "^5.0.8",
     "electron-builder": "^21.1.5",
     "electron-devtools-installer": "^2.2.4",
+    "electron-log": "^3.0.7",
     "electron-webpack": "^2.7.4",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",

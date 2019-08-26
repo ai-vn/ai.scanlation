@@ -12,6 +12,7 @@ const nuxtConfiguration: NuxtConfiguration = {
         mode: 'hash',
         base: !dev ? './' : undefined,
     },
+    plugins: ['./plugins/listen'],
     build: {
         extend(webpackConfig, { isClient, isDev }) {
             if (isClient) {
