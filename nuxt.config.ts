@@ -1,6 +1,5 @@
 import NuxtConfiguration from '@nuxt/config';
-
-const dev = process.env.NODE_ENV === 'development';
+import { isDev as dev } from './app/env';
 
 const nuxtConfiguration: NuxtConfiguration = {
     dev,
