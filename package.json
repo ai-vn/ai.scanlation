@@ -1,0 +1,100 @@
+{
+  "name": "ai.scanlation",
+  "version": "3.0.0",
+  "license": "MIT",
+  "description": "Scanlation tool for Ai Scanlation",
+  "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development electron-webpack dev",
+    "dev:static": "nuxt build && electron-webpack dev",
+    "dev:security": "cross-env NODE_ENV=development ELECTRON_SECURITY_CHECK=strict electron-webpack dev",
+    "build": "nuxt build && electron-webpack main && electron-builder",
+    "build-run": "yarn build --dir && yarn win",
+    "win": "dist\\win-unpacked\\ai.scanlation.exe",
+    "release": "yarn build --publish always",
+    "postinstall": "electron-builder install-app-deps",
+    "prettier:fix": "prettier ** --write",
+    "lint": "run-s lint:*",
+    "lint:js": "eslint --ext .ts,.vue .",
+    "lint:css": "stylelint **/*.{vue,scss}",
+    "type:fix": "run-s prettier:fix \"lint:* --fix\"",
+    "test": "jest"
+  },
+  "build": {
+    "appId": "net.ai-vn.application",
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis-web"
+      ],
+      "publish": [
+        "github"
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^4.1.2",
+    "nuxt": "^2.8.1",
+    "nuxt-property-decorator": "^2.3.0",
+    "pem": "^1.14.2",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@nuxt/config": "^2.8.1",
+    "@nuxt/typescript": "^2.8.1",
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.2",
+    "@types/pem": "^1.9.5",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.2",
+    "cross-env": "^5.2.0",
+    "devtron": "^1.4.0",
+    "electron": "^5.0.8",
+    "electron-builder": "^21.1.5",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-log": "^3.0.7",
+    "electron-webpack": "^2.7.4",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-import-resolver-typescript": "^1.1.1",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.14.1",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-only-warn": "^1.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "jest": "^24.8.0",
+    "jest-extended": "^0.11.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.2",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "vue-jest": "^3.0.4",
+    "webpack": "^4.37.0"
+  }
+}
