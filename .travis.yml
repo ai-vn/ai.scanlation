@@ -40,7 +40,7 @@ jobs:
 
     #? Release
     - stage: Release
-      if: type != pull_request AND (branch = master OR branch = feature/config OR branch =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
+      if: type != pull_request AND (branch = master OR branch = dev OR branch =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
       before_cache:
         - rm -rf $HOME/.cache/electron-builder/wine
       script:
