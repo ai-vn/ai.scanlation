@@ -9,6 +9,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/.vscode": true,
+        "**/.dependabot": true,
         "**/.nuxt": true,
         "**/.nyc_output": true,
         "**/coverage": true,
