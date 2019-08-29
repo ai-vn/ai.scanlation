@@ -47,7 +47,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
-    "@nuxt/config": "^2.8.1",
+    "@nuxt/config": "^2.9.2",
     "@nuxt/typescript": "^2.8.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.2",
