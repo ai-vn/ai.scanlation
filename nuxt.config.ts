@@ -1,8 +1,8 @@
-import NuxtConfiguration from '@nuxt/config';
+import { Configuration } from '@nuxt/types';
 import { isDev as dev } from './app/env';
 import { getCertificate } from './modules/getCertificate';
 
-export default async function(): Promise<NuxtConfiguration> {
+export default async function(): Promise<Configuration> {
     const { key, cert } = await getCertificate();
 
     return {
