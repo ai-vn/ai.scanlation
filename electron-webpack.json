@@ -3,7 +3,8 @@
     "staticSourceDirectory": "static",
     "title": true,
     "main": {
-        "sourceDirectory": "app"
+        "sourceDirectory": "app",
+        "webpackConfig": "app/webpack.config.js"
     },
     "renderer": {}
 }
