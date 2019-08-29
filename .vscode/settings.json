@@ -10,6 +10,7 @@
         "**/.DS_Store": true,
         "**/.vscode": true,
         "**/.dependabot": true,
+        "**/.certificate": true,
         "**/.nuxt": true,
         "**/.nyc_output": true,
         "**/coverage": true,

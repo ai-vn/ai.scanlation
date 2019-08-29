@@ -1,7 +1,11 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-process-exit */
 import { app } from 'electron';
-import { CertificateCreationResult } from 'pem';
+import { getCertificate } from '~/modules/getCertificate';
 
-export function allowCertificate(keys: CertificateCreationResult) {
+export async function allowCertificate() {
+    const keys = await getCertificate();
+
     const onCertificateError = (
         event: Electron.Event,
         webContents: Electron.WebContents,
@@ -12,10 +16,10 @@ export function allowCertificate(keys: CertificateCreationResult) {
     ) => {
         const newline = /\r?\n|\r/g;
 
-        const fromPem = keys.certificate.replace(newline, '');
+        const fromPem = keys.cert.replace(newline, '');
         const fromElectron = certificate.data.replace(newline, '');
         if (fromPem !== fromElectron) {
-            throw new Error('Certificate does not match ');
+            throw new Error('Certificate does not match');
         }
         event.preventDefault();
         trust(true);
