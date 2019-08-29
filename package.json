@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "electron-updater": "^4.1.2",
-    "nuxt": "^2.8.1",
+    "nuxt": "^2.9.2",
     "nuxt-property-decorator": "^2.3.0",
     "pem": "^1.14.2",
     "source-map-support": "^0.5.13",
