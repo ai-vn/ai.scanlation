@@ -89,3 +89,5 @@ sw.*
 dist
 
 thumbs.db
+
+.certificate/**
