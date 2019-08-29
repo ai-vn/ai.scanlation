@@ -63,7 +63,7 @@
     "babel-eslint": "^10.0.2",
     "cross-env": "^5.2.0",
     "devtron": "^1.4.0",
-    "electron": "^5.0.8",
+    "electron": "^6.0.5",
     "electron-builder": "^21.2.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-log": "^3.0.7",
