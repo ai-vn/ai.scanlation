@@ -3,12 +3,12 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - task: RestoreAndSaveCache@1
-        displayName: "[Cache] Restore artifact based on: yarn.lock"
+      - task: CacheBeta@0
         inputs:
-          keyfile: "**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/.azure.yml"
-          targetfolder: "**/node_modules, !**/node_modules/**/node_modules"
-          vstsFeed: "$(artifacts_nodejs)"
+          key: |
+            $(Agent.OS)
+            $(Build.SourcesDirectory)/yarn.lock
+          path: $(Pipeline.Workspace)/.cache/yarn
 
       - task: UseNode@1
         inputs:
