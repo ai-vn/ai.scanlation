@@ -1,0 +1,28 @@
+jobs: 
+  - job: LintAndTest
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: RestoreAndSaveCache@1
+        displayName: "[Cache] Restore artifact based on: yarn.lock"
+        inputs:
+          keyfile: "**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/.azure.yml"
+          targetfolder: "**/node_modules, !**/node_modules/**/node_modules"
+          vstsFeed: "$(artifacts_nodejs)"
+
+      - task: UseNode@1
+        inputs:
+            version: "10"
+        displayName: "[Client] Install NodeJS"
+
+      - script: |
+            yarn
+        condition: ne(variables['CacheRestored'], 'true')
+        displayName: "[Client] Run `yarn install`"
+
+      - script: |
+            yarn lint:js --max-warnings=0
+            yarn lint:css
+            yarn test
+            yarn build
+        displayName: "[Client] Run `yarn` lint and build"
