@@ -3,6 +3,12 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+      - task: UseNode@1
+        inputs:
+          version: '10'
+          checkLatest: true
+        displayName: "Install NodeJS"
+      
       - task: CacheBeta@0
         inputs:
           key: |
@@ -10,19 +16,14 @@ jobs:
             $(Build.SourcesDirectory)/yarn.lock
           path: $(Pipeline.Workspace)/.cache/yarn
 
-      - task: UseNode@1
-        inputs:
-            version: "10"
-        displayName: "[Client] Install NodeJS"
-
       - script: |
             yarn
         condition: ne(variables['CacheRestored'], 'true')
-        displayName: "[Client] Run `yarn install`"
+        displayName: "Run `yarn install`"
 
       - script: |
             yarn lint:js --max-warnings=0
             yarn lint:css
             yarn test
             yarn build
-        displayName: "[Client] Run `yarn` lint and build"
+        displayName: "Run `yarn` lint and build"
