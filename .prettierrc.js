@@ -16,7 +16,7 @@ module.exports = {
             options: { parser: 'json' },
         },
         {
-            files: ['package.json', '.travis.yml'],
+            files: ['package.json', '*.yml'],
             options: { tabWidth: 2 },
         },
     ],
