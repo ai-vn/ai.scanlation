@@ -3,8 +3,7 @@ var isWin = require('os').platform() === 'win32';
 
 const packageDir = [
     path.join('./'),
-    path.join(__dirname, 'node_modules/@nuxt/builder'),
-    path.join(__dirname, 'node_modules/@nuxt/vue-app'),
+    path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
