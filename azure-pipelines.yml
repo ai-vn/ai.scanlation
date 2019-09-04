@@ -1,7 +1,6 @@
 variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  ELECTRON_CACHE: $HOME/.cache/electron
-  ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
+  ELECTRON_CACHE: $(Pipeline.Workspace)/.cache/electron
+  ELECTRON_BUILDER_CACHE: $(Pipeline.Workspace)/.cache/electron-builder
 
 pool:
   vmImage: 'macOS-latest'
@@ -12,15 +11,17 @@ steps:
       checkLatest: true
     displayName: Install NodeJS
 
-  - task: CacheBeta@0
+  - task: RestoreAndSaveCache@1
     inputs:
-      key: version4 | yarn | $(Agent.OS) | yarn.lock
-      path: $(YARN_CACHE_FOLDER)
-    displayName: Cache Yarn packages
+      keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/azure-pipelines.yml'
+      targetfolder: '**/node_modules, !**/node_modules/**/node_modules, $(ELECTRON_CACHE), $(ELECTRON_BUILDER_CACHE)'
+      vstsFeed: $(artifacts)
+    displayName: Restore cache based on 'yarn.lock'
 
   - script: |
       yarn --frozen-lockfile
     displayName: Install Dependencies
+    condition: ne(variables['CacheRestored'], 'true')
 
   - script: |
       yarn lint:js --max-warnings=0

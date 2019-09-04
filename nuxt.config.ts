@@ -16,6 +16,15 @@ export default async function(): Promise<Configuration> {
         plugins: ['./plugins/listen'],
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
+        buildModules: [
+            [
+                '@nuxt/typescript-build',
+                {
+                    typeCheck: true,
+                    ignoreNotFoundWarnings: true,
+                },
+            ],
+        ],
         build: {
             extend(webpackConfig, { isClient, isDev }) {
                 if (isClient) {
