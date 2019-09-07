@@ -9,23 +9,33 @@ export default async function(): Promise<Configuration> {
         dev,
         mode: 'spa',
         head: { title: 'Ai Scanlation' },
-        router: {
-            mode: 'hash',
-            base: !dev ? './' : undefined,
-        },
-        plugins: ['./plugins/listen'],
+        router: { mode: 'hash', base: !dev ? './' : undefined },
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
+        plugins: ['./plugins/listen'],
+        css: ['~/assets/style/main.pcss'],
         buildModules: [
             [
                 '@nuxt/typescript-build',
-                {
-                    typeCheck: true,
-                    ignoreNotFoundWarnings: true,
-                },
+                { typeCheck: true, ignoreNotFoundWarnings: true },
             ],
+            '@nuxtjs/tailwindcss',
         ],
+        purgeCSS: {
+            styleExtensions: ['.pcss'],
+        },
+        tailwindcss: {
+            configPath: '~/tailwind.config.js',
+            cssPath: '~/assets/style/tailwind.pcss',
+        },
         build: {
+            extractCSS: !dev,
+            postcss: {
+                plugins: {
+                    'postcss-nested': {},
+                },
+                preset: { autoprefixer: {} },
+            },
             extend(webpackConfig, { isClient, isDev }) {
                 if (isClient) {
                     if (isDev) {
