@@ -25,9 +25,7 @@ export default async function(): Promise<Configuration> {
             ],
             '@nuxtjs/tailwindcss',
         ],
-        purgeCSS: {
-            styleExtensions: ['.pcss'],
-        },
+        purgeCSS: {},
         tailwindcss: {
             configPath: '~/tailwind.config.js',
             cssPath: '~/assets/style/tailwind.pcss',
@@ -37,6 +35,7 @@ export default async function(): Promise<Configuration> {
             postcss: {
                 plugins: {
                     'postcss-nested': {},
+                    'postcss-import': {},
                 },
                 preset: { autoprefixer: {} },
             },
