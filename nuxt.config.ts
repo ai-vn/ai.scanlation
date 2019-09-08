@@ -12,7 +12,11 @@ export default async function(): Promise<Configuration> {
         router: { mode: 'hash', base: !dev ? './' : undefined },
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
-        plugins: ['./plugins/listen'],
+        plugins: [
+            //
+            '~/plugins/component',
+            '~/plugins/listen',
+        ],
         css: ['~/assets/style/main.pcss'],
         buildModules: [
             [
