@@ -34,8 +34,10 @@ export default async function(): Promise<Configuration> {
             extractCSS: !dev,
             postcss: {
                 plugins: {
-                    'postcss-nested': {},
+                    'postcss-hexrgba': {},
                     'postcss-import': {},
+                    'postcss-nested': {},
+                    'postcss-simple-vars': {},
                 },
                 preset: { autoprefixer: {} },
             },
