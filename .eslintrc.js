@@ -76,6 +76,7 @@ const config = {
         '@typescript-eslint/prefer-interface': 'off',
 
         'node/no-unsupported-features/es-syntax': 'off',
+        'import/newline-after-import': 'error',
         'import/prefer-default-export': 'off',
         'import/order': [
             'error',
