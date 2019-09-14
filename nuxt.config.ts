@@ -58,7 +58,7 @@ export default async function(): Promise<Configuration> {
                                     loader: 'sass-resources-loader',
                                     options: {
                                         resources:
-                                            './assets/style/variables.pcss',
+                                            './assets/style/global/global.pcss',
                                     },
                                 },
                             ],
