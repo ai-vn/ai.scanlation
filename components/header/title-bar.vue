@@ -1,5 +1,5 @@
 <template>
-    <div class="titlebar">
+    <div class="titlebar" :class="{ 'is-maximize': isMaximize }">
         <div class="titlebar-drag-region" />
         <div ref="menu" class="titlebar-menu">
             Menu & Logo
@@ -12,14 +12,23 @@
             Ai Scanlation
         </div>
         <div ref="controls" class="titlebar-controls">
-            <div>&#xE921;</div>
-            <!-- <div >&#xE922;</div> -->
-            <div>&#xE923;</div>
-            <div class="close">&#xE8BB;</div>
+            <div class="titlebar-controls-minimize" @click="minimize">
+                &#xE921;
+            </div>
+            <div class="titlebar-controls-maximize" @click="maximize">
+                &#xE922;
+            </div>
+            <div class="titlebar-controls-unmaximize" @click="unmaximize">
+                &#xE923;
+            </div>
+            <div class="titlebar-controls-close" @click="close">
+                &#xE8BB;
+            </div>
         </div>
     </div>
 </template>
 <script lang="ts">
+import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
 @Component
 export default class extends Vue {
@@ -29,8 +38,27 @@ export default class extends Vue {
         controls: Element;
     };
 
+    currentWindow = remote.getCurrentWindow();
     isTitlebarFloat = false;
-    resizeHandle() {
+    isMaximize = false;
+
+    minimize() {
+        this.currentWindow.minimize();
+    }
+
+    maximize() {
+        this.currentWindow.maximize();
+    }
+
+    unmaximize() {
+        this.currentWindow.unmaximize();
+    }
+
+    close() {
+        this.currentWindow.close();
+    }
+
+    resizeListener() {
         const { menu, title, controls } = this.$refs;
         const halfAvailableSpace =
             window.innerWidth / 2 -
@@ -39,12 +67,20 @@ export default class extends Vue {
     }
 
     mounted() {
-        window.addEventListener('resize', this.resizeHandle);
-        this.resizeHandle();
+        window.addEventListener('resize', this.resizeListener);
+        this.resizeListener();
+
+        const calcIsMaximize = () => {
+            this.isMaximize = this.currentWindow.isMaximized();
+        };
+        this.currentWindow
+            .on('unmaximize', calcIsMaximize)
+            .on('maximize', calcIsMaximize)
+            .on('ready-to-show', calcIsMaximize);
     }
 
     destroyed() {
-        window.removeEventListener('resize', this.resizeHandle);
+        window.removeEventListener('resize', this.resizeListener);
     }
 }
 </script>
@@ -65,8 +101,11 @@ export default class extends Vue {
     &-drag-region {
         -webkit-app-region: drag;
         z-index: -1;
-        margin: 4px;
-        @apply absolute top-0 bottom-0 left-0 right-0;
+        @apply absolute top-0 bottom-0 left-0 right-0 m-1;
+
+        .titlebar.is-maximize & {
+            @apply m-0;
+        }
     }
 
     &-menu {
@@ -84,20 +123,22 @@ export default class extends Vue {
 
     &-controls {
         -webkit-app-region: no-drag;
-        @apply flex ml-auto;
+        font-size: 10px;
+        font-family: 'Segoe MDL2 Assets', sans-serif;
+        @apply text-center flex ml-auto;
+
+        .titlebar.is-maximize &-maximize,
+        .titlebar:not(.is-maximize) &-unmaximize {
+            @apply hidden;
+        }
 
         > div {
             width: 46px;
-            font-size: 10px;
-            font-family: 'Segoe MDL2 Assets', sans-serif;
-            @apply text-center;
 
             &:hover {
-                &:not(.close) {
-                    background-color: $titlebar-button-hover-background;
-                }
+                background-color: $titlebar-button-hover-background;
 
-                &.close {
+                &^^&-close:hover {
                     color: $titlebar-exit-color;
                     background-color: $titlebar-exit-background;
                 }
