@@ -21,6 +21,10 @@ function createWindow() {
     if (window !== null) return;
 
     window = new BrowserWindow({
+        frame: false,
+        minWidth: 400,
+        minHeight: 400,
+        backgroundColor: '#FF000000',
         webPreferences: { nodeIntegration: true },
     });
 
