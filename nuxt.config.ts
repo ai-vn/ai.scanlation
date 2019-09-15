@@ -12,8 +12,12 @@ export default async function(): Promise<Configuration> {
         router: { mode: 'hash', base: !dev ? './' : undefined },
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
-        plugins: ['./plugins/listen'],
-        css: ['~/assets/style/main.pcss'],
+        plugins: [
+            //
+            '~/plugins/component',
+            '~/plugins/listen',
+        ],
+        css: ['~/assets/style/index.pcss'],
         buildModules: [
             [
                 '@nuxt/typescript-build',
@@ -21,9 +25,7 @@ export default async function(): Promise<Configuration> {
             ],
             '@nuxtjs/tailwindcss',
         ],
-        purgeCSS: {
-            styleExtensions: ['.pcss'],
-        },
+        purgeCSS: {},
         tailwindcss: {
             configPath: '~/tailwind.config.js',
             cssPath: '~/assets/style/tailwind.pcss',
@@ -32,9 +34,19 @@ export default async function(): Promise<Configuration> {
             extractCSS: !dev,
             postcss: {
                 plugins: {
+                    'postcss-simple-vars': {},
+                    'postcss-hexrgba': {},
+                    'postcss-import': {},
+                    'postcss-atroot': {},
+                    'postcss-nested-ancestors': {},
                     'postcss-nested': {},
                 },
-                preset: { autoprefixer: {} },
+                preset: {
+                    autoprefixer: {},
+                    features: {
+                        'custom-properties': null,
+                    },
+                },
             },
             extend(webpackConfig, { isClient, isDev }) {
                 if (isClient) {

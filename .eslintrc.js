@@ -4,6 +4,7 @@ var isWin = require('os').platform() === 'win32';
 const packageDir = [
     path.join('./'),
     path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-renderer/'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
@@ -75,6 +76,7 @@ const config = {
         '@typescript-eslint/prefer-interface': 'off',
 
         'node/no-unsupported-features/es-syntax': 'off',
+        'import/newline-after-import': 'error',
         'import/prefer-default-export': 'off',
         'import/order': [
             'error',
