@@ -17,7 +17,7 @@ export default async function(): Promise<Configuration> {
             '~/plugins/component',
             '~/plugins/listen',
         ],
-        css: ['~/assets/style/main.pcss'],
+        css: ['~/assets/style/index.pcss'],
         buildModules: [
             [
                 '@nuxt/typescript-build',
@@ -41,7 +41,12 @@ export default async function(): Promise<Configuration> {
                     'postcss-nested-ancestors': {},
                     'postcss-nested': {},
                 },
-                preset: { autoprefixer: {} },
+                preset: {
+                    autoprefixer: {},
+                    features: {
+                        'custom-properties': null,
+                    },
+                },
             },
             extend(webpackConfig, { isClient, isDev }) {
                 if (isClient) {
