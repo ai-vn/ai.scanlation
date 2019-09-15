@@ -49,21 +49,6 @@ export default async function(): Promise<Configuration> {
                         webpackConfig.devtool = 'cheap-module-eval-source-map';
                     }
                     webpackConfig.target = 'electron-renderer';
-
-                    if (webpackConfig.module) {
-                        webpackConfig.module.rules.push({
-                            test: /\.p(ost)?css$/i,
-                            use: [
-                                {
-                                    loader: 'sass-resources-loader',
-                                    options: {
-                                        resources:
-                                            './assets/style/global/global.pcss',
-                                    },
-                                },
-                            ],
-                        });
-                    }
                 }
             },
         },
