@@ -14,7 +14,8 @@ export default async function(): Promise<Configuration> {
         generate: { dir: 'dist/renderer' },
         plugins: [
             //
-            '~/plugins/component',
+            '~/plugins/components-auto',
+            '~/plugins/components',
             '~/plugins/listen',
         ],
         css: ['~/assets/style/index.pcss'],
