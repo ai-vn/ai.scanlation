@@ -1,6 +1,7 @@
 import { Configuration } from '@nuxt/types';
 import { isDev as dev } from './app/env';
 import { getCertificate } from './modules/getCertificate';
+import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 
 export default async function(): Promise<Configuration> {
     const { key, cert } = await getCertificate();
@@ -41,6 +42,7 @@ export default async function(): Promise<Configuration> {
                     'postcss-atroot': {},
                     'postcss-nested-ancestors': {},
                     'postcss-nested': {},
+                    'postcss-functions': postcssFunctionsOptions,
                 },
                 preset: {
                     autoprefixer: {},
