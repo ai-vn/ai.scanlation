@@ -11,51 +11,20 @@ $arrow-size: 0.5rem;
         @apply absolute w-0 h-0 border-solid;
     }
 
-    &[x-placement^='top'] {
-        margin-bottom: $arrow-size;
+    @each $dimension, $opposite, $base, $axis in (top, bottom, left, right),
+        (bottom, top, right, left), (left, left, top, top), (y, y, x, x)
+    {
+        &[x-placement^='$(dimension)'] {
+            @mixin property margin-$(opposite), $arrow-size;
 
-        ^&-arrow {
-            bottom: -$arrow-size;
-            left: calc(50% - $arrow-size);
-            border-color: black transparent transparent transparent;
-            border-width: $arrow-size $arrow-size 0 $arrow-size;
-            @apply my-0;
-        }
-    }
+            ^&-arrow {
+                border-color: only($dimension, black, transparent);
+                border-width: only($(opposite), 0, $arrow-size);
 
-    &[x-placement^='bottom'] {
-        margin-top: $arrow-size;
-
-        ^&-arrow {
-            top: -$arrow-size;
-            left: calc(50% - $arrow-size);
-            border-color: transparent transparent black transparent;
-            border-width: 0 $arrow-size $arrow-size $arrow-size;
-            @apply my-0;
-        }
-    }
-
-    &[x-placement^='right'] {
-        margin-left: $arrow-size;
-
-        ^&-arrow {
-            top: calc(50% - $arrow-size);
-            left: -$arrow-size;
-            border-color: transparent black transparent transparent;
-            border-width: $arrow-size $arrow-size $arrow-size 0;
-            @apply mx-0;
-        }
-    }
-
-    &[x-placement^='left'] {
-        margin-right: $arrow-size;
-
-        ^&-arrow {
-            top: calc(50% - $arrow-size);
-            right: -$arrow-size;
-            border-color: transparent transparent transparent black;
-            border-width: $arrow-size 0 $arrow-size $arrow-size;
-            @apply mx-0;
+                @mixin property $(base), calc(50% - $arrow-size);
+                @mixin property $(opposite), -$arrow-size;
+                @apply m$(axis)-0;
+            }
         }
     }
 

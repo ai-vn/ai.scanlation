@@ -1,15 +1,15 @@
 <template>
     <div class="sidebar">
-        <n-link to="/" exact>
+        <n-link v-tooltip.right="'Home'" to="/" exact>
             <icon- i="home" />
         </n-link>
-        <n-link to="/explorer" exact>
+        <n-link v-tooltip.right="'Explorer'" to="/explorer" exact>
             <icon- i="file" />
         </n-link>
-        <n-link to="/reader">
+        <n-link v-tooltip.right="'Reader'" to="/reader">
             <icon- i="book-open" />
         </n-link>
-        <n-link to="/settings" class="mt-auto">
+        <n-link v-tooltip.right="'Setting'" to="/settings" class="mt-auto">
             <icon- i="settings" />
         </n-link>
     </div>
