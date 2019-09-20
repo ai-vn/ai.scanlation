@@ -2,6 +2,7 @@ import { Configuration } from '@nuxt/types';
 import { isDev as dev } from './app/env';
 import { getCertificate } from './modules/getCertificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
+import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
 
 export default async function(): Promise<Configuration> {
     const { key, cert } = await getCertificate();
@@ -36,13 +37,15 @@ export default async function(): Promise<Configuration> {
             extractCSS: !dev,
             postcss: {
                 plugins: {
-                    'postcss-simple-vars': {},
                     'postcss-hexrgba': {},
-                    'postcss-import': {},
-                    'postcss-atroot': {},
+
+                    'postcss-each': {},
+                    'postcss-functions': postcssFunctionsOptions,
+                    'postcss-mixins': postcssMixinsOptions,
+                    'postcss-simple-vars': {},
+
                     'postcss-nested-ancestors': {},
                     'postcss-nested': {},
-                    'postcss-functions': postcssFunctionsOptions,
                 },
                 preset: {
                     autoprefixer: {},
