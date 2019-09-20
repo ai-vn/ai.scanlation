@@ -19,6 +19,7 @@
     $sidebar-size: 3rem;
 
     border-right-color: var(--line-color);
+
     @apply flex flex-col border-r;
 
     > a {
@@ -27,6 +28,7 @@
         min-height: $sidebar-size;
         line-height: $sidebar-size;
         cursor: pointer;
+
         @apply text-center text-xl;
 
         &.nuxt-link-active {
