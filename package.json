@@ -52,7 +52,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
-    "@nuxt/typescript-build": "^0.2.1",
+    "@nuxt/typescript-build": "^0.2.9",
     "@nuxtjs/tailwindcss": "^1.1.2",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.4",
