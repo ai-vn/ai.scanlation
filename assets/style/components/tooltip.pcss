@@ -1,0 +1,40 @@
+$arrow-size: 0.5rem;
+
+.tooltip {
+    @apply block z-10;
+
+    &-inner {
+        @apply text-white rounded px-3 py-1 shadow bg-black;
+    }
+
+    &-arrow {
+        @apply absolute w-0 h-0 border-solid;
+    }
+
+    @each $dimension, $opposite, $base, $axis in (top, bottom, left, right),
+        (bottom, top, right, left), (left, left, top, top), (y, y, x, x)
+    {
+        &[x-placement^='$(dimension)'] {
+            @mixin property margin-$(opposite), $arrow-size;
+
+            ^&-arrow {
+                border-color: only($dimension, black, transparent);
+                border-width: only($(opposite), 0, $arrow-size);
+
+                @mixin property $(base), calc(50% - $arrow-size);
+                @mixin property $(opposite), -$arrow-size;
+                @apply m$(axis)-0;
+            }
+        }
+    }
+
+    &[aria-hidden='true'] {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    &[aria-hidden='false'] {
+        visibility: visible;
+        opacity: 1;
+    }
+}

@@ -90,6 +90,7 @@ export default class extends Vue {
     font-size: 12px;
     line-height: 32px;
     border-bottom-color: var(--line-color);
+
     @apply relative flex select-none border-b flex-no-wrap;
 
     > * {
@@ -99,6 +100,7 @@ export default class extends Vue {
     &-drag-region {
         -webkit-app-region: drag;
         z-index: -1;
+
         @apply absolute top-0 bottom-0 left-0 right-0 m-1;
 
         .titlebar.is-maximize & {
@@ -112,6 +114,7 @@ export default class extends Vue {
 
     &-title {
         width: fit-content;
+
         @apply px-2 text-center mx-auto truncate;
 
         &-float {
@@ -123,6 +126,7 @@ export default class extends Vue {
         -webkit-app-region: no-drag;
         font-size: 10px;
         font-family: 'Segoe MDL2 Assets', sans-serif;
+
         @apply text-center flex ml-auto;
 
         .titlebar.is-maximize &-maximize,
