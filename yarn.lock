@@ -1090,26 +1090,6 @@
     serve-static "^1.14.1"
     server-destroy "^1.0.1"
 
-"@nuxt/types@0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.2.14.tgz#3b25e9e1ca9e7c0a942e0b4c47caee8eeeb45a2c"
-  integrity sha512-TxJ7U2/fH6VXrsFWM6W6ZhgYRitwWKe/y2bfWzf5YjXec7glJXWbu3pfajO2nxXw6+DJ95M0AAX+BVe/KCWLNA==
-  dependencies:
-    "@types/babel__core" "^7.1.3"
-    "@types/compression" "^1.0.1"
-    "@types/connect" "^3.4.32"
-    "@types/etag" "^1.8.0"
-    "@types/express" "^4.17.1"
-    "@types/html-minifier" "^3.5.3"
-    "@types/node" "^12.7.5"
-    "@types/optimize-css-assets-webpack-plugin" "^5.0.0"
-    "@types/serve-static" "^1.13.3"
-    "@types/terser-webpack-plugin" "^1.2.1"
-    "@types/webpack" "^4.39.1"
-    "@types/webpack-bundle-analyzer" "^2.13.2"
-    "@types/webpack-dev-middleware" "^2.0.3"
-    "@types/webpack-hot-middleware" "^2.16.5"
-
 "@nuxt/types@0.2.15":
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/@nuxt/types/-/types-0.2.15.tgz#749fb56bfb7482068dab16f97e7b890a5e98f3f6"
@@ -1130,15 +1110,15 @@
     "@types/webpack-dev-middleware" "^2.0.3"
     "@types/webpack-hot-middleware" "^2.16.5"
 
-"@nuxt/typescript-build@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@nuxt/typescript-build/-/typescript-build-0.2.9.tgz#90f2dfc499cd1228597752081ccaa6016a0c29e3"
-  integrity sha512-pQ/ABJ8xNjbYllyT4Re6soFSKBJPtAm8BRqt8MkX/1MxJyxY1Ex4qFpMmF+S7uZYfUphwvhBp173sd5L4r/XBg==
+"@nuxt/typescript-build@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/@nuxt/typescript-build/-/typescript-build-0.2.10.tgz#23c69fc8a30b87738d8347a71d46f2690852d9d7"
+  integrity sha512-NlZTIntpwgbalSgzUsLnGoAf+8H2hMU3LZpF8aDc1yNl4/XmIzefBMoKpAQF+NU2vaq1VR7fXwhdCK1/tJZq0Q==
   dependencies:
-    "@nuxt/types" "0.2.14"
+    "@nuxt/types" "0.2.15"
     consola "^2.10.1"
     fork-ts-checker-webpack-plugin "^1.5.0"
-    ts-loader "^6.1.0"
+    ts-loader "^6.1.2"
     typescript "~3.6"
 
 "@nuxt/typescript-runtime@^0.1.7":
@@ -1571,13 +1551,6 @@
     "@types/node" "*"
     "@types/unist" "*"
     "@types/vfile-message" "*"
-
-"@types/webpack-bundle-analyzer@^2.13.2":
-  version "2.13.2"
-  resolved "https://registry.yarnpkg.com/@types/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.13.2.tgz#d5183ae083b29b8cd0dc7352eaf008ed220c13d9"
-  integrity sha512-DcTExvdZusgPRVL3cbqdiqyo8YNYxDqMctymmBZ0dgjRnu6PpAJ494q6mKtCOwT9GRWqPZBm52Y9JbQo7NVzXg==
-  dependencies:
-    "@types/webpack" "*"
 
 "@types/webpack-bundle-analyzer@^2.13.3":
   version "2.13.3"
@@ -12587,7 +12560,7 @@ ts-jest@^24.0.2:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-loader@^6.1.0, ts-loader@^6.1.2:
+ts-loader@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.1.2.tgz#ff6bc767334970226438949fbde2e211147a1325"
   integrity sha512-dudxFKm0Ellrg/gLNlu+97/UgwvoMK0SdUVImPUSzq3IcRUVtShylZvcMX+CgvCQL1BEKb913NL0gAP1GA/OFw==
