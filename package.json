@@ -71,7 +71,7 @@
     "electron-devtools-installer": "^2.2.4",
     "electron-log": "^3.0.7",
     "electron-webpack": "^2.7.4",
-    "eslint": "^6.3.0",
+    "eslint": "^6.5.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.2.0",
     "eslint-config-standard": "^14.1.0",
