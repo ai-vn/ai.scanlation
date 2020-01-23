@@ -55,7 +55,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@nuxt/typescript-build": "^0.3.2",
     "@nuxtjs/tailwindcss": "^1.1.2",
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^24.9.1",
     "@types/node": "^12.11.7",
     "@types/pem": "^1.9.5",
     "@types/webpack-env": "^1.14.0",
