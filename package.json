@@ -44,7 +44,7 @@
     "@nuxt/typescript-runtime": "^0.2.2",
     "electron-updater": "^4.1.2",
     "nuxt": "^2.10.2",
-    "nuxt-property-decorator": "^2.4.0",
+    "nuxt-property-decorator": "^2.5.1",
     "pem": "^1.14.3",
     "source-map-support": "^0.5.13",
     "ts-node": "^8.4.1",
