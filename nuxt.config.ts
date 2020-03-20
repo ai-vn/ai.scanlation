@@ -50,7 +50,7 @@ export default async function(): Promise<Configuration> {
                 preset: {
                     autoprefixer: {},
                     features: {
-                        'custom-properties': null,
+                        'custom-properties': false,
                     },
                 },
             },
