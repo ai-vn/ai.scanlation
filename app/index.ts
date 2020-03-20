@@ -1,46 +1,55 @@
+/* eslint-disable no-process-exit */
 import { app, BrowserWindow } from 'electron';
+import { join } from 'path';
+import { format } from 'url';
 import { autoUpdater } from 'electron-updater';
-import { isSecurityCheck, isDev } from './env';
-import { disableSecurity } from './helper/checkSecurity';
-import { getServer } from './helper/createServer';
+import { disableSecurity, isDev, isSecurityCheck } from './env';
+import { allowCertificate } from './helper/certificate';
 import { installDevtool } from './helper/installDevtool';
-import { allowCertificate } from './helper/certificate/listenCertificate';
 import { listenAutoUpdaterEvents } from './updater/updater';
 
 if (!isSecurityCheck) disableSecurity();
 
-let main: BrowserWindow | null = null;
+let window: BrowserWindow | null = null;
 
 function sendToClient(channel: string, ...args: any[]) {
-    if (main) main.webContents.send(channel, ...args);
+    if (window) window.webContents.send(channel, ...args);
+    else console.error(`Send Message Failed: `, channel, ...args);
 }
 
 function createWindow() {
-    const window = new BrowserWindow({
+    if (window !== null) return;
+
+    window = new BrowserWindow({
+        frame: false,
+        minWidth: 400,
+        minHeight: 400,
+        backgroundColor: '#FF000000',
         webPreferences: { nodeIntegration: true },
     });
 
-    (async () => {
-        const { url, keys } = await getServer();
+    const url = isDev
+        ? `https://localhost:${process.env.PORT}/`
+        : format({
+              pathname: join(__dirname, 'index.html'),
+              protocol: 'file',
+              slashes: true,
+          });
 
-        window.loadURL(url);
+    window.loadURL(url);
+    window.on('closed', () => (window = null));
 
-        if (keys) allowCertificate(keys);
-    })();
-
-    window.on('closed', () => (main = null));
-
-    if (isDev) installDevtool(window);
-
-    return window;
+    if (isDev) {
+        installDevtool(window);
+        allowCertificate();
+    }
 }
 
 listenAutoUpdaterEvents(sendToClient);
-sendToClient('updater', 'RUN');
 
 app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
-app.on('activate', () => main === null && (main = createWindow()));
+app.on('activate', createWindow);
 app.on('ready', () => {
-    main = createWindow();
+    createWindow();
     autoUpdater.checkForUpdatesAndNotify();
 });

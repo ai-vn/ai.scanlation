@@ -34,4 +34,6 @@
 
 *.sh
 
+.certificate/**
+
 /components/utilities/icon/selection.json

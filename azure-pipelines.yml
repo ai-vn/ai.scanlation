@@ -1,0 +1,51 @@
+variables:
+  ELECTRON_CACHE: $(Pipeline.Workspace)/.cache/electron
+  ELECTRON_BUILDER_CACHE: $(Pipeline.Workspace)/.cache/electron-builder
+
+pool:
+  vmImage: 'macOS-latest'
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+      checkLatest: true
+    displayName: Install NodeJS
+
+  - task: RestoreAndSaveCache@1
+    inputs:
+      keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/azure-pipelines.yml'
+      targetfolder: '**/node_modules, !**/node_modules/**/node_modules, $(ELECTRON_CACHE), $(ELECTRON_BUILDER_CACHE)'
+      vstsFeed: $(artifacts)
+    displayName: Restore cache based on 'yarn.lock'
+
+  - script: |
+      yarn --frozen-lockfile
+    displayName: Install Dependencies
+    condition: ne(variables['CacheRestored'], 'true')
+
+  - script: |
+      yarn lint:js --max-warnings=0
+      yarn lint:css
+    displayName: Analyzes Source Code
+
+  - script: |
+      yarn test
+    displayName: Run Unit Tests
+
+  - script: |
+      yarn build
+    condition: and(succeeded(), notIn(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
+    env:
+      GH_TOKEN: $(GH_TOKEN)
+      ELECTRON_CACHE: $(ELECTRON_CACHE)
+      ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
+    displayName: Build
+
+  - script: |
+      yarn release --mac --win
+    condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
+    env:
+      GH_TOKEN: $(GH_TOKEN)
+      ELECTRON_CACHE: $(ELECTRON_CACHE)
+      ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
+    displayName: Release (Mac & Win)
