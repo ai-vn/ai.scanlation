@@ -2,7 +2,7 @@ const path = require('path');
 var isWin = require('os').platform() === 'win32';
 
 const packageDir = [
-    path.join('./'),
+    path.join(__dirname),
     path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
     path.join(__dirname, 'node_modules/@nuxt/vue-renderer/'),
     path.join(__dirname, 'node_modules/nuxt'),
@@ -75,7 +75,11 @@ const config = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/prefer-interface': 'off',
 
+        'node/no-extraneous-import': 'off',
+        'node/no-missing-import': 'off',
+        'node/no-unpublished-import': 'off',
         'node/no-unsupported-features/es-syntax': 'off',
+
         'import/newline-after-import': 'error',
         'import/prefer-default-export': 'off',
         'import/order': [
@@ -92,6 +96,7 @@ const config = {
                 'newlines-between': 'never',
             },
         ],
+        'import/extensions': ['error', 'never', { json: 'always' }],
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
         'import/no-extraneous-dependencies': [
             'error',
