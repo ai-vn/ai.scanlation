@@ -19,10 +19,10 @@ $arrow-size: 0.5rem;
 
             ^&-arrow {
                 border-color: only($dimension, black, transparent);
-                border-width: only($(opposite), 0, $arrow-size);
+                border-width: only($opposite, 0, $arrow-size);
 
-                @mixin property $(base), calc(50% - $arrow-size);
-                @mixin property $(opposite), -$arrow-size;
+                @mixin property $base, calc(50% - $arrow-size);
+                @mixin property $opposite, -$arrow-size;
                 @apply m$(axis)-0;
             }
         }
