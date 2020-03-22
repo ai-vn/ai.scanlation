@@ -97,7 +97,7 @@
     "postcss-mixins": "^6.2.3",
     "postcss-nested-ancestors": "^2.0.0",
     "postcss-simple-vars": "^5.0.2",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.1",
     "rimraf": "^3.0.2",
     "stylelint": "^13.2.1",
     "stylelint-config-prettier": "^8.0.1",
