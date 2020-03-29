@@ -2,6 +2,7 @@
     <div class="titlebar" :class="{ 'is-maximize': isMaximize }">
         <div class="titlebar-drag-region" />
         <img class="titlebar-logo" src="~/assets/icons/desk-lamp.svg" />
+        <menu- ref="menu" class="titlebar-menu" />
         <div
             ref="title"
             class="titlebar-title"
@@ -28,7 +29,8 @@
 <script lang="ts">
 import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
-@Component
+
+@Component({ name: 'title-bar-' })
 export default class extends Vue {
     $refs!: {
         menu: Element;
@@ -119,7 +121,7 @@ export default class extends Vue {
     }
 
     &-menu {
-        @apply pl-2 pr-4 mr-auto truncate;
+        @apply mr-auto;
     }
 
     &-title {
