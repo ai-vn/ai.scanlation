@@ -1,9 +1,7 @@
 <template>
     <div class="titlebar" :class="{ 'is-maximize': isMaximize }">
         <div class="titlebar-drag-region" />
-        <div ref="menu" class="titlebar-menu">
-            Menu & Logo
-        </div>
+        <img class="titlebar-logo" src="~/assets/icons/desk-lamp.svg" />
         <div
             ref="title"
             class="titlebar-title"
@@ -98,6 +96,15 @@ export default class extends Vue {
 
     > * {
         @apply whitespace-no-wrap;
+    }
+
+    &-logo {
+        @apply px-2 border-r box-content;
+
+        width: 2rem;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-right-color: var(--line-color);
     }
 
     &-drag-region {
