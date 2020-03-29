@@ -32,11 +32,11 @@
         @apply text-center text-xl;
 
         &.nuxt-link-active {
-            background-color: var(--active-background-color);
+            background-color: var(--background-color-active);
         }
 
         &:hover {
-            background-color: var(--hover-background-color);
+            background-color: var(--background-color-hover);
         }
     }
 }

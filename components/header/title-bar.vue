@@ -86,12 +86,15 @@ export default class extends Vue {
 </script>
 <style lang="postcss">
 .titlebar {
-    height: 32px;
-    font-size: 12px;
-    line-height: 32px;
+    --title-bar-size: 2rem;
+    --title-bar-font-size: 0.75rem;
+
+    height: var(--title-bar-size);
+    font-size: var(--title-bar-font-size);
+    line-height: var(--title-bar-size);
     border-bottom-color: var(--line-color);
 
-    @apply relative flex select-none border-b flex-no-wrap;
+    @apply relative flex select-none border-b flex-no-wrap box-content;
 
     > * {
         @apply whitespace-no-wrap;
@@ -138,12 +141,12 @@ export default class extends Vue {
             width: 46px;
 
             &:hover {
-                background-color: var(--hover-background-color);
+                background-color: var(--background-color-hover);
 
                 &^^&-close:hover {
-                    color: var(--titlebar-exit-hover-color);
+                    color: var(--titlebar-exit-color-hover);
                     background-color: var(
-                        --titlebar-exit-hover-background-color
+                        --titlebar-exit-background-color-hover
                     );
                 }
             }
