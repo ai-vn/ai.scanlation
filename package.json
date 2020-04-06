@@ -43,7 +43,7 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.0",
     "electron-updater": "^4.2.5",
-    "nuxt": "^2.12.0",
+    "nuxt": "^2.12.2",
     "nuxt-property-decorator": "^2.5.1",
     "pem": "^1.14.4",
     "source-map-support": "^0.5.16",
