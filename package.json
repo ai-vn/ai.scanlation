@@ -109,6 +109,6 @@
     "typescript": "^3.8.3",
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.9.1",
-    "webpack": "^4.42.0"
+    "webpack": "^4.42.1"
   }
 }
