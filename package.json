@@ -59,7 +59,7 @@
     "@types/node": "12.12.30",
     "@types/pem": "^1.9.5",
     "@types/webpack-env": "^1.15.1",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/test-utils": "^1.0.0-beta.32",
     "babel-core": "7.0.0-bridge.0",
