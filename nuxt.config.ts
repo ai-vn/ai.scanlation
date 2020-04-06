@@ -10,12 +10,14 @@ export default async function(): Promise<Configuration> {
     return {
         dev,
         mode: 'spa',
-        head: { title: 'Ai Scanlation' },
-        router: { mode: 'hash', base: !dev ? './' : undefined },
+        head: {
+            title: 'Ai Scanlation',
+            meta: [{ charset: 'utf-8' }],
+        },
+        router: { mode: 'hash', base: !dev ? '/app/' : undefined },
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
         plugins: [
-            //
             '~/plugins/components-auto',
             '~/plugins/components',
             '~/plugins/listen',
