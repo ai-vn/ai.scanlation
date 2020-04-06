@@ -149,6 +149,12 @@ const config = {
                 ],
             },
         },
+        {
+            files: ['gulpfile.babel.ts'],
+            rules: {
+                'no-console': 'off',
+            },
+        },
     ],
 };
 
