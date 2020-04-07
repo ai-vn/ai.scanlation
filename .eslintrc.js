@@ -126,6 +126,7 @@ const config = {
                 'types/*.d.ts',
                 'app/**/*.ts',
                 'nuxt.config.ts',
+                'gulpfile.babel.ts',
             ],
             rules: {
                 'import/no-extraneous-dependencies': [

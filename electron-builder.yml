@@ -1,0 +1,11 @@
+appId: net.ai-vn.application
+asar: false
+nsis:
+  oneClick: false
+  perMachine: true
+win:
+  target:
+    - portable
+    - nsis-web
+  publish:
+    - github
