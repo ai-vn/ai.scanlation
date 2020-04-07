@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable no-process-exit */
-import { app, BrowserWindow } from 'electron';
-import { join } from 'path';
+import { app, BrowserWindow, session } from 'electron';
+import { join, normalize } from 'path';
 import { format } from 'url';
 import { autoUpdater } from 'electron-updater';
 import { disableSecurity, isDev, isSecurityCheck } from './env';
@@ -12,6 +13,9 @@ if (!isSecurityCheck) disableSecurity();
 
 let window: BrowserWindow | null = null;
 
+const fileProtocol = 'file';
+const partition = 'ai-scanlation:partition';
+
 function sendToClient(channel: string, ...args: any[]) {
     if (window) window.webContents.send(channel, ...args);
     else console.error(`Send Message Failed: `, channel, ...args);
@@ -20,19 +24,38 @@ function sendToClient(channel: string, ...args: any[]) {
 function createWindow() {
     if (window !== null) return;
 
+    session
+        .fromPartition(partition)
+        .protocol.interceptFileProtocol(fileProtocol, (request, callback) => {
+            let filePath = request.url
+                .substr(fileProtocol.length + 3)
+                .replace(/#(\\|\/)[^#]*$/, '');
+
+            const startWithApp = /^(\/|\\)app(\/|\\)/;
+            filePath = startWithApp.test(filePath)
+                ? join(__dirname, filePath.replace(startWithApp, ''))
+                : decodeURIComponent(filePath);
+
+            callback(normalize(filePath));
+        });
+
     window = new BrowserWindow({
         frame: false,
         minWidth: 400,
         minHeight: 400,
         backgroundColor: '#FF000000',
-        webPreferences: { nodeIntegration: true },
+        webPreferences: {
+            nodeIntegration: true,
+            webSecurity: false,
+            partition,
+        },
     });
 
     const url = isDev
         ? `https://localhost:${process.env.PORT}/`
         : format({
-              pathname: join(__dirname, 'index.html'),
-              protocol: 'file',
+              pathname: `/app/index.html`,
+              protocol: `${fileProtocol}:`,
               slashes: true,
           });
 

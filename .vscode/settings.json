@@ -55,5 +55,12 @@
             "extensionsGlob": ["json"],
             "format": "svg"
         }
+    ],
+    "vsicons.associations.folders": [
+        {
+            "icon": "typings",
+            "extensions": ["types"],
+            "format": "svg"
+        }
     ]
 }
