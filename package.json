@@ -41,6 +41,7 @@
     "@babel/register": "^7.9.0",
     "@nuxt/typescript-build": "^0.6.2",
     "@nuxtjs/tailwindcss": "^1.4.0",
+    "@types/electron-devtools-installer": "^2.2.0",
     "@types/gulp": "^4.0.6",
     "@types/jest": "^25.2.1",
     "@types/js-yaml": "^3.12.3",
