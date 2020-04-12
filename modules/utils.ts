@@ -1,8 +1,9 @@
 import { Context } from '@nuxt/types';
 import * as windows from './electron/windows';
+import * as routers from './pages/routers';
 import { Action } from '~/modules/utils.type';
 
-const actions = { ...windows };
+const actions = { ...windows, ...routers };
 
 export class AppUtils {
     private context: Context;
