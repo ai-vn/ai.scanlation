@@ -43,19 +43,19 @@ export default class extends Vue {
     isMaximize = false;
 
     minimize() {
-        this.currentWindow.minimize();
+        this.$utils.do(x => x.minimize);
     }
 
     maximize() {
-        this.currentWindow.maximize();
+        this.$utils.do(x => x.maximize);
     }
 
     unmaximize() {
-        this.currentWindow.unmaximize();
+        this.$utils.do(x => x.unmaximize);
     }
 
     close() {
-        this.currentWindow.close();
+        this.$utils.do(x => x.close);
     }
 
     resizeListener() {

@@ -20,6 +20,7 @@ export default async function (): Promise<Configuration> {
         plugins: [
             '~/plugins/components-auto',
             '~/plugins/v-tooltip',
+            '~/plugins/utils',
             '~/plugins/listen',
         ],
         css: ['~/assets/style/index.pcss'],
