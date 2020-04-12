@@ -51,8 +51,8 @@
             "filename": true,
             "icon": "electron",
             "extensions": [],
-            "filenamesGlob": ["electron-webpack"],
-            "extensionsGlob": ["json"],
+            "filenamesGlob": ["electron-webpack", "electron-builder"],
+            "extensionsGlob": ["json", "yml"],
             "format": "svg"
         }
     ],

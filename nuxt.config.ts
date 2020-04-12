@@ -4,7 +4,7 @@ import { getCertificate } from './modules/getCertificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
 
-export default async function(): Promise<Configuration> {
+export default async function (): Promise<Configuration> {
     const { key, cert } = await getCertificate();
 
     return {
@@ -19,7 +19,8 @@ export default async function(): Promise<Configuration> {
         generate: { dir: 'dist/renderer' },
         plugins: [
             '~/plugins/components-auto',
-            '~/plugins/components',
+            '~/plugins/v-tooltip',
+            '~/plugins/utils',
             '~/plugins/listen',
         ],
         css: ['~/assets/style/index.pcss'],
