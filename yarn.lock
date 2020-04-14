@@ -1480,10 +1480,10 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
-"@popperjs/core@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.3.1.tgz#14cb0327e63cec733404022d6664179f969886c0"
-  integrity sha512-GpJkaYcxn0zViuD8NphJilCRImCXjoM0fgjq+m3NW2nf6Xa0Ig+eWdODb0j0kzYnirKq21zIsf35ihRI+fyY7g==
+"@popperjs/core@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.3.2.tgz#1e56eb99bccddbda6a3e29aa4f3660f5b23edc43"
+  integrity sha512-18Tz3QghwsuHUC4gTNoxcEw1ClsrJ+lRypYpm+aucQonYNnmskQYvDZZKLHMPvQ7OwthWJl715UEX+Tg2fJkJw==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
