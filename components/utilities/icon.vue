@@ -13,9 +13,7 @@ const map: { [key in string]: string } = aicon.icons.reduce(
     {},
 );
 
-@Component({
-    name: 'icon-',
-})
+@Component({ name: 'icon-' })
 export default class extends Vue {
     @Prop({ required: true, type: String })
     i?: string;
@@ -26,7 +24,7 @@ export default class extends Vue {
         const character = map[this.i];
         if (character === undefined) {
             // eslint-disable-next-line no-console
-            console.error(`Không tìm thấy icon name [${this.i}] trong map`);
+            console.error(`Not found name [${this.i}] in map`);
             return '';
         }
         return character;
