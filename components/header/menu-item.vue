@@ -8,7 +8,7 @@
     >
         <div class="menu-item-title">
             <icon- v-if="!isRoot" :i="icon" />
-            <div class="flex-1" :class="isRoot ? 'mx-2' : 'mx-1'">
+            <div class="flex-1">
                 {{ title }}
             </div>
             <icon- v-if="!isRoot && this.$slots.default" i="chevron-right" />
@@ -81,6 +81,12 @@ export default class extends Vue {
         }
     }
 
+    &.root {
+        > ^&-title > div {
+            @apply mx-1;
+        }
+    }
+
     &-title {
         @apply flex px-1 h-full;
 
@@ -94,12 +100,16 @@ export default class extends Vue {
             width: var(--title-bar-size);
             font-size: calc(var(--title-bar-size) * 0.5);
         }
+
+        > div {
+            @apply mr-2;
+        }
     }
 
     &-ul {
         @apply py-1 hidden absolute;
 
-        width: 150px;
+        min-width: 150px;
         background-color: var(--menu-background-color);
         box-shadow: 0 0 5px #000b;
     }
