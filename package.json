@@ -34,7 +34,8 @@
     "pem": "^1.14.4",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.8.2",
-    "v-tooltip": "2.0.2"
+    "v-tooltip": "2.0.2",
+    "vuex-module-decorators": "^0.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
