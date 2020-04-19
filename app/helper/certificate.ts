@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-process-exit */
 import { app } from 'electron';
-import { getCertificate } from '~/modules/getCertificate';
+import { getCertificate } from '~/utils/build/certificate';
 
 export async function allowCertificate() {
     const keys = await getCertificate();

@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types';
 import { isDev as dev } from './app/env';
-import { getCertificate } from './modules/getCertificate';
+import { getCertificate } from './utils/build/certificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
 
