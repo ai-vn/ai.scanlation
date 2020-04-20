@@ -21,6 +21,7 @@ export default async function (): Promise<Configuration> {
             '~/plugins/components-auto',
             '~/plugins/v-tooltip',
             '~/plugins/listen',
+            '~/plugins/store',
         ],
         css: ['~/assets/style/index.pcss'],
         buildModules: [
