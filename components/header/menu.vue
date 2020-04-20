@@ -29,7 +29,7 @@ export default class extends Vue {
         @apply mx-2 my-1;
 
         height: 1px;
-        background-color: var(--color);
+        background-color: var(--main-text-color);
         opacity: 0.5;
     }
 }
