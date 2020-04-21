@@ -32,7 +32,7 @@
     "nuxt": "^2.12.2",
     "nuxt-property-decorator": "^2.5.1",
     "pem": "^1.14.4",
-    "source-map-support": "^0.5.16",
+    "source-map-support": "^0.5.18",
     "ts-node": "^8.8.2",
     "v-tooltip": "2.0.2"
   },
