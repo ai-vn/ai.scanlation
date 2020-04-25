@@ -1,20 +1,28 @@
 <template>
+    <div v-if="hr" class="menu-item-hr" />
     <li
+        v-else
         class="menu-item"
         :class="{ root: isRoot }"
         @mouseenter="enter"
         @dbclick="leave"
-        @click="$emit('click')"
+        @click="renderAction"
     >
         <div class="menu-item-title">
             <icon- v-if="!isRoot" :i="icon" />
-            <div class="flex-1">
-                {{ title }}
+            <div class="menu-item-title-text flex-1">
+                {{ renderTitle }}
             </div>
-            <icon- v-if="!isRoot && this.$slots.default" i="chevron-right" />
+            <icon- v-if="!isRoot && $slots.default" i="chevron-right" />
+            <div
+                v-if="!$slots.default && renderShortcut"
+                class="menu-item-title-shortcut"
+            >
+                {{ renderShortcut }}
+            </div>
         </div>
         <ul
-            v-if="this.$slots.default"
+            v-if="$slots.default"
             ref="ul"
             class="menu-item-ul"
             :class="{ root: isRoot }"
@@ -24,16 +32,34 @@
     </li>
 </template>
 <script lang="ts">
+// eslint-disable-next-line max-classes-per-file
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { createPopper, Instance } from '@popperjs/core';
+import { isAction, Render } from '~/utils';
+import { ActionItem } from '~/modules/actions.type';
 
 @Component({ name: 'menu-item-' })
-export default class extends Vue {
-    @Prop({ required: true, type: String })
+export default class MenuItem extends Vue {
+    @Prop({ type: Object, validator: isAction })
+    @Render<MenuItem>(t => () => {
+        if (t.action) t.action.call.apply(t);
+        else t.$emit('click');
+    })
+    action!: ActionItem;
+
+    @Prop({ type: String })
+    @Render<MenuItem>(t => t.action?.title ?? t.title)
     title!: string;
 
     @Prop({ type: String })
+    @Render<MenuItem>(t => t.action?.accelerator ?? t.shortcut)
+    shortcut!: string;
+
+    @Prop({ type: String })
     icon!: string;
+
+    @Prop({ type: Boolean })
+    hr!: boolean;
 
     popperInstance: Instance | null = null;
 
@@ -82,8 +108,14 @@ export default class extends Vue {
     }
 
     &.root {
-        > ^&-title > div {
-            @apply mx-1;
+        > ^&-title {
+            > ^^&-title-text {
+                @apply mx-2;
+            }
+
+            > ^^&-title-shortcut {
+                @apply hidden;
+            }
         }
     }
 
@@ -101,8 +133,12 @@ export default class extends Vue {
             font-size: calc(var(--title-bar-size) * 0.5);
         }
 
-        > div {
+        &-text {
             @apply mr-2;
+        }
+
+        &-shortcut {
+            @apply ml-2 mr-3 capitalize;
         }
     }
 
@@ -112,6 +148,13 @@ export default class extends Vue {
         min-width: 150px;
         background-color: var(--menu-background-color);
         box-shadow: 0 0 5px #000b;
+    }
+
+    &-hr {
+        @apply mx-2 my-1;
+
+        border-bottom: 1px solid var(--main-text-color);
+        opacity: 0.5;
     }
 }
 </style>
