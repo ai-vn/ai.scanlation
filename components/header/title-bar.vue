@@ -11,16 +11,16 @@
             Ai Scanlation
         </div>
         <div ref="controls" class="titlebar-controls">
-            <div class="titlebar-controls-minimize" @click="minimize">
+            <div class="titlebar-controls-minimize" @click="minimize.call">
                 &#xE921;
             </div>
-            <div class="titlebar-controls-maximize" @click="maximize">
+            <div class="titlebar-controls-maximize" @click="maximize.call">
                 &#xE922;
             </div>
-            <div class="titlebar-controls-unmaximize" @click="unmaximize">
+            <div class="titlebar-controls-unmaximize" @click="unmaximize.call">
                 &#xE923;
             </div>
-            <div class="titlebar-controls-close" @click="close">
+            <div class="titlebar-controls-close" @click="close.call">
                 &#xE8BB;
             </div>
         </div>
@@ -29,6 +29,8 @@
 <script lang="ts">
 import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
+import { Action } from '~/utils';
+import { ActionItem } from '~/modules/actions.type';
 
 @Component({ name: 'title-bar-' })
 export default class extends Vue {
@@ -42,21 +44,17 @@ export default class extends Vue {
     isTitlebarFloat = false;
     isMaximize = false;
 
-    minimize() {
-        this.currentWindow.minimize();
-    }
+    @Action
+    minimize!: ActionItem;
 
-    maximize() {
-        this.currentWindow.maximize();
-    }
+    @Action
+    maximize!: ActionItem;
 
-    unmaximize() {
-        this.currentWindow.unmaximize();
-    }
+    @Action
+    unmaximize!: ActionItem;
 
-    close() {
-        this.currentWindow.close();
-    }
+    @Action
+    close!: ActionItem;
 
     resizeListener() {
         const { menu, title, controls } = this.$refs;
