@@ -1,10 +1,10 @@
 import { Configuration } from '@nuxt/types';
 import { isDev as dev } from './app/env';
-import { getCertificate } from './modules/getCertificate';
+import { getCertificate } from './utils/build/certificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
 
-export default async function(): Promise<Configuration> {
+export default async function (): Promise<Configuration> {
     const { key, cert } = await getCertificate();
 
     return {
@@ -19,8 +19,10 @@ export default async function(): Promise<Configuration> {
         generate: { dir: 'dist/renderer' },
         plugins: [
             '~/plugins/components-auto',
-            '~/plugins/components',
+            '~/plugins/v-tooltip',
+            '~/plugins/actions',
             '~/plugins/listen',
+            '~/plugins/store',
         ],
         css: ['~/assets/style/index.pcss'],
         buildModules: [

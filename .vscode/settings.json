@@ -7,6 +7,7 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
+        "**/junit.xml": true,
         "**/.DS_Store": true,
         "**/.vscode": true,
         "**/.dependabot": true,

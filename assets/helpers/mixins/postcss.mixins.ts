@@ -1,5 +1,5 @@
 import properties from './property';
-import { MixinsOptions } from '~/types/postcss.plugins';
+import { MixinsOptions } from '~/types/plugin.postcss';
 
 const postcssMixinsOptions: MixinsOptions = {
     mixins: {

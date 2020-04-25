@@ -18,18 +18,17 @@ module.exports = {
     clearMocks: true,
 
     //* coverage
-    // collectCoverage: false,
-    // collectCoverageFrom: null,
+    collectCoverage: true,
+    collectCoverageFrom: [
+        '**/*.{ts,tsx,vue}',
+        '!**/node_modules/**',
+        '!**/vendor/**',
+    ],
     coverageDirectory: 'coverage',
     // coveragePathIgnorePatterns: [
     //   "\\\\node_modules\\\\"
     // ],
-    // coverageReporters: [
-    //   "json",
-    //   "text",
-    //   "lcov",
-    //   "clover"
-    // ],
+    coverageReporters: ['cobertura'],
     // coverageThreshold: null,
     // forceCoverageMatch: [],
 
@@ -62,7 +61,7 @@ module.exports = {
     // projects: null,
 
     // Use this configuration option to add custom reporters to Jest
-    // reporters: undefined,
+    reporters: ['default', 'jest-junit'],
 
     // Automatically reset mock state between every test
     // resetMocks: false,

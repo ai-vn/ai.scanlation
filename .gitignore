@@ -91,3 +91,5 @@ dist
 thumbs.db
 
 .certificate/**
+
+junit.xml

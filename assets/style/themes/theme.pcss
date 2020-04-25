@@ -1,16 +1,25 @@
 body {
-    --color: #696c7e;
-    --background-color: #1a1a20;
-    --background-color-hover: #fff1;
-    --background-color-active: #0005;
+    --main-font-family: segoe wpc, segoe ui, sans-serif;
+    --main-text-color: #696c7e;
+    --main-background-color: #1a1a20;
+    --main-background-color-hover: #fff1;
+    --main-background-color-active: #0005;
+
+    /* line */
     --line-color: #292933;
-    --font-family: segoe wpc, segoe ui, sans-serif;
+    --line-size: 1px;
 
     /* titlebar */
     --titlebar-exit-color-hover: #eee;
     --titlebar-exit-background-color-hover: #d41224;
 
     /* menu */
-    --menu-background-color: #272730;
+    --menu-background-color: var(--main-background-color);
     --menu-background-color-hover: #0005;
+
+    /* utilities */
+    --component-size: 2.25rem;
+    --component-color: #696c7eaa;
+    --component-background-color: #0006;
+    --component-background-color-hover: #0006;
 }

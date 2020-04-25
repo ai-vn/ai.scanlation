@@ -1,4 +1,4 @@
-import { FunctionsObject } from '~/types/postcss.plugins';
+import { FunctionsObject } from '~/types/plugin.postcss';
 
 const map = ['top', 'bottom', 'left', 'right', 'x', 'y'];
 

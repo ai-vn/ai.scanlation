@@ -11,16 +11,16 @@
             Ai Scanlation
         </div>
         <div ref="controls" class="titlebar-controls">
-            <div class="titlebar-controls-minimize" @click="minimize">
+            <div class="titlebar-controls-minimize" @click="minimize.call">
                 &#xE921;
             </div>
-            <div class="titlebar-controls-maximize" @click="maximize">
+            <div class="titlebar-controls-maximize" @click="maximize.call">
                 &#xE922;
             </div>
-            <div class="titlebar-controls-unmaximize" @click="unmaximize">
+            <div class="titlebar-controls-unmaximize" @click="unmaximize.call">
                 &#xE923;
             </div>
-            <div class="titlebar-controls-close" @click="close">
+            <div class="titlebar-controls-close" @click="close.call">
                 &#xE8BB;
             </div>
         </div>
@@ -29,6 +29,8 @@
 <script lang="ts">
 import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
+import { Action } from '~/utils';
+import { ActionItem } from '~/modules/actions.type';
 
 @Component({ name: 'title-bar-' })
 export default class extends Vue {
@@ -42,21 +44,17 @@ export default class extends Vue {
     isTitlebarFloat = false;
     isMaximize = false;
 
-    minimize() {
-        this.currentWindow.minimize();
-    }
+    @Action
+    minimize!: ActionItem;
 
-    maximize() {
-        this.currentWindow.maximize();
-    }
+    @Action
+    maximize!: ActionItem;
 
-    unmaximize() {
-        this.currentWindow.unmaximize();
-    }
+    @Action
+    unmaximize!: ActionItem;
 
-    close() {
-        this.currentWindow.close();
-    }
+    @Action
+    close!: ActionItem;
 
     resizeListener() {
         const { menu, title, controls } = this.$refs;
@@ -89,12 +87,13 @@ export default class extends Vue {
     --title-bar-size: 2rem;
     --title-bar-font-size: 0.75rem;
 
+    @apply relative flex select-none flex-no-wrap box-content;
+
     height: var(--title-bar-size);
     font-size: var(--title-bar-font-size);
     line-height: var(--title-bar-size);
     border-bottom-color: var(--line-color);
-
-    @apply relative flex select-none border-b flex-no-wrap box-content;
+    border-bottom-width: var(--line-size);
 
     > * {
         @apply whitespace-no-wrap;
@@ -107,6 +106,7 @@ export default class extends Vue {
         padding-top: 6px;
         padding-bottom: 6px;
         border-right-color: var(--line-color);
+        border-right-width: var(--line-size);
     }
 
     &-drag-region {
@@ -150,7 +150,7 @@ export default class extends Vue {
             width: 46px;
 
             &:hover {
-                background-color: var(--background-color-hover);
+                background-color: var(--main-background-color-hover);
 
                 &^^&-close:hover {
                     color: var(--titlebar-exit-color-hover);
