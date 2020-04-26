@@ -1,5 +1,5 @@
 import dimensions from './dimensions';
-import { FunctionsOptions } from '~/types/postcss.plugins';
+import { FunctionsOptions } from '~/types/plugin.postcss';
 
 const postcssFunctionsOptions: FunctionsOptions = {
     functions: {

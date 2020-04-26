@@ -4,7 +4,8 @@ var isWin = require('os').platform() === 'win32';
 const packageDir = [
     path.join(__dirname),
     path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
-    path.join(__dirname, 'node_modules/@nuxt/vue-renderer/'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-app'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
@@ -68,12 +69,14 @@ const config = {
         'no-lonely-if': 'error',
         'prefer-const': 'error',
         'no-useless-constructor': 'off',
+        'no-unused-expressions': 'off',
         'class-methods-use-this': 'off',
 
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/prefer-interface': 'off',
+        '@typescript-eslint/no-unused-expressions': ['error'],
 
         'node/no-extraneous-import': 'off',
         'node/no-missing-import': 'off',
@@ -126,6 +129,7 @@ const config = {
                 'types/*.d.ts',
                 'app/**/*.ts',
                 'nuxt.config.ts',
+                'gulpfile.babel.ts',
             ],
             rules: {
                 'import/no-extraneous-dependencies': [
@@ -147,6 +151,12 @@ const config = {
                         ignorePropertyModificationsFor: ['webpackConfig'],
                     },
                 ],
+            },
+        },
+        {
+            files: ['gulpfile.babel.ts'],
+            rules: {
+                'no-console': 'off',
             },
         },
     ],

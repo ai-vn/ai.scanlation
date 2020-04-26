@@ -1,9 +1,8 @@
 <template>
     <div class="titlebar" :class="{ 'is-maximize': isMaximize }">
         <div class="titlebar-drag-region" />
-        <div ref="menu" class="titlebar-menu">
-            Menu & Logo
-        </div>
+        <img class="titlebar-logo" src="~/assets/icons/desk-lamp.svg" />
+        <menu- ref="menu" class="titlebar-menu" />
         <div
             ref="title"
             class="titlebar-title"
@@ -12,16 +11,16 @@
             Ai Scanlation
         </div>
         <div ref="controls" class="titlebar-controls">
-            <div class="titlebar-controls-minimize" @click="minimize">
+            <div class="titlebar-controls-minimize" @click="minimize.call">
                 &#xE921;
             </div>
-            <div class="titlebar-controls-maximize" @click="maximize">
+            <div class="titlebar-controls-maximize" @click="maximize.call">
                 &#xE922;
             </div>
-            <div class="titlebar-controls-unmaximize" @click="unmaximize">
+            <div class="titlebar-controls-unmaximize" @click="unmaximize.call">
                 &#xE923;
             </div>
-            <div class="titlebar-controls-close" @click="close">
+            <div class="titlebar-controls-close" @click="close.call">
                 &#xE8BB;
             </div>
         </div>
@@ -30,7 +29,10 @@
 <script lang="ts">
 import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
-@Component
+import { Action } from '~/utils';
+import { ActionItem } from '~/modules/actions.type';
+
+@Component({ name: 'title-bar-' })
 export default class extends Vue {
     $refs!: {
         menu: Element;
@@ -42,21 +44,17 @@ export default class extends Vue {
     isTitlebarFloat = false;
     isMaximize = false;
 
-    minimize() {
-        this.currentWindow.minimize();
-    }
+    @Action
+    minimize!: ActionItem;
 
-    maximize() {
-        this.currentWindow.maximize();
-    }
+    @Action
+    maximize!: ActionItem;
 
-    unmaximize() {
-        this.currentWindow.unmaximize();
-    }
+    @Action
+    unmaximize!: ActionItem;
 
-    close() {
-        this.currentWindow.close();
-    }
+    @Action
+    close!: ActionItem;
 
     resizeListener() {
         const { menu, title, controls } = this.$refs;
@@ -86,15 +84,29 @@ export default class extends Vue {
 </script>
 <style lang="postcss">
 .titlebar {
-    height: 32px;
-    font-size: 12px;
-    line-height: 32px;
-    border-bottom-color: var(--line-color);
+    --title-bar-size: 2rem;
+    --title-bar-font-size: 0.75rem;
 
-    @apply relative flex select-none border-b flex-no-wrap;
+    @apply relative flex select-none flex-no-wrap box-content;
+
+    height: var(--title-bar-size);
+    font-size: var(--title-bar-font-size);
+    line-height: var(--title-bar-size);
+    border-bottom-color: var(--line-color);
+    border-bottom-width: var(--line-size);
 
     > * {
         @apply whitespace-no-wrap;
+    }
+
+    &-logo {
+        @apply px-2 border-r box-content;
+
+        width: 2rem;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-right-color: var(--line-color);
+        border-right-width: var(--line-size);
     }
 
     &-drag-region {
@@ -109,7 +121,7 @@ export default class extends Vue {
     }
 
     &-menu {
-        @apply pl-2 pr-4 mr-auto truncate;
+        @apply mr-auto;
     }
 
     &-title {
@@ -138,12 +150,12 @@ export default class extends Vue {
             width: 46px;
 
             &:hover {
-                background-color: var(--hover-background-color);
+                background-color: var(--main-background-color-hover);
 
                 &^^&-close:hover {
-                    color: var(--titlebar-exit-hover-color);
+                    color: var(--titlebar-exit-color-hover);
                     background-color: var(
-                        --titlebar-exit-hover-background-color
+                        --titlebar-exit-background-color-hover
                     );
                 }
             }

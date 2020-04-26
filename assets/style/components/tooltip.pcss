@@ -3,6 +3,9 @@ $arrow-size: 0.5rem;
 .tooltip {
     @apply block z-10;
 
+    display: block !important;
+    transition: opacity 0.2s, visibility 0.2s;
+
     &-inner {
         @apply text-white rounded px-3 py-1 shadow bg-black;
     }
@@ -19,10 +22,10 @@ $arrow-size: 0.5rem;
 
             ^&-arrow {
                 border-color: only($dimension, black, transparent);
-                border-width: only($(opposite), 0, $arrow-size);
+                border-width: only($opposite, 0, $arrow-size);
 
-                @mixin property $(base), calc(50% - $arrow-size);
-                @mixin property $(opposite), -$arrow-size;
+                @mixin property $base, calc(50% - $arrow-size);
+                @mixin property $opposite, -$arrow-size;
                 @apply m$(axis)-0;
             }
         }
@@ -35,6 +38,6 @@ $arrow-size: 0.5rem;
 
     &[aria-hidden='false'] {
         visibility: visible;
-        opacity: 1;
+        opacity: 0.75;
     }
 }

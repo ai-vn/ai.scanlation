@@ -8,7 +8,7 @@ import {
     createCertificate,
 } from 'pem';
 
-const dir = join(__dirname, '../.certificate');
+const dir = join(__dirname, '../../.certificate');
 const getPath = (name: 'key' | 'crt') => join(dir, `nuxt.${name}`);
 
 type CertificateResult = {

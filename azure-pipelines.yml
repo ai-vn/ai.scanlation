@@ -6,17 +6,17 @@ pool:
   vmImage: 'macOS-latest'
 steps:
   - task: NodeTool@0
+    displayName: Install NodeJS
     inputs:
       versionSpec: '10.x'
       checkLatest: true
-    displayName: Install NodeJS
 
   - task: RestoreAndSaveCache@1
+    displayName: Restore cache based on 'yarn.lock'
     inputs:
       keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/azure-pipelines.yml'
       targetfolder: '**/node_modules, !**/node_modules/**/node_modules, $(ELECTRON_CACHE), $(ELECTRON_BUILDER_CACHE)'
       vstsFeed: $(artifacts)
-    displayName: Restore cache based on 'yarn.lock'
 
   - script: |
       yarn --frozen-lockfile
@@ -29,23 +29,42 @@ steps:
     displayName: Analyzes Source Code
 
   - script: |
-      yarn test
+      yarn test --ci
+      cd $(System.DefaultWorkingDirectory)/coverage
+      ls
     displayName: Run Unit Tests
+    continueOnError: true
+
+  - task: PublishTestResults@2
+    displayName: Publish Jest Unit Test Results
+    inputs:
+      testResultsFiles: junit.xml
+      mergeTestResults: true
+      testRunTitle: 'Jest Unit Tests'
+      failTaskOnFailedTests: true
+
+  - task: PublishCodeCoverageResults@1
+    displayName: Publish code coverage from Jest tests
+    inputs:
+      codeCoverageTool: cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+      # reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+      # failIfCoverageEmpty: true
 
   - script: |
       yarn build
+    displayName: Build
     condition: and(succeeded(), notIn(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:
       GH_TOKEN: $(GH_TOKEN)
       ELECTRON_CACHE: $(ELECTRON_CACHE)
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
-    displayName: Build
 
   - script: |
       yarn release --mac --win
+    displayName: Release (Mac & Win)
     condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:
       GH_TOKEN: $(GH_TOKEN)
       ELECTRON_CACHE: $(ELECTRON_CACHE)
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
-    displayName: Release (Mac & Win)
