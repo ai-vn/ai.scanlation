@@ -34,7 +34,7 @@
     "nuxt-property-decorator": "^2.5.1",
     "pem": "^1.14.4",
     "source-map-support": "^0.5.16",
-    "ts-node": "^8.8.2",
+    "ts-node": "^8.9.1",
     "v-tooltip": "2.0.2",
     "vuex-module-decorators": "^0.16.1",
     "vuex-persistedstate": "^3.0.1"
@@ -54,8 +54,8 @@
     "@types/node": "12.12.35",
     "@types/pem": "^1.9.5",
     "@types/webpack-env": "^1.15.1",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
     "@vue/test-utils": "^1.0.0-beta.33",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -84,7 +84,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
     "gulp": "^4.0.2",
-    "jest": "^25.3.0",
+    "jest": "^25.4.0",
     "jest-extended": "^0.11.5",
     "jest-junit": "^10.0.0",
     "js-yaml": "^3.13.1",
@@ -98,16 +98,16 @@
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
-    "stylelint": "^13.3.1",
+    "stylelint": "^13.3.3",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "ts-jest": "^25.3.1",
-    "ts-loader": "^6.2.2",
+    "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.9.1",
-    "webpack": "^4.42.1"
+    "webpack": "^4.43.0"
   }
 }
