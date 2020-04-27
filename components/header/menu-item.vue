@@ -42,8 +42,8 @@ import { ActionItem } from '~/modules/actions.type';
 export default class MenuItem extends Vue {
     @Prop({ type: Object, validator: isAction })
     @Render<MenuItem>(t => () => {
-        if (t.action) t.action.call.apply(t);
-        else t.$emit('click');
+        t.action?.call();
+        t.$emit('click');
     })
     action!: ActionItem;
 
