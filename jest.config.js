@@ -21,14 +21,13 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: [
         '**/*.{ts,tsx,vue}',
+        '!**/*.d.ts',
         '!**/node_modules/**',
         '!**/vendor/**',
     ],
     coverageDirectory: 'coverage',
-    // coveragePathIgnorePatterns: [
-    //   "\\\\node_modules\\\\"
-    // ],
-    coverageReporters: ['cobertura'],
+    coveragePathIgnorePatterns: ['nuxt.config.ts', 'gulpfile.babel.ts'],
+    coverageReporters: ['cobertura', 'html'],
     // coverageThreshold: null,
     // forceCoverageMatch: [],
 
