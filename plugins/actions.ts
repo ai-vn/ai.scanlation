@@ -4,10 +4,10 @@ import { actions } from '~/modules/actions.import';
 import { ActionItem } from '~/modules/actions.type';
 
 const actionInject = (getAction: (_actions: typeof actions) => ActionItem) =>
-    getAction(actions).call.apply(window.$nuxt);
+    getAction(actions).call();
 
 const plugin: Plugin = (context, inject) => {
-    actions.resetMousetrap.call.apply(window.$nuxt);
+    actions.resetMousetrap.call();
     inject('action', actionInject);
 };
 

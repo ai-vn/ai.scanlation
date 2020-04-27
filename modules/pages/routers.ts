@@ -1,10 +1,8 @@
-import { Vue } from 'nuxt-property-decorator';
 import { ActionItem } from '~/modules/actions.type';
 
-const routerPush = (name: string) =>
-    function push(this: Vue) {
-        this.$router.push(name);
-    };
+const routerPush = (name: string) => () => {
+    window.$nuxt.$router.push(name);
+};
 
 export const goToHome: ActionItem = {
     call: routerPush('/'),

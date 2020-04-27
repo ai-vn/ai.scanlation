@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { Vue } from 'nuxt-property-decorator';
 import { actions } from '~/modules/actions.import';
 import { ActionItem } from '~/modules/actions.type';
@@ -21,7 +20,6 @@ export function Action<V extends Vue>(
     key_?: KeyType,
 ): void | VuePropertyDecorator<V> {
     function defineProperty(action: ActionItem, target: V, key: string) {
-        action.call = action.call.bind(target);
         Object.defineProperty(target, key, { value: action, enumerable: true });
     }
     if (typeof targetOrGetAction !== 'function') {

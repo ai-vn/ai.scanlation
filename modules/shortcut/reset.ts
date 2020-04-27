@@ -19,9 +19,7 @@ export const resetMousetrap: ActionItem = {
                         );
                     }
                     dictionary.set(accelerator, name);
-                    mousetrap.bind(accelerator, () => {
-                        call.apply(window.$nuxt);
-                    });
+                    mousetrap.bind(accelerator, call);
                 }
             }
         }
