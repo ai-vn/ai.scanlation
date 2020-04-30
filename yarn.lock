@@ -2515,7 +2515,7 @@ ansi-colors@^3.0.0:
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
   integrity sha512-hHUXGagefjN2iRrID63xckIvotOXOojhQKWIPUZ4mNUZ9nLZW+7FMNoE1lOkEhNWYsx/7ysGIuJYCiMAA9FnrA==
 
-ansi-escapes@^4.2.1:
+ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.1.tgz#a5c47cc43181f1f38ffd7076837700d395522a61"
   integrity sha512-JWF7ocqNrp8u9oqpgV+wH5ftbt+cfvv+PTjOvKLT3AdYly/LmORARfEVT1iyjwN+4MqE5UmVKoAdIBqeoCHgLA==
@@ -8460,6 +8460,15 @@ jest-validate@^25.4.0:
     leven "^3.1.0"
     pretty-format "^25.4.0"
 
+jest-watch-select-projects@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jest-watch-select-projects/-/jest-watch-select-projects-2.0.0.tgz#4373d7e4de862aae28b46e036b669a4c913ea867"
+  integrity sha512-j00nW4dXc2NiCW6znXgFLF9g8PJ0zP25cpQ1xRro/HU2GBfZQFZD0SoXnAlaoKkIY4MlfTMkKGbNXFpvCdjl1w==
+  dependencies:
+    ansi-escapes "^4.3.0"
+    chalk "^3.0.0"
+    prompts "^2.2.1"
+
 jest-watcher@^25.4.0:
   version "25.4.0"
   resolved "https://registry.yarnpkg.com/jest-watcher/-/jest-watcher-25.4.0.tgz#63ec0cd5c83bb9c9d1ac95be7558dd61c995ff05"
@@ -11667,7 +11676,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-prompts@^2.0.1:
+prompts@^2.0.1, prompts@^2.2.1:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/prompts/-/prompts-2.3.2.tgz#480572d89ecf39566d2bd3fe2c9fccb7c4c0b068"
   integrity sha512-Q06uKs2CkNYVID0VqwfAl9mipo99zkBv/n2JtWY89Yxa3ZabWSrs0e2KTudKVa3peLUvYXMefDqIleLPVUBZMA==

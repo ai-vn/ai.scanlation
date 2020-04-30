@@ -89,6 +89,7 @@
     "jest": "^25.4.0",
     "jest-extended": "^0.11.5",
     "jest-junit": "^10.0.0",
+    "jest-watch-select-projects": "^2.0.0",
     "js-yaml": "^3.13.1",
     "npm-run-all": "^4.1.5",
     "postcss-atroot": "^0.1.3",
