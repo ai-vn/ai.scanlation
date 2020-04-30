@@ -124,8 +124,18 @@ const config = {
             },
         },
         {
+            files: ['**/__tests__/**/*.ts', '**/__mocks__/**/*.ts'],
+            rules: {
+                'node/no-missing-require': 'off',
+                'global-require': 'off',
+                'import/namespace': 'off',
+                'jest/no-if': 'off',
+            },
+        },
+        {
             files: [
-                'test/**/*.ts',
+                '**/__tests__/**/*.ts',
+                '**/__mocks__/**/*.ts',
                 'types/*.d.ts',
                 'app/**/*.ts',
                 'nuxt.config.ts',
@@ -137,6 +147,17 @@ const config = {
                     {
                         devDependencies: true,
                         packageDir,
+                    },
+                ],
+                'jest/no-hooks': [
+                    'error',
+                    {
+                        allow: [
+                            'beforeAll',
+                            'beforeEach',
+                            'afterAll',
+                            'afterEach',
+                        ],
                     },
                 ],
             },
