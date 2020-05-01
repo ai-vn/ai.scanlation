@@ -50,6 +50,13 @@ module.exports = {
             testEnvironment: '@jest-runner/electron/environment',
             testMatch: ['**/__tests__/renderer/**/*.test.ts'],
         },
+        {
+            ...common,
+            displayName: 'Electron Main',
+            runner: '@jest-runner/electron/main',
+            testEnvironment: 'node',
+            testMatch: ['**/__tests__/main/**/*.test.ts'],
+        },
     ],
     ...common,
 };

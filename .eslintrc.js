@@ -126,10 +126,11 @@ const config = {
         {
             files: ['**/__tests__/**/*.ts', '**/__mocks__/**/*.ts'],
             rules: {
-                'node/no-missing-require': 'off',
+                '@typescript-eslint/no-var-requires': 'off',
                 'global-require': 'off',
                 'import/namespace': 'off',
                 'jest/no-if': 'off',
+                'node/no-missing-require': 'off',
             },
         },
         {
