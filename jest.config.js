@@ -39,23 +39,29 @@ module.exports = {
     projects: [
         {
             ...common,
+            displayName: 'Core',
+            testEnvironment: 'node',
+            testMatch: ['**/__tests__/**/*.node.ts'],
+        },
+        {
+            ...common,
             displayName: 'Nuxt',
             testEnvironment: 'jsdom',
-            testMatch: ['**/__tests__/nuxt/**/*.test.ts'],
+            testMatch: ['**/__tests__/**/*.nuxt.ts'],
         },
         {
             ...common,
             displayName: 'Electron Renderer',
             runner: '@jest-runner/electron',
             testEnvironment: '@jest-runner/electron/environment',
-            testMatch: ['**/__tests__/renderer/**/*.test.ts'],
+            testMatch: ['**/__tests__/**/*.web.ts'],
         },
         {
             ...common,
             displayName: 'Electron Main',
             runner: '@jest-runner/electron/main',
             testEnvironment: 'node',
-            testMatch: ['**/__tests__/main/**/*.test.ts'],
+            testMatch: ['**/__tests__/**/*.main.ts'],
         },
     ],
     ...common,

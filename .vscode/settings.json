@@ -55,6 +55,11 @@
             "filenamesGlob": ["electron-webpack", "electron-builder"],
             "extensionsGlob": ["json", "yml"],
             "format": "svg"
+        },
+        {
+            "icon": "testts",
+            "extensions": ["node.ts", "nuxt.ts", "web.ts", "main.ts"],
+            "format": "svg"
         }
     ],
     "vsicons.associations.folders": [

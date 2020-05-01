@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types';
 import { Configuration as WebpackConfiguration } from 'webpack';
-import { env } from '~/__tests__/utils.env';
+import { env } from '~/__tests__/__utils__/utils.env';
 
 const { save, load } = env('NODE_ENV');
 

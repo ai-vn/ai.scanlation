@@ -1,4 +1,4 @@
-import { env } from '~/__tests__/utils.env';
+import { env } from '~/__tests__/__utils__/utils.env';
 import { disableSecurity } from '~/app/env';
 
 const { save, load } = env('NODE_ENV', 'ELECTRON_SECURITY_CHECK');
