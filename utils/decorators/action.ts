@@ -3,9 +3,7 @@ import { actions } from '~/modules/actions.import';
 import { ActionItem } from '~/modules/actions.type';
 
 export const isAction = (action: Record<string, any>): action is ActionItem =>
-    typeof action === 'object' &&
-    action.call &&
-    typeof action.call === 'function';
+    typeof action === 'object' && typeof action.call === 'function';
 
 type GetActionType = (actions_: typeof actions) => ActionItem;
 type VuePropertyDecorator<V extends Vue> = (target: V, key: string) => void;
