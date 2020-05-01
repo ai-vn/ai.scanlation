@@ -1,6 +1,7 @@
 variables:
   ELECTRON_CACHE: $(Pipeline.Workspace)/.cache/electron
   ELECTRON_BUILDER_CACHE: $(Pipeline.Workspace)/.cache/electron-builder
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 pool:
   vmImage: 'macOS-latest'
@@ -11,17 +12,18 @@ steps:
       versionSpec: '10.x'
       checkLatest: true
 
-  - task: RestoreAndSaveCache@1
-    displayName: Restore cache based on 'yarn.lock'
+  - task: Cache@2
     inputs:
-      keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock, **/azure-pipelines.yml'
-      targetfolder: '**/node_modules, !**/node_modules/**/node_modules, $(ELECTRON_CACHE), $(ELECTRON_BUILDER_CACHE)'
-      vstsFeed: $(artifacts)
+      key: yarn | $(Agent.OS) | yarn.lock | azure-pipelines.yml
+      path: $(YARN_CACHE_FOLDER)
+      restoreKeys: |
+        yarn | $(Agent.OS)
+        yarn
+    displayName: Cache Yarn packages
 
   - script: |
       yarn --frozen-lockfile
     displayName: Install Dependencies
-    condition: ne(variables['CacheRestored'], 'true')
 
   - script: |
       yarn lint:js --max-warnings=0
@@ -30,8 +32,6 @@ steps:
 
   - script: |
       yarn test --ci
-      cd $(System.DefaultWorkingDirectory)/coverage
-      ls
     displayName: Run Unit Tests
     continueOnError: true
 
@@ -48,8 +48,6 @@ steps:
     inputs:
       codeCoverageTool: cobertura
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
-      # reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
-      # failIfCoverageEmpty: true
 
   - script: |
       yarn build
