@@ -3,7 +3,6 @@
 
 const common = {
     clearMocks: true,
-
     errorOnDeprecated: true,
     moduleFileExtensions: ['js', 'ts', 'json', 'vue'],
 
@@ -12,6 +11,7 @@ const common = {
     },
     reporters: ['default', 'jest-junit'],
     setupFilesAfterEnv: ['jest-extended'],
+    cacheDirectory: './.cache/jest',
     testEnvironment: 'jsdom',
     transform: {
         '^.+\\.vue$': 'vue-jest',

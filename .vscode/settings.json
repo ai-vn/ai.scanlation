@@ -3,21 +3,22 @@
     "javascript.format.enable": false,
 
     "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/junit.xml": true,
-        "**/.DS_Store": true,
-        "**/.vscode": true,
-        "**/.dependabot": true,
+        "**/.cache": true,
         "**/.certificate": true,
+        "**/.dependabot": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
         "**/.nuxt": true,
         "**/.nyc_output": true,
+        "**/.svn": true,
+        "**/.vscode": true,
         "**/coverage": true,
+        "**/CVS": true,
         "**/dist": true,
-        "**/yarn-error.log": true,
-        "**/node_modules": true
+        "**/junit.xml": true,
+        "**/node_modules": true,
+        "**/yarn-error.log": true
     },
     "files.eol": "\r\n",
     "files.watcherExclude": {

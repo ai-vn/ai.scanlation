@@ -1,15 +1,16 @@
 variables:
-  ELECTRON_CACHE: $(Pipeline.Workspace)/.cache/electron
-  ELECTRON_BUILDER_CACHE: $(Pipeline.Workspace)/.cache/electron-builder
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  NODE_CACHE_FOLDER: $(System.DefaultWorkingDirectory)/node_modules
+  ELECTRON_CACHE: $(Pipeline.Workspace)/.cache
+  JEST_CACHE: $(System.DefaultWorkingDirectory)/.cache/jest
 
 pool:
-  vmImage: 'macOS-latest'
+  vmImage: 'windows-latest'
 steps:
   - task: NodeTool@0
     displayName: Install NodeJS
     inputs:
-      versionSpec: '10.x'
+      versionSpec: '12.x'
       checkLatest: true
 
   - task: Cache@2
@@ -18,8 +19,25 @@ steps:
       path: $(YARN_CACHE_FOLDER)
       restoreKeys: |
         yarn | $(Agent.OS)
-        yarn
     displayName: Cache Yarn packages
+
+  - task: Cache@2
+    inputs:
+      key: node | $(Agent.OS) | yarn.lock | azure-pipelines.yml
+      path: $(NODE_CACHE_FOLDER)
+    displayName: Cache Node Modules
+
+  - task: Cache@2
+    inputs:
+      key: electron | $(Agent.OS) | yarn.lock | azure-pipelines.yml
+      path: $(ELECTRON_CACHE)
+    displayName: Cache Electron
+
+  - task: Cache@2
+    inputs:
+      key: jest | $(Agent.OS) | __tests__/** | yarn.lock | azure-pipelines.yml
+      path: $(JEST_CACHE)
+    displayName: Cache Jest
 
   - script: |
       yarn --frozen-lockfile
@@ -59,8 +77,8 @@ steps:
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
 
   - script: |
-      yarn release --mac --win
-    displayName: Release (Mac & Win)
+      yarn release --win
+    displayName: Release (Windows)
     condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:
       GH_TOKEN: $(GH_TOKEN)
