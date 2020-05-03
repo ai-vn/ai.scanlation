@@ -5,8 +5,8 @@ import Explorer from '~/store/explorer';
 
 let explorer: Explorer;
 
-function initialiseStores(store: Store<any>): void {
+function initializeStore(store: Store<any>): void {
     explorer = getModule(Explorer, store);
 }
 
-export { initialiseStores, explorer };
+export { initializeStore, explorer };

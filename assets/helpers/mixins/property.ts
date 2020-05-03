@@ -1,7 +1,8 @@
-import { MixinsObject } from '~/types/plugin.postcss';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { MixinsObject } from 'postcss-mixins';
 
-const properties: MixinsObject = {
+const property: MixinsObject = {
     property: (mixin, key, value) => ({ [key]: value }),
 };
 
-export default properties;
+export default property;

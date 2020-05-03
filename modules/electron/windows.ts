@@ -1,13 +1,10 @@
-import { remote } from 'electron';
+import { remote, BrowserWindow } from 'electron';
 import { ActionItem } from '~/modules/actions.type';
 
-const currentWindow = remote.getCurrentWindow();
-const wrap = (fn: () => void) => () => fn();
+const wrap = (callback: (currentWindow: BrowserWindow) => () => void) => () =>
+    callback(remote.getCurrentWindow())();
 
-export const unmaximize: ActionItem = { call: wrap(currentWindow.unmaximize) };
-export const minimize: ActionItem = { call: wrap(currentWindow.minimize) };
-export const maximize: ActionItem = { call: wrap(currentWindow.maximize) };
-export const close: ActionItem = {
-    call: wrap(currentWindow.close),
-    title: 'Exit',
-};
+export const unmaximize: ActionItem = { call: wrap(c => c.unmaximize) };
+export const minimize: ActionItem = { call: wrap(c => c.minimize) };
+export const maximize: ActionItem = { call: wrap(c => c.maximize) };
+export const close: ActionItem = { call: wrap(c => c.close), title: 'Exit' };

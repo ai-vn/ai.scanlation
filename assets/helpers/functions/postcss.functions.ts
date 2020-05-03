@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FunctionsOptions } from 'postcss-functions';
 import dimensions from './dimensions';
-import { FunctionsOptions } from '~/types/plugin.postcss';
 
 const postcssFunctionsOptions: FunctionsOptions = {
     functions: {
