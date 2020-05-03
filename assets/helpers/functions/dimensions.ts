@@ -1,40 +1,41 @@
-import { FunctionsObject } from '~/types/plugin.postcss';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FunctionsObject } from 'postcss-functions';
 
 const map = ['top', 'bottom', 'left', 'right', 'x', 'y'];
+const directions = ['top', 'right', 'bottom', 'left'];
 
-function getIndex(dimension: string) {
-    const index = map.indexOf(dimension);
+function getIndex(direction: typeof map[number]) {
+    const index = map.indexOf(direction);
     if (index === -1)
         throw new Error(
-            `Argument of type ${dimension} is not assignable to parameter of type '${map
+            `Argument of type ${direction} is not assignable to parameter of type ${map
                 .map(t => `'${t}'`)
-                .join(' | ')}'.`,
+                .join(' | ')}.`,
         );
     return index;
 }
 
-function inAxis(axis: string, dimension: string) {
+function inAxis(
+    axis: typeof directions[number],
+    direction: typeof map[number],
+) {
     return (
-        (axis === 'x' && ['left', 'right'].includes(dimension)) ||
-        (axis === 'y' && ['top', 'bottom'].includes(dimension))
+        direction === axis ||
+        (direction === 'x' && ['left', 'right'].includes(axis)) ||
+        (direction === 'y' && ['top', 'bottom'].includes(axis))
     );
 }
 
 const dimensions: FunctionsObject = {
-    opposite(dimension) {
-        const index = getIndex(dimension);
+    opposite(direction, prefix) {
+        const index = getIndex(direction);
         const result = index + (index % 2 === 0 ? 1 : -1);
-        return map[result];
+        return `${prefix}-${map[result]}`;
     },
 
-    only(dimension, value, elseValue) {
-        getIndex(dimension);
-        return ['top', 'right', 'bottom', 'left']
-            .map(item =>
-                item === dimension || inAxis(item, dimension)
-                    ? value
-                    : elseValue,
-            )
+    only(direction: typeof map[number], value, elseValue) {
+        return directions
+            .map(item => (inAxis(item, direction) ? value : elseValue))
             .join(' ');
     },
 };
