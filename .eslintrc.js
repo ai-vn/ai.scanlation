@@ -4,8 +4,9 @@ var isWin = require('os').platform() === 'win32';
 const packageDir = [
     path.join(__dirname),
     path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
-    path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
     path.join(__dirname, 'node_modules/@nuxt/vue-app'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
+    path.join(__dirname, 'node_modules/@nuxt/webpack'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
@@ -78,6 +79,7 @@ const config = {
         '@typescript-eslint/prefer-interface': 'off',
         '@typescript-eslint/no-unused-expressions': ['error'],
 
+        'node/no-extraneous-require': 'off',
         'node/no-extraneous-import': 'off',
         'node/no-missing-import': 'off',
         'node/no-unpublished-import': 'off',
@@ -131,6 +133,7 @@ const config = {
                 'import/namespace': 'off',
                 'jest/no-if': 'off',
                 'node/no-missing-require': 'off',
+                'node/no-unpublished-require': 'off',
             },
         },
         {
