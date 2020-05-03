@@ -7,7 +7,7 @@ const pcss = `body {
 }`;
 
 describe('assets/helper/mixins/property.ts', () => {
-    it('should support `property` mixins', async () => {
+    it('should support `property` mixins', () => {
         expect.hasAssertions();
         const mixins = postcssMixins(postcssMixinsOptions);
         const css = postcss()
