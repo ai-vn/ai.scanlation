@@ -1,6 +1,6 @@
 {
   "name": "ai.scanlation",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "license": "MIT",
   "description": "Scanlation tool for Ai Scanlation",
   "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
@@ -43,6 +43,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "@jest-runner/electron": "^2.0.3",
     "@nuxt/typescript-build": "^0.6.4",
     "@nuxtjs/tailwindcss": "^1.4.0",
     "@types/electron-devtools-installer": "^2.2.0",
@@ -53,6 +54,7 @@
     "@types/mousetrap": "^1.6.3",
     "@types/node": "12.12.35",
     "@types/pem": "^1.9.5",
+    "@types/rimraf": "^3.0.0",
     "@types/webpack-env": "^1.15.1",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
@@ -87,6 +89,7 @@
     "jest": "^25.4.0",
     "jest-extended": "^0.11.5",
     "jest-junit": "^10.0.0",
+    "jest-watch-select-projects": "^2.0.0",
     "js-yaml": "^3.13.1",
     "npm-run-all": "^4.1.5",
     "postcss-atroot": "^0.1.3",
@@ -109,5 +112,12 @@
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.9.1",
     "webpack": "^4.43.0"
+  },
+  "resolutions": {
+    "@jest-runner/electron/jest-haste-map": "^25.4.0",
+    "@jest-runner/electron/jest-mock": "^25.4.0",
+    "@jest-runner/electron/jest-runner": "^25.4.0",
+    "@jest-runner/electron/jest-runtime": "^25.4.0",
+    "@jest-runner/electron/jest-util": "^25.4.0"
   }
 }
