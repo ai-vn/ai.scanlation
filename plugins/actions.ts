@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { Plugin } from '@nuxt/types';
 import { actions } from '~/modules/actions.import';
 import { ActionItem } from '~/modules/actions.type';
