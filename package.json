@@ -43,7 +43,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
-    "@jest-runner/electron": "^2.0.3",
+    "@jest-runner/electron": "^3.0.0",
     "@nuxt/typescript-build": "^0.6.6",
     "@nuxtjs/tailwindcss": "^2.0.0",
     "@types/electron-devtools-installer": "^2.2.0",
