@@ -1,4 +1,3 @@
-import { mkdirSync } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import {
@@ -9,7 +8,7 @@ import {
 import rimraf from 'rimraf';
 import { getCertificate } from '~/utils/build/certificate';
 
-const dir = join(__dirname, '../../../../.certificate/');
+const dir = join(__dirname, '../../../.certificate');
 
 describe('certificate', () => {
     it('should create certificate without write', async () => {
@@ -29,19 +28,11 @@ describe('certificate', () => {
     describe('getCertificate', () => {
         const cleanCertificate = () => rimraf.sync(dir);
 
-        beforeEach(cleanCertificate);
-        afterEach(cleanCertificate);
-
-        it.each([
-            ['create folder & a new certificate', async () => undefined],
-            ['create a new certificate', async () => mkdirSync(dir)],
-            ['use an old certificate', async () => getCertificate()],
-        ])('should %s', async (name, callBefore) => {
+        it('should create folder & certificate', async () => {
             expect.hasAssertions();
-
-            await callBefore();
+            cleanCertificate();
+            await getCertificate();
             const keys = await getCertificate();
-
             expect(keys.cert).toBeString();
             expect(keys.key).toBeString();
         });
