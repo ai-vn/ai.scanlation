@@ -52,7 +52,7 @@
     "@types/js-yaml": "^3.12.3",
     "@types/lodash": "^4.14.150",
     "@types/mousetrap": "^1.6.3",
-    "@types/node": "12.12.35",
+    "@types/node": "13.13.5",
     "@types/pem": "^1.9.5",
     "@types/rimraf": "^3.0.0",
     "@types/webpack-env": "^1.15.2",
