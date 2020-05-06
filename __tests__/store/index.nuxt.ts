@@ -2,7 +2,7 @@ import { createLocalVue } from '@vue/test-utils';
 import Vuex, { Store } from 'vuex';
 import { plugins } from '~/store';
 
-describe('nuxt: store', () => {
+describe('store/index', () => {
     let store: Store<any>;
 
     beforeAll(() => {

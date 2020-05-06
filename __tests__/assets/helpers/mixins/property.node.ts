@@ -6,7 +6,7 @@ const pcss = `body {
     @mixin property color, red;
 }`;
 
-describe('assets/helper/mixins/property.ts', () => {
+describe('assets/helper/mixins/property', () => {
     it('should support `property` mixins', () => {
         expect.hasAssertions();
         const mixins = postcssMixins(postcssMixinsOptions);

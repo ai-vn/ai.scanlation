@@ -1,7 +1,7 @@
 import pluginStore from '~/plugins/store';
 import { installPlugin } from '~/__tests__/__utils__/nuxt';
 
-describe('utils: store', () => {
+describe('plugins/store', () => {
     beforeAll(() => {
         window.onNuxtReady = (callback: () => void) => callback();
     });

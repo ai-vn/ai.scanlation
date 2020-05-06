@@ -4,8 +4,8 @@ import { env } from '~/__tests__/__utils__/utils.env';
 
 const { save, load } = env('NODE_ENV');
 
-describe('nuxt', () => {
-    describe('config environment', () => {
+describe('nuxt.config', () => {
+    describe('environment', () => {
         beforeEach(() => {
             jest.resetModules();
             save();
@@ -23,7 +23,7 @@ describe('nuxt', () => {
         );
     });
 
-    describe('config build extend', () => {
+    describe('build.extend', () => {
         it.each([
             [true, true],
             [true, false],

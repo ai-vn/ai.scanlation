@@ -3,7 +3,7 @@ import { disableSecurity } from '~/app/env';
 
 const { save, load } = env('NODE_ENV', 'ELECTRON_SECURITY_CHECK');
 
-describe('main', () => {
+describe('app/env', () => {
     beforeEach(() => {
         jest.resetModules();
         save();

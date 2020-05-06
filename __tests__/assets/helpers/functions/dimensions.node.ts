@@ -4,7 +4,7 @@ import postcssMixins from 'postcss-mixins';
 import postcssFunctionsOptions from '~/assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from '~/assets/helpers/mixins/postcss.mixins';
 
-describe('assets/helper/functions/dimensions.ts', () => {
+describe('assets/helper/functions/dimensions', () => {
     const functions = postcssFunctions(postcssFunctionsOptions);
     const mixins = postcssMixins(postcssMixinsOptions);
     const processor = postcss().use(functions).use(mixins);
