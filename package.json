@@ -115,10 +115,10 @@
     "webpack": "^4.43.0"
   },
   "resolutions": {
-    "@jest-runner/electron/jest-haste-map": "^25.4.0",
-    "@jest-runner/electron/jest-mock": "^25.4.0",
-    "@jest-runner/electron/jest-runner": "^25.4.0",
-    "@jest-runner/electron/jest-runtime": "^25.4.0",
-    "@jest-runner/electron/jest-util": "^25.4.0"
+    "@jest-runner/electron/jest-haste-map": "^26.0.1",
+    "@jest-runner/electron/jest-mock": "^26.0.1",
+    "@jest-runner/electron/jest-runner": "^26.0.1",
+    "@jest-runner/electron/jest-runtime": "^26.0.1",
+    "@jest-runner/electron/jest-util": "^26.0.1"
   }
 }
