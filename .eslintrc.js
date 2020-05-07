@@ -132,6 +132,7 @@ const config = {
                 'global-require': 'off',
                 'import/namespace': 'off',
                 'jest/no-if': 'off',
+                'max-classes-per-file': 'off',
                 'node/no-missing-require': 'off',
                 'node/no-unpublished-require': 'off',
             },
