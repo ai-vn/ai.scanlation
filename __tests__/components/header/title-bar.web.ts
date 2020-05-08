@@ -1,0 +1,39 @@
+import { BrowserWindow, remote } from 'electron';
+import { mount } from '@vue/test-utils';
+import titleBar from '~/components/header/title-bar.vue';
+import { ActionItem } from '~/modules/actions.type';
+
+describe('components/header/title-bar', () => {
+    beforeAll(() => {
+        require('babel-plugin-require-context-hook/register')();
+        require('~/plugins/components-auto');
+
+        const currentWindow = remote.getCurrentWindow();
+        jest.spyOn(currentWindow, 'unmaximize').mockImplementation();
+        jest.spyOn(currentWindow, 'maximize').mockImplementation();
+        jest.spyOn(currentWindow, 'on').mockImplementation(function listenerFn(
+            this: BrowserWindow,
+            event,
+            listener,
+        ) {
+            listener({} as any, {} as any);
+            return this;
+        });
+    });
+
+    it('should mounted', async () => {
+        expect.hasAssertions();
+        const wrapper = mount<
+            titleBar & {
+                maximize: ActionItem;
+                unmaximize: ActionItem;
+                currentWindow: BrowserWindow;
+            }
+        >(titleBar);
+
+        expect(wrapper.vm.$options.name).toStrictEqual('title-bar-');
+        wrapper.vm.unmaximize.call();
+        wrapper.vm.maximize.call();
+        wrapper.vm.$destroy();
+    });
+});
