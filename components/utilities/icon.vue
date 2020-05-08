@@ -15,8 +15,8 @@ const map: { [key in string]: string } = aicon.icons.reduce(
 
 @Component({ name: 'icon-' })
 export default class extends Vue {
-    @Prop({ required: true, type: String })
-    i?: string;
+    @Prop({ type: String })
+    i!: string;
 
     get icon(): string {
         if (!this.i) return '';
