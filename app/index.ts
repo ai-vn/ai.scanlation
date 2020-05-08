@@ -6,7 +6,6 @@ import { format } from 'url';
 import { autoUpdater } from 'electron-updater';
 import { disableSecurity, isDev, isSecurityCheck } from './env';
 import { allowCertificate } from './helper/certificate';
-import { installDevtool } from './helper/installDevtool';
 import { listenAutoUpdaterEvents } from './updater/updater';
 
 if (!isSecurityCheck) disableSecurity();
@@ -21,7 +20,7 @@ function sendToClient(channel: string, ...args: any[]) {
     else console.error(`Send Message Failed: `, channel, ...args);
 }
 
-function createWindow() {
+async function createWindow() {
     if (window !== null) return;
 
     session
@@ -63,7 +62,7 @@ function createWindow() {
     window.on('closed', () => (window = null));
 
     if (isDev) {
-        installDevtool(window);
+        (await import('./helper/devtool')).installDevtool(window);
         allowCertificate();
     }
 }
