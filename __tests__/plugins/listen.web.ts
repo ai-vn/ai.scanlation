@@ -12,10 +12,8 @@ describe('plugins/listen', () => {
             return this;
         });
     });
-    it('should listen event', () => {
-        expect.hasAssertions();
-        expect(() => {
-            require('~/plugins/listen');
-        }).not.toThrow();
+    it('should listen event', async () => {
+        expect.assertions(0);
+        await import('~/plugins/listen');
     });
 });

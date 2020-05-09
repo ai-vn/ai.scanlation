@@ -2,11 +2,11 @@ import { BrowserWindow, remote } from 'electron';
 import { mount } from '@vue/test-utils';
 import titleBar from '~/components/header/title-bar.vue';
 import { ActionItem } from '~/modules/actions.type';
+import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('components/header/title-bar', () => {
-    beforeAll(() => {
-        require('babel-plugin-require-context-hook/register')();
-        require('~/plugins/components-auto');
+    beforeAll(async () => {
+        await importComponents();
 
         const currentWindow = remote.getCurrentWindow();
         jest.spyOn(currentWindow, 'unmaximize').mockImplementation();

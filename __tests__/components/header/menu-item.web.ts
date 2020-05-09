@@ -3,11 +3,11 @@ import { remote } from 'electron';
 import { mount } from '@vue/test-utils';
 import menuItem from '~/components/header/menu-item.vue';
 import { actions } from '~/modules/actions.import';
+import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('components/header/menu-item', () => {
-    beforeAll(() => {
-        require('babel-plugin-require-context-hook/register')();
-        require('~/plugins/components-auto');
+    beforeAll(async () => {
+        await importComponents();
         jest.spyOn(remote.getCurrentWindow(), 'maximize').mockImplementation();
     });
 

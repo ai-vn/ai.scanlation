@@ -22,12 +22,12 @@ describe('app/env', () => {
         ['development', undefined, false],
     ])(
         'should get isSecurityCheck, NODE_ENV = %p',
-        (NODE_ENV, ELECTRON_SECURITY_CHECK, result) => {
+        async (NODE_ENV, ELECTRON_SECURITY_CHECK, result) => {
             expect.hasAssertions();
             process.env.NODE_ENV = NODE_ENV;
             process.env.ELECTRON_SECURITY_CHECK = ELECTRON_SECURITY_CHECK;
 
-            const { isSecurityCheck } = require('~/app/env');
+            const { isSecurityCheck } = await import('~/app/env');
             expect(isSecurityCheck).toStrictEqual(result);
         },
     );

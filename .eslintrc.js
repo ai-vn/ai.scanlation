@@ -128,12 +128,9 @@ const config = {
         {
             files: ['**/__tests__/**/*.ts', '**/__mocks__/**/*.ts'],
             rules: {
-                '@typescript-eslint/no-var-requires': 'off',
-                'global-require': 'off',
                 'import/namespace': 'off',
                 'jest/no-if': 'off',
                 'max-classes-per-file': 'off',
-                'node/no-missing-require': 'off',
                 'node/no-unpublished-require': 'off',
             },
         },

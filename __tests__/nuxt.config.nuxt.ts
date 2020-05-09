@@ -5,6 +5,11 @@ import { env } from '~/__tests__/__utils__/utils.env';
 const { save, load } = env('NODE_ENV');
 
 describe('nuxt.config', () => {
+    const getConfig = async () => {
+        const config = await (await import('~/nuxt.config')).default();
+        return config;
+    };
+
     describe('environment', () => {
         beforeEach(() => {
             jest.resetModules();
@@ -17,7 +22,7 @@ describe('nuxt.config', () => {
             async NODE_ENV => {
                 expect.hasAssertions();
                 process.env.NODE_ENV = NODE_ENV;
-                const config = await require('~/nuxt.config').default();
+                const config = await getConfig();
                 expect(config).toBeDefined();
             },
         );
@@ -32,7 +37,7 @@ describe('nuxt.config', () => {
             'should be valid [ isClient = %p, isDev = %p ]',
             async (isClient, isDev) => {
                 expect.hasAssertions();
-                const config: Configuration = await require('~/nuxt.config').default();
+                const config: Configuration = await getConfig();
 
                 expect(config.build?.extend).toBeDefined();
                 if (!config.build?.extend) return;
