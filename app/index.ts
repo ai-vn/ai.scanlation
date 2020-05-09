@@ -63,7 +63,7 @@ async function createWindow() {
 
     if (isDev) {
         (await import('./helper/devtool')).installDevtool(window);
-        allowCertificate();
+        await allowCertificate();
     }
 }
 
