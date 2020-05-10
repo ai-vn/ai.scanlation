@@ -3,7 +3,7 @@ import Vuex, { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 import Explorer from '~/store/explorer';
 
-describe('nuxt: store', () => {
+describe('store/explorer', () => {
     let store: Store<any>;
 
     beforeAll(() => {
@@ -12,7 +12,7 @@ describe('nuxt: store', () => {
         store = new Vuex.Store({ modules: { explorer: Explorer } });
     });
 
-    it('should generate the module "explorer"', () => {
+    it('should generate module `explorer`', () => {
         expect.hasAssertions();
 
         const explorer = getModule(Explorer, store);

@@ -7,7 +7,7 @@ declare global {
     }
 }
 
-describe('module: shortcut', () => {
+describe('modules/shortcut', () => {
     beforeAll(() => {
         Object.prototype.testExtendNative = '';
     });

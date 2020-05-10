@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import { NuxtApp } from '@nuxt/types/app';
 import { actions } from '~/modules/actions.import';
 
-describe('module: routers', () => {
+describe('modules/routers/**', () => {
     beforeAll(() => {
         const vue = createLocalVue();
         vue.use(VueRouter);

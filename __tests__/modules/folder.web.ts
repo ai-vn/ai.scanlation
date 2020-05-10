@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import { actions } from '~/modules/actions.import';
 
-describe('module: folder', () => {
+describe('modules/folder/**', () => {
     it.each([
         [true, []],
         [false, ['filePath']],

@@ -44,7 +44,7 @@
         // SCSS IntelliSense
         "mrmlnc.vscode-scss",
         // stylelint
-        "shinnn.stylelint",
+        "stylelint.vscode-stylelint",
         // Travis CI Status
         "felixrieseberg.vsc-travis-ci-status",
         // TypeScript Importer

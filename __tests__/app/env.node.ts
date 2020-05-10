@@ -3,7 +3,7 @@ import { disableSecurity } from '~/app/env';
 
 const { save, load } = env('NODE_ENV', 'ELECTRON_SECURITY_CHECK');
 
-describe('main', () => {
+describe('app/env', () => {
     beforeEach(() => {
         jest.resetModules();
         save();
@@ -22,12 +22,12 @@ describe('main', () => {
         ['development', undefined, false],
     ])(
         'should get isSecurityCheck, NODE_ENV = %p',
-        (NODE_ENV, ELECTRON_SECURITY_CHECK, result) => {
+        async (NODE_ENV, ELECTRON_SECURITY_CHECK, result) => {
             expect.hasAssertions();
             process.env.NODE_ENV = NODE_ENV;
             process.env.ELECTRON_SECURITY_CHECK = ELECTRON_SECURITY_CHECK;
 
-            const { isSecurityCheck } = require('~/app/env');
+            const { isSecurityCheck } = await import('~/app/env');
             expect(isSecurityCheck).toStrictEqual(result);
         },
     );

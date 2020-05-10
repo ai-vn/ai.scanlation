@@ -3,9 +3,9 @@ import { camelCase } from 'lodash';
 
 const toSet = (key: string) => camelCase(`set ${key}`);
 
-export const State = (module: VuexModule) => <V extends Vue>(
+export const State = <T extends VuexModule>(module: T) => <V extends Vue>(
     target: V,
-    key: string,
+    key: keyof typeof module,
 ): any => {
     const mutationName = toSet(key.toString());
     const mutation = (module as any)[mutationName];
@@ -15,7 +15,7 @@ export const State = (module: VuexModule) => <V extends Vue>(
         );
     }
     return {
-        get: () => (module as any)[key],
+        get: () => module[key],
         set: (value: string) => mutation(value),
     };
 };

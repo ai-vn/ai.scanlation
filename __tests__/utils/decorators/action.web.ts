@@ -10,7 +10,7 @@ class ComponentWithActions extends Vue {
     reset!: ActionItem;
 }
 
-describe('decorator: action', () => {
+describe('utils/decorators/action', () => {
     it("shouldn't be action", () => {
         expect.hasAssertions();
 

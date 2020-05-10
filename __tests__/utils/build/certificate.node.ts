@@ -10,7 +10,7 @@ import { getCertificate } from '~/utils/build/certificate';
 
 const dir = join(__dirname, '../../../.certificate');
 
-describe('certificate', () => {
+describe('utils/build/certificate', () => {
     it('should create certificate without write', async () => {
         expect.hasAssertions();
 

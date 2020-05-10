@@ -2,7 +2,7 @@ import { createLocalVue } from '@vue/test-utils';
 import Vuex, { Store } from 'vuex';
 import { initializeStore } from '~/utils/store';
 
-describe('utils: store', () => {
+describe('utils/store', () => {
     let store: Store<any>;
 
     beforeAll(() => {

@@ -1,10 +1,10 @@
 import Vue from 'vue';
+import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('plugins/components-auto', () => {
-    it('should require components', () => {
+    it('should require components', async () => {
         expect.hasAssertions();
-        require('babel-plugin-require-context-hook/register')();
-        require('~/plugins/components-auto');
+        await importComponents();
         expect(
             Object.prototype.hasOwnProperty.call(
                 Vue.options.components,
