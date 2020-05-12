@@ -4,7 +4,7 @@ import { actions } from '~/modules/actions.import';
 describe('modules/folder/**', () => {
     it.each([
         [true, []],
-        [false, ['filePath']],
+        [false, ['folderPath']],
     ])('should not throw error', async (canceled, filePaths) => {
         expect.hasAssertions();
         jest.spyOn(

@@ -1,4 +1,4 @@
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators';
+import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
 
 @Module({
     name: 'explorer',
@@ -6,10 +6,10 @@ import { Module, VuexModule, Mutation } from 'vuex-module-decorators';
     namespaced: true,
 })
 export default class extends VuexModule {
-    filePath = '';
+    folderPath = '';
 
     @Mutation
-    setFilePath(value: string) {
-        this.filePath = value;
+    setFolderPath(value: string) {
+        this.folderPath = value;
     }
 }

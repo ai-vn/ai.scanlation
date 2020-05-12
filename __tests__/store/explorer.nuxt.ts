@@ -16,8 +16,8 @@ describe('store/explorer', () => {
         expect.hasAssertions();
 
         const explorer = getModule(Explorer, store);
-        expect(explorer.filePath).toStrictEqual('');
-        explorer.setFilePath('C://');
-        expect(explorer.filePath).toStrictEqual('C://');
+        expect(explorer.folderPath).toStrictEqual('');
+        explorer.setFolderPath('C://');
+        expect(explorer.folderPath).toStrictEqual('C://');
     });
 });

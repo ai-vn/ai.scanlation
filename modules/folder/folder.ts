@@ -8,7 +8,7 @@ export const selectFolder: ActionItem = {
             properties: ['openDirectory'],
         });
         const filePath = path.filePaths[0];
-        if (filePath !== undefined) explorer.setFilePath(filePath);
+        if (filePath !== undefined) explorer.setFolderPath(filePath);
     },
     title: 'Open Folder',
     accelerator: 'ctrl+o',
