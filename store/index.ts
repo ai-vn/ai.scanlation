@@ -1,6 +1,13 @@
+/* eslint-disable import/no-mutable-exports */
 import { Store } from 'vuex';
-import { initializeStore } from '~/utils/store';
+import { getModule } from 'vuex-module-decorators';
+import Explorer from '~/store/explorer';
 
-const initializer = (store: Store<any>) => initializeStore(store);
+let explorer: Explorer;
+
+const initializer = (store: Store<any>) => {
+    explorer = getModule(Explorer, store);
+};
+
 export const plugins = [initializer];
-export * from '~/utils/store';
+export { explorer };
