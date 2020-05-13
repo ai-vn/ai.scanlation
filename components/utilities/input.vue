@@ -4,6 +4,8 @@
         :value="value"
         :placeholder="placeholder"
         type="text"
+        @focus="focus"
+        @blur="blur"
         @input="$emit('input', $event.target.value)"
     />
     <input
@@ -13,11 +15,13 @@
         :min="min"
         :max="max"
         type="number"
+        @focus="focus"
+        @blur="blur"
         @input="$emit('input', parseFloat($event.target.value))"
     />
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Model } from 'nuxt-property-decorator';
+import { Vue, Component, Prop, Model, Emit } from 'nuxt-property-decorator';
 
 @Component({ name: 'input-' })
 export default class extends Vue {
@@ -39,6 +43,22 @@ export default class extends Vue {
 
     @Model('input', { type: [String, Number] })
     value!: string | number;
+
+    inGroup = false;
+
+    mounted() {
+        this.inGroup = this.$parent.$options.name === 'group-';
+    }
+
+    @Emit('blur')
+    blur() {
+        if (this.inGroup) this.$parent.$el.classList.remove('focus');
+    }
+
+    @Emit('focus')
+    focus() {
+        if (this.inGroup) this.$parent.$el.classList.add('focus');
+    }
 }
 </script>
 <style lang="postcss">
@@ -64,6 +84,12 @@ input {
 
     &::placeholder {
         color: var(--component-color);
+    }
+}
+
+.group > input {
+    &:focus {
+        outline: none;
     }
 }
 </style>
