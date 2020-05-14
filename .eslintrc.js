@@ -78,6 +78,10 @@ const config = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/prefer-interface': 'off',
         '@typescript-eslint/no-unused-expressions': ['error'],
+        '@typescript-eslint/no-unused-vars': [
+            'error',
+            { argsIgnorePattern: '_$' },
+        ],
 
         'node/no-extraneous-require': 'off',
         'node/no-extraneous-import': 'off',
