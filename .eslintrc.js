@@ -106,6 +106,7 @@ const config = {
             },
         ],
         'import/extensions': ['error', 'never', { json: 'always' }],
+        'import/no-cycle': ['error', { maxDepth: 2 }],
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
         'import/no-extraneous-dependencies': [
             'error',
