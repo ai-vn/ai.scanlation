@@ -8,7 +8,7 @@ import {
     VuexModule,
 } from 'vuex-module-decorators';
 import { plugins } from '~/store';
-import { State } from '~/utils/decorators/store';
+import { StoreState } from '~/utils/decorators/store.state';
 
 @Module({ name: 'no', stateFactory: true, namespaced: true })
 class NoMutation extends VuexModule {
@@ -41,7 +41,7 @@ describe('utils/decorators/store', () => {
             template: '<div/>',
         })
         class TempComponent extends Vue {
-            @State(hasMutation)
+            @StoreState(hasMutation)
             text!: string;
         }
         const wrapper = mount(TempComponent);
@@ -63,7 +63,7 @@ describe('utils/decorators/store', () => {
                 template: '<div/>',
             })
             class TempComponent extends Vue {
-                @State(noMutation)
+                @StoreState(noMutation)
                 text!: string;
             }
             return TempComponent;

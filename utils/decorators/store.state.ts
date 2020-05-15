@@ -1,11 +1,12 @@
 import { VuexModule } from 'vuex-module-decorators';
 import { camelCase } from 'lodash';
+import { NonFunctionPropertyNames } from '~/types/type';
 
 const toSet = (key: string) => camelCase(`set ${key}`);
 
-export const State = <T extends VuexModule>(module: T) => <V extends Vue>(
+export const StoreState = <T extends VuexModule>(module: T) => <V extends Vue>(
     target: V,
-    key: keyof typeof module,
+    key: NonFunctionPropertyNames<typeof module>,
 ): any => {
     const mutationName = toSet(key.toString());
     const mutation = (module as any)[mutationName];
