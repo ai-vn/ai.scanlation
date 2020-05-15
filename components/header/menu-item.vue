@@ -142,7 +142,7 @@ export default class MenuItem extends Vue {
     }
 
     &-ul {
-        @apply py-1 hidden absolute;
+        @apply py-1 hidden absolute z-50;
 
         min-width: 150px;
         background-color: var(--menu-background-color);
