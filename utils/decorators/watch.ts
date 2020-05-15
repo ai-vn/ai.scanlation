@@ -1,11 +1,11 @@
-import { VuexModule } from 'vuex-module-decorators';
-import { camelCase } from 'lodash';
+import { camelCase, debounce } from 'lodash';
 import { Store } from 'vuex';
-import { NonFunctionPropertyNames } from '~/types/type';
+import { VuexModule } from 'vuex-module-decorators';
+import { NonFunctionPropertyNames, Payload } from '~/types/type';
 
 interface Watcher<T> {
     getter: (self: any) => T;
-    watcher: ((value: T, oldValue: T) => void) | any;
+    watcher: (store: Store<any>) => (value: T, oldValue: T) => void;
 }
 
 const watchers: Watcher<any>[] = [];
@@ -16,21 +16,28 @@ export const Watch = <
 >(
     module: { new (...args: any[]): M },
     property: P,
+    wait = 0,
 ) => (
     target: M,
-    key: string & keyof M,
+    action: string & keyof M,
     descriptor_:
-        | TypedPropertyDescriptor<(value: M[P], oldValue: M[P]) => void>
-        | TypedPropertyDescriptor<(value: M[P]) => void>,
+        | TypedPropertyDescriptor<(payload: Payload<M[P]>) => void>
+        | TypedPropertyDescriptor<(payload: Payload<M[P]>) => Promise<void>>,
 ): void => {
+    const moduleName = camelCase(module.name);
+    const watcher = (store: Store<any>) =>
+        debounce((value: M[P], oldValue: M[P]) => {
+            store.dispatch(`${moduleName}/${action}`, { value, oldValue });
+        }, wait);
+
     watchers.push({
-        getter: state => state[camelCase(module.name)][property],
-        watcher: target[key],
+        getter: state => state[moduleName][property],
+        watcher,
     });
 };
 
 export const watchInitializer = (store: Store<any>) => {
     watchers.forEach(watcher => {
-        store.watch(watcher.getter, watcher.watcher);
+        store.watch(watcher.getter, watcher.watcher(store));
     });
 };
