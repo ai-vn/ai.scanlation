@@ -1539,6 +1539,16 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^4.0.0"
 
+"@nuxtjs/moment@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/moment/-/moment-1.6.1.tgz#a4e98a861c9d21e34f983046143f4c9bb92bdb7c"
+  integrity sha512-Mo2/3NQB0XryMQuNCTVnAclrDvt9I9sr6dwVm56KhYCoiWTKgQ78tDV9tmrxw7lahw1IBwyPGhw+3pwkM4phAA==
+  dependencies:
+    moment "^2.25.3"
+    moment-locales-webpack-plugin "^1.2.0"
+    moment-timezone "^0.5.28"
+    moment-timezone-data-webpack-plugin "^1.3.0"
+
 "@nuxtjs/tailwindcss@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-2.0.0.tgz#0cf0893f7f1156367507c0f6683d90b62c0e5714"
@@ -9095,6 +9105,11 @@ lodash._reinterpolate@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
 
+lodash.difference@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.difference/-/lodash.difference-4.5.0.tgz#9ccb4e505d486b91651345772885a2df27fd017c"
+  integrity sha1-nMtOUF1Ia5FlE0V3KIWi3yf9AXw=
+
 lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
@@ -9659,6 +9674,33 @@ mkdirp@~1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+
+moment-locales-webpack-plugin@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/moment-locales-webpack-plugin/-/moment-locales-webpack-plugin-1.2.0.tgz#9af83876a44053706b868ceece5119584d10d7aa"
+  integrity sha512-QAi5v0OlPUP7GXviKMtxnpBAo8WmTHrUNN7iciAhNOEAd9evCOvuN0g1N7ThIg3q11GLCkjY1zQ2saRcf/43nQ==
+  dependencies:
+    lodash.difference "^4.5.0"
+
+moment-timezone-data-webpack-plugin@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/moment-timezone-data-webpack-plugin/-/moment-timezone-data-webpack-plugin-1.3.0.tgz#8d5b7ffe42f0506933195779063a74cfff11aab1"
+  integrity sha512-0V0xnHZpdHLsSerIQ2yNEPBC3uJWfU/zNT3nB0PO+tjmGHuNeUWqNDiw7ZpLo54uER6/OAE75EJ7ThmlwkGuZw==
+  dependencies:
+    find-cache-dir "^3.0.0"
+    make-dir "^3.0.0"
+
+moment-timezone@^0.5.28:
+  version "0.5.29"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.29.tgz#83a0dee1e994e7f89e3b4594b859db540e692909"
+  integrity sha512-qWtUhRIk29zviEFAhttY0fDbM/zsu/OlCRoeQG8vxuH6XcTTuji9ILJkOdxjr+vzIv0J39RsO/SPTuMvzm90wA==
+  dependencies:
+    moment ">= 2.9.0"
+
+"moment@>= 2.9.0", moment@^2.25.3:
+  version "2.25.3"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
+  integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
 
 mousetrap@^1.6.5:
   version "1.6.5"

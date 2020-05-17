@@ -31,7 +31,12 @@ export default async function (): Promise<Configuration> {
                 { typeCheck: true, ignoreNotFoundWarnings: true },
             ],
             '@nuxtjs/tailwindcss',
+            '@nuxtjs/moment',
         ],
+        moment: {
+            defaultLocale: 'en',
+            locales: ['vi'],
+        },
         purgeCSS: {},
         tailwindcss: {
             configPath: '~/tailwind.config.js',
