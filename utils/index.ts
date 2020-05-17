@@ -1,3 +1,5 @@
+export * from './converts/toSize';
+
 export * from './decorators/store.action';
 export * from './decorators/store.state';
 export * from './decorators/store.watch';
