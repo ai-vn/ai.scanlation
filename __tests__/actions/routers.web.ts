@@ -1,9 +1,9 @@
 import { createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
 import { NuxtApp } from '@nuxt/types/app';
-import { actions } from '~/modules/actions.import';
+import { actions } from '~/actions/actions.import';
 
-describe('modules/routers/**', () => {
+describe('actions/routers/**', () => {
     beforeAll(() => {
         const vue = createLocalVue();
         vue.use(VueRouter);
