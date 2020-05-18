@@ -1,5 +1,5 @@
 import { remote, BrowserWindow } from 'electron';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 const wrap = (callback: (currentWindow: BrowserWindow) => () => void) => () =>
     callback(remote.getCurrentWindow())();

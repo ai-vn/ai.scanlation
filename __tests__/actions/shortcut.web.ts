@@ -1,5 +1,5 @@
 /* eslint-disable no-extend-native */
-import { actions } from '~/modules/actions.import';
+import { actions } from '~/actions/actions.import';
 
 declare global {
     interface Object {
@@ -7,7 +7,7 @@ declare global {
     }
 }
 
-describe('modules/shortcut', () => {
+describe('actions/shortcut', () => {
     beforeAll(() => {
         Object.prototype.testExtendNative = '';
     });

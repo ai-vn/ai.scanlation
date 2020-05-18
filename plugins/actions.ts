@@ -1,6 +1,6 @@
 import { Plugin } from '@nuxt/types';
-import { actions } from '~/modules/actions.import';
-import { ActionItem } from '~/modules/actions.type';
+import { actions } from '~/actions/actions.import';
+import { ActionItem } from '~/actions/actions.type';
 
 const actionInject = (getAction: (_actions: typeof actions) => ActionItem) =>
     getAction(actions).call();

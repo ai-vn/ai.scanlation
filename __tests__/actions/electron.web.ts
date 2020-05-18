@@ -1,7 +1,7 @@
 import { remote } from 'electron';
-import { actions } from '~/modules/actions.import';
+import { actions } from '~/actions/actions.import';
 
-describe('modules/electron/**', () => {
+describe('actions/electron/**', () => {
     beforeAll(() => {
         const currentWindow = remote.getCurrentWindow();
         jest.spyOn(remote, 'getCurrentWindow').mockImplementation(() => {

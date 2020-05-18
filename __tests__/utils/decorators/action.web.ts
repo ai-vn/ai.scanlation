@@ -1,6 +1,6 @@
 import { Vue } from 'nuxt-property-decorator';
 import { Action, isAction } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 class ComponentWithActions extends Vue {
     @Action

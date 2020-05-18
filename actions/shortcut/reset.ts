@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-restricted-syntax */
 import mousetrap from 'mousetrap';
-import { actions } from '~/modules/actions.import';
-import { ActionItem } from '~/modules/actions.type';
+import { actions } from '~/actions/actions.import';
+import { ActionItem } from '~/actions/actions.type';
 
 export const resetMousetrap: ActionItem = {
     call() {
