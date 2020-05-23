@@ -11,11 +11,12 @@
             true,
             {
                 "ignoreAtRules": [
-                    "extends",
-                    "tailwind",
                     "at-root",
+                    "define-mixin",
+                    "each",
+                    "extends",
                     "mixin",
-                    "each"
+                    "tailwind"
                 ]
             }
         ],
