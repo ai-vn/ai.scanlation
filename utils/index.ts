@@ -5,3 +5,5 @@ export * from './decorators/store.action';
 export * from './decorators/watch';
 
 export * from './converts/toSize';
+
+export * from './system/exec';
