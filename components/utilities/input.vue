@@ -65,11 +65,11 @@ export default class extends Vue {
 input {
     &[type='number'],
     &[type='text'] {
-        @apply rounded box-content;
+        @apply rounded box-content min-w-0;
 
         height: var(--component-size);
         padding: 0 calc(var(--component-size) * 0.25);
-        font-size: calc(var(--component-size) * 0.5);
+        font-size: var(--component-font-size);
         line-height: var(--component-size);
         background-color: var(--component-background-color);
         border-color: var(--line-color);
