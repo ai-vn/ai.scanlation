@@ -10,13 +10,11 @@ export const StoreState = <T extends VuexModule>(module: T) => <V extends Vue>(
 ): any => {
     const mutationName = toSet(key.toString());
     const mutation = (module as any)[mutationName];
-    if (typeof mutation !== 'function') {
-        throw new Error(
-            `module '${module.namespaced}' doesn't have mutation '${mutationName}'`,
-        );
-    }
     return {
         get: () => module[key],
-        set: (value: string) => mutation(value),
+        set:
+            typeof mutation === 'function'
+                ? (value: string) => mutation(value)
+                : undefined,
     };
 };
