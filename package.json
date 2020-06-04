@@ -109,7 +109,7 @@
     "stylelint-order": "^4.0.0",
     "ts-jest": "^25.5.1",
     "ts-loader": "^7.0.3",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.5",
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.9.2",
     "webpack": "^4.43.0"
