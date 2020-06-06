@@ -6,6 +6,7 @@ import Vue from 'vue';
 import { Route } from 'vue-router';
 import Vuex from 'vuex';
 import { plugins } from '~/store';
+import Explorer from '~/store/explorer';
 
 Vue.use(Vuex);
 
@@ -46,7 +47,7 @@ function getContext() {
         isHMR: true,
         route: templateRoute,
         from: templateRoute,
-        store: new Vuex.Store({ plugins }),
+        store: new Vuex.Store({ plugins, modules: { explorer: Explorer } }),
         env: {},
         params: templateRoute.params,
         payload: undefined,

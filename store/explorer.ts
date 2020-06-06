@@ -3,7 +3,7 @@ import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { explorer, analyzeImages } from '~/modules/explorer';
 import { FileSystemObject } from '~/modules/explorer/types';
 import { Payload } from '~/types/type';
-import { Watch } from '~/utils';
+import { StoreWatch } from '~/utils';
 
 @Module({
     name: 'explorer',
@@ -49,7 +49,7 @@ export default class Explorer extends VuexModule {
     }
 
     @Action
-    @Watch(Explorer, 'folderPath', 0)
+    @StoreWatch(Explorer, 'folderPath', 0)
     async watchFolderPath({ value: folderPath, oldValue }: Payload<string>) {
         if (folderPath === oldValue) return;
 
