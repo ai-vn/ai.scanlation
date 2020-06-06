@@ -5,6 +5,7 @@ export * from './decorators/store.action';
 export * from './decorators/watch';
 
 export * from './converts/toSize';
+export * from './converts/nonNull';
 
 export * from './system/exec';
 export * from './system/async';
