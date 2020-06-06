@@ -7,3 +7,5 @@ export * from './decorators/store.watch';
 
 export * from './decorators/action';
 export * from './decorators/render';
+
+export * from './system/async';
