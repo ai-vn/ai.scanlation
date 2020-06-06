@@ -58,6 +58,6 @@ export const tableOptions: TableOptions<FileSystemObject> = {
     },
 
     async rowDblclick(item) {
-        if (!item.isFolder) shell.openItem(item.path);
+        if (!item.isFolder) shell.openPath(item.path);
     },
 };
