@@ -1,6 +1,7 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex, { Store } from 'vuex';
 import { plugins } from '~/store';
+import Explorer from '~/store/explorer';
 
 describe('store/index', () => {
     let store: Store<any>;
@@ -12,7 +13,7 @@ describe('store/index', () => {
 
     it('should generate store with plugins', () => {
         expect.hasAssertions();
-        store = new Vuex.Store({ plugins });
+        store = new Vuex.Store({ plugins, modules: { explorer: Explorer } });
         expect(store).toBeDefined();
     });
 });
