@@ -1,4 +1,5 @@
 export * from './converts/toSize';
+export * from './converts/nonNull';
 
 export * from './decorators/store.action';
 export * from './decorators/store.state';
