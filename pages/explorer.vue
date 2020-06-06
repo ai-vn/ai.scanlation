@@ -71,10 +71,10 @@ export default class extends Vue {
     folders!: FileSystemObject[];
 
     @StoreAction(explorer)
-    updateFolderPath!: Function;
+    updateFolderPath!: typeof explorer.updateFolderPath;
 
     @StoreAction(explorer)
-    watchFolderPath!: Function;
+    watchFolderPath!: typeof explorer.watchFolderPath;
 
     @Action
     selectFolder!: ActionItem;

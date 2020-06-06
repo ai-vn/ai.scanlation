@@ -1,5 +1,7 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-var isWin = require('os').platform() === 'win32';
+const isWin = require('os').platform() === 'win32';
 
 const packageDir = [
     path.join(__dirname),
@@ -82,6 +84,7 @@ const config = {
             'error',
             { argsIgnorePattern: '_$' },
         ],
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
 
         'node/no-extraneous-require': 'off',
         'node/no-extraneous-import': 'off',
@@ -190,7 +193,7 @@ const config = {
     ],
 };
 
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV === 'development') {
     config.plugins.push('only-warn');
 }
 
