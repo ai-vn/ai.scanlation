@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
 import { Action } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 @Component({ name: 'menu-' })
 export default class extends Vue {

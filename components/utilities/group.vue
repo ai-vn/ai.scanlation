@@ -14,5 +14,13 @@
     > :not(:last-child) {
         @apply rounded-r-none;
     }
+
+    &.focus {
+        outline: -webkit-focus-ring-color auto 1px;
+    }
+
+    &.error {
+        outline: var(--error-color) auto 1px;
+    }
 }
 </style>

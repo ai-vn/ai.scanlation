@@ -1,7 +1,7 @@
 import { BrowserWindow, remote } from 'electron';
 import { mount } from '@vue/test-utils';
 import titleBar from '~/components/header/title-bar.vue';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('components/header/title-bar', () => {

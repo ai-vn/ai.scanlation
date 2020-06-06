@@ -35,7 +35,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { createPopper, Instance } from '@popperjs/core';
 import { isAction, Render } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 @Component({ name: 'menu-item-' })
 export default class MenuItem extends Vue {
@@ -142,7 +142,7 @@ export default class MenuItem extends Vue {
     }
 
     &-ul {
-        @apply py-1 hidden absolute;
+        @apply py-1 hidden absolute z-50;
 
         min-width: 150px;
         background-color: var(--menu-background-color);

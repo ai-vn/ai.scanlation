@@ -2,7 +2,7 @@
 import { remote } from 'electron';
 import { mount } from '@vue/test-utils';
 import menuItem from '~/components/header/menu-item.vue';
-import { actions } from '~/modules/actions.import';
+import { actions } from '~/actions/actions.import';
 import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('components/header/menu-item', () => {
@@ -19,8 +19,8 @@ describe('components/header/menu-item', () => {
         expect.hasAssertions();
         const wrapper = mount<
             menuItem & {
-                enter: Function;
-                leave: Function;
+                enter(): void;
+                leave(): void;
                 isRoot: boolean;
             }
         >(menuItem, {
