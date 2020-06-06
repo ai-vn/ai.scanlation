@@ -7,3 +7,4 @@ export * from './decorators/watch';
 export * from './converts/toSize';
 
 export * from './system/exec';
+export * from './system/async';
