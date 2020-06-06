@@ -32,7 +32,6 @@ describe('utils/decorators/store', () => {
         modules: { has: HasMutation, no: NoMutation },
     });
     const hasMutation = getModule(HasMutation, store);
-    const noMutation = getModule(NoMutation, store);
 
     it('should support getter & setter for text', () => {
         expect.hasAssertions();
@@ -53,20 +52,5 @@ describe('utils/decorators/store', () => {
 
         expect(store.state.has.text).toStrictEqual('C://');
         expect(hasMutation.text).toStrictEqual('C://');
-    });
-
-    it('should require mutation', () => {
-        expect.hasAssertions();
-
-        expect(() => {
-            @Component({
-                template: '<div/>',
-            })
-            class TempComponent extends Vue {
-                @StoreState(noMutation)
-                text!: string;
-            }
-            return TempComponent;
-        }).toThrow(`module 'undefined' doesn't have mutation 'setText'`);
     });
 });
