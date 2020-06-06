@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { app, App } from 'electron';
 import { allowCertificate } from '~/app/helper/certificate';
