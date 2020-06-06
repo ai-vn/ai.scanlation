@@ -10,7 +10,7 @@ interface Watcher<T> {
 
 const watchers: Watcher<any>[] = [];
 
-export const Watch = <
+export const StoreWatch = <
     M extends VuexModule,
     P extends NonFunctionPropertyNames<M>
 >(

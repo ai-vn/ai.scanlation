@@ -2,7 +2,7 @@
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 import Explorer from '~/store/explorer';
-import { watchInitializer } from '~/utils/decorators/watch';
+import { watchInitializer } from '~/utils/decorators/store.watch';
 
 let explorer: Explorer;
 
