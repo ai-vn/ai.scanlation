@@ -1,7 +1,10 @@
 declare module 'postcss-mixins' {
     import { AcceptedPlugin, Transformer } from 'postcss';
 
-    export type MixinsType = (mixin: any, ...args: string[]) => object;
+    export type MixinsType = (
+        mixin: any,
+        ...args: string[]
+    ) => Record<string, unknown>;
     export type MixinsObject = {
         [key in string]: MixinsType;
     };
