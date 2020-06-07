@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { CustomPromisify, promisify } from 'util';
 
 type ArgsType<T> = T extends (...args: infer A) => any ? A : never;

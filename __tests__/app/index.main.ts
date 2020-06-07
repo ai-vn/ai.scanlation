@@ -12,7 +12,9 @@ describe('app/index', () => {
     afterEach(load);
 
     beforeAll(async () => {
-        let sendToClient: null | Function = null;
+        let sendToClient:
+            | null
+            | ((channel: string, ...args: any[]) => void) = null;
 
         jest.spyOn(console, 'log').mockImplementation();
         jest.spyOn(console, 'info').mockImplementation();

@@ -19,8 +19,8 @@ describe('components/header/menu-item', () => {
         expect.hasAssertions();
         const wrapper = mount<
             menuItem & {
-                enter: Function;
-                leave: Function;
+                enter(): void;
+                leave(): void;
                 isRoot: boolean;
             }
         >(menuItem, {
