@@ -31,8 +31,6 @@ describe('app/helper/certificate', () => {
         };
     }
 
-    beforeAll(async () => {});
-
     it('should ignore certificate error', async () => {
         expect.assertions(0);
         const keys = await getCertificate();
