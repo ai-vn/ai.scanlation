@@ -14,7 +14,7 @@ describe('actions/electron/**', () => {
     });
 
     describe('windows', () => {
-        it('should not throw error', async () => {
+        it('should not throw error', () => {
             expect.hasAssertions();
             expect(actions.unmaximize.call).not.toThrow();
             expect(actions.minimize.call).not.toThrow();
@@ -24,7 +24,7 @@ describe('actions/electron/**', () => {
     });
 
     describe('dev', () => {
-        it('should not throw error', async () => {
+        it('should not throw error', () => {
             expect.hasAssertions();
             expect(actions.toggleDevTools.call).not.toThrow();
         });

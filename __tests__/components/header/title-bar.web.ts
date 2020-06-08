@@ -21,7 +21,7 @@ describe('components/header/title-bar', () => {
         });
     });
 
-    it('should mounted', async () => {
+    it('should mounted', () => {
         expect.hasAssertions();
         const wrapper = mount<
             titleBar & {
