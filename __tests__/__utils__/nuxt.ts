@@ -27,8 +27,7 @@ function inject(key: string, value: any) {
     });
 }
 
-function getContext() {
-    const templateApp = new Vue();
+function getContext(): Context {
     const templateRoute: Route = {
         path: '/',
         hash: '',
@@ -37,8 +36,8 @@ function getContext() {
         fullPath: '/',
         matched: [],
     };
-    const context: Context = {
-        app: templateApp,
+    return {
+        app: new Vue(),
         base: '/',
         isClient: true,
         isServer: false,
@@ -59,7 +58,6 @@ function getContext() {
         nuxtState: {},
         beforeNuxtRender: jest.fn(),
     };
-    return context;
 }
 
 export function installPlugin(plugin: Plugin) {

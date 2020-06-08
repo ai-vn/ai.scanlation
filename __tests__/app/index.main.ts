@@ -11,7 +11,7 @@ describe('app/index', () => {
     });
     afterEach(load);
 
-    beforeAll(async () => {
+    beforeAll(() => {
         let sendToClient:
             | null
             | ((channel: string, ...args: any[]) => void) = null;
