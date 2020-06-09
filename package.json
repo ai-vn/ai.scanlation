@@ -25,7 +25,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.8",
+    "@nuxt/typescript-runtime": "^0.4.9",
     "@popperjs/core": "^2.4.0",
     "electron-updater": "^4.3.1",
     "ignore": "^5.1.8",
