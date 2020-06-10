@@ -1,5 +1,5 @@
 import { remote } from 'electron';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 const currentWindow = remote.getCurrentWindow();
 

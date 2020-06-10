@@ -1,6 +1,6 @@
 import { Vue } from 'nuxt-property-decorator';
-import { actions } from '~/modules/actions.import';
-import { ActionItem } from '~/modules/actions.type';
+import { actions } from '~/actions/actions.import';
+import { ActionItem } from '~/actions/actions.type';
 
 export const isAction = (action: Record<string, any>): action is ActionItem =>
     typeof action === 'object' && typeof action.call === 'function';

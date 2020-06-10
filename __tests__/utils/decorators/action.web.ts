@@ -1,7 +1,8 @@
-import { Vue } from 'nuxt-property-decorator';
+import { Vue, Component } from 'nuxt-property-decorator';
 import { Action, isAction } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
+@Component({ template: '<div/>' })
 class ComponentWithActions extends Vue {
     @Action
     resetMousetrap!: ActionItem;

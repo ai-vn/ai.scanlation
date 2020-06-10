@@ -35,7 +35,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { createPopper, Instance } from '@popperjs/core';
 import { isAction, Render } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 @Component({ name: 'menu-item-' })
 export default class MenuItem extends Vue {

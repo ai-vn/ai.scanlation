@@ -1,4 +1,4 @@
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 const routerPush = (name: string) => () => {
     window.$nuxt.$router.push(name);
