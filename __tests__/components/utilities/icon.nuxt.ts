@@ -10,6 +10,12 @@ describe('components/utilities/icon', () => {
         expect(wrapper.vm.$options.name).toStrictEqual('icon-');
     });
 
+    it('should mounted with empty icon', () => {
+        expect.hasAssertions();
+        const wrapper = shallowMount(icon);
+        expect(wrapper.vm.$options.name).toStrictEqual('icon-');
+    });
+
     it('should mounted with error', () => {
         expect.hasAssertions();
         jest.spyOn(console, 'error').mockImplementation();
