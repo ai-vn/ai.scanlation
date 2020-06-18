@@ -1,30 +1,36 @@
 /* eslint-disable no-underscore-dangle */
-import { remote } from 'electron';
-import { mount } from '@vue/test-utils';
-import menuItem from '~/components/header/menu-item.vue';
-import { actions } from '~/actions/actions.import';
-import { importComponents } from '~/__tests__/__utils__/component';
+import { shallowMount } from '@vue/test-utils';
+import Vue from 'vue';
+import icon from '~/components/utilities/icon.vue';
+import { mock } from '~/__tests__/__utils__/mock';
 
 describe('components/header/menu-item', () => {
-    beforeAll(async () => {
-        await importComponents();
-        jest.spyOn(remote.getCurrentWindow(), 'maximize').mockImplementation();
+    beforeAll(() => {
+        Vue.component('icon-', icon);
+
+        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
+        mock('~/utils', ['decorators/action', 'decorators/render']);
     });
 
     it.each([
         [{}, true],
         [{ default: '<div />' }, true],
         [{ default: '<div />' }, false],
-    ])('should mounted', (slots, isRoot) => {
+    ])('should mounted', async (slots, isRoot) => {
         expect.hasAssertions();
-        const wrapper = mount<
-            menuItem & {
+
+        const { default: menuItem } = await import(
+            '~/components/header/menu-item.vue'
+        );
+
+        const wrapper = shallowMount<
+            Vue & {
                 enter(): void;
                 leave(): void;
                 isRoot: boolean;
             }
         >(menuItem, {
-            propsData: { action: actions.maximize },
+            propsData: { action: { call: jest.fn() } },
             slots,
         });
         wrapper.vm.isRoot = isRoot;
