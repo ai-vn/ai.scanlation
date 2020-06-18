@@ -1,5 +1,5 @@
 export interface ActionItem {
-    call: () => void;
+    call: () => void | Promise<void>;
     accelerator?: string;
     title?: string;
 }
