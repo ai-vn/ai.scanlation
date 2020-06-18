@@ -7,9 +7,7 @@ import {
     Mutation,
     VuexModule,
 } from 'vuex-module-decorators';
-import { plugins } from '~/store';
 import { StoreState } from '~/utils/decorators/store.state';
-import Explorer from '~/store/explorer';
 
 @Module({ name: 'no', stateFactory: true, namespaced: true })
 class NoSetter extends VuexModule {
@@ -29,8 +27,7 @@ class HasSetter extends VuexModule {
 describe('utils/decorators/store.state', () => {
     Vue.use(Vuex);
     const store = new Vuex.Store({
-        plugins,
-        modules: { has: HasSetter, no: NoSetter, explorer: Explorer },
+        modules: { has: HasSetter, no: NoSetter },
     });
     const hasSetter = getModule(HasSetter, store);
     const noSetter = getModule(NoSetter, store);
