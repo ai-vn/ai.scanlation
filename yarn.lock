@@ -1927,12 +1927,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.11.tgz#61d4886e2424da73b7b25547f59fdcb534c165a3"
   integrity sha512-lCvvI24L21ZVeIiyIUHZ5Oflv1hhHQ5E1S25IRlKIXaRkVgmXpJMI3wUJkmym2bTbCe+WoIibQnMVAU3FguaOg==
 
-"@types/node@12.12.44", "@types/node@^12.0.12":
+"@types/node@12.12.44":
   version "12.12.44"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.44.tgz#0d400a1453adcb359b133acceae4dd8bb0e0a159"
   integrity sha512-jM6QVv0Sm5d3nW+nUD5jSzPcO6oPqboitSNcwgBay9hifVq/Rauq1PYnROnsmuw45JMBiTnsPAno0bKu2e2xrg==
 
-"@types/node@^12.12.47":
+"@types/node@^12.0.12", "@types/node@^12.12.47":
   version "12.12.47"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.47.tgz#5007b8866a2f9150de82335ca7e24dd1d59bdfb5"
   integrity sha512-yzBInQFhdY8kaZmqoL2+3U5dSTMrKaYcb561VU+lDzAYvqt+2lojvBEy+hmpSNuXnPTx7m9+04CzWYOUqWME2A==
@@ -5400,10 +5400,10 @@ electron-webpack@^2.8.2:
     webpack-merge "^4.2.2"
     yargs "^15.3.1"
 
-electron@^8.3.1:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-8.3.1.tgz#79e98c4d5b8e7c09a8a811f1aa78903f0c692721"
-  integrity sha512-VZpgLVFyD2SwFDkO9rwUcNgrAMah+g38FEtALGxli8bRVTbcHl8bt21szfa0YUWpc6hWcaf6JdZjqDS5q73Bsg==
+electron@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-9.0.4.tgz#5aa72c1576c82c19f6e087311ffe1d7b74358d25"
+  integrity sha512-QzkeZNAiNB7KxcdoQKSoaiVT/GQdB4Vt0/ZZOuU8tIKABAsni2I7ztiAbUzxcsnQsqEBSfChuPuDQ5A4VbbzPg==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
