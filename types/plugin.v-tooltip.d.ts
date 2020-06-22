@@ -35,7 +35,7 @@ declare module 'v-tooltip' {
         popperOptions?: any;
     }
 
-    const plugin: PluginObject<{}>;
+    const plugin: PluginObject<Record<string, unknown>>;
 
     export default plugin;
 }
