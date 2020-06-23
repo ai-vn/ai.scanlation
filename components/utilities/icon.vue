@@ -3,20 +3,12 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import aicon from '~/assets/fonts/aicon.json';
-
-const map: { [key in string]: string } = aicon.icons.reduce(
-    (obj, current) => ({
-        ...obj,
-        [current.properties.name]: String.fromCharCode(current.properties.code),
-    }),
-    {},
-);
+import map from '~/assets/fonts/aicon.map.json';
 
 @Component({ name: 'icon-' })
 export default class extends Vue {
     @Prop({ type: String })
-    i!: string;
+    i!: keyof typeof map;
 
     get icon(): string {
         if (!this.i) return '';

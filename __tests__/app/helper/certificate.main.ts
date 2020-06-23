@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { app, App } from 'electron';
 import { allowCertificate } from '~/app/helper/certificate';
@@ -29,8 +30,6 @@ describe('app/helper/certificate', () => {
             return this;
         };
     }
-
-    beforeAll(async () => {});
 
     it('should ignore certificate error', async () => {
         expect.assertions(0);
