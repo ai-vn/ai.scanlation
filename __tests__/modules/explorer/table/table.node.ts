@@ -18,7 +18,7 @@ describe('modules/explorer/analyze/table', () => {
     beforeAll(() => {
         jest.mock('electron', () => ({
             shell: {
-                openItem: jest.fn(),
+                openPath: jest.fn(),
             },
         }));
         jest.mock('~/store', () => ({

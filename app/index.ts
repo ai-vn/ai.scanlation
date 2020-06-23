@@ -69,6 +69,7 @@ async function createWindow() {
 
 listenAutoUpdaterEvents(sendToClient);
 
+app.allowRendererProcessReuse = false;
 app.on('ready', async () => {
     await createWindow();
     autoUpdater.checkForUpdatesAndNotify();
