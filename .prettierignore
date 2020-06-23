@@ -33,7 +33,9 @@
 *.realm.lock
 
 *.sh
+*.xml
 
-.certificate/**
+/.certificate/**
 
-/components/utilities/icon/selection.json
+/assets/fonts/*.json
+/.cache

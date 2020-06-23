@@ -4,7 +4,7 @@ import { getCertificate } from './utils/build/certificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
 
-export default async function (): Promise<Configuration> {
+export default async (): Promise<Configuration> => {
     const { key, cert } = await getCertificate();
 
     return {
@@ -31,7 +31,12 @@ export default async function (): Promise<Configuration> {
                 { typeCheck: true, ignoreNotFoundWarnings: true },
             ],
             '@nuxtjs/tailwindcss',
+            '@nuxtjs/moment',
         ],
+        moment: {
+            defaultLocale: 'en',
+            locales: ['vi'],
+        },
         purgeCSS: {},
         tailwindcss: {
             configPath: '~/tailwind.config.js',
@@ -68,4 +73,4 @@ export default async function (): Promise<Configuration> {
             },
         },
     };
-}
+};

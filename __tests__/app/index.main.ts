@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { app, App } from 'electron';
-import { appSession } from '~/app/helper/session';
+import { app, App, session } from 'electron';
 import { env } from '~/__tests__/__utils__/utils.env';
 
 const { save, load } = env('NODE_ENV', 'ELECTRON_SECURITY_CHECK');
@@ -12,8 +11,10 @@ describe('app/index', () => {
     });
     afterEach(load);
 
-    beforeAll(async () => {
-        let sendToClient: null | Function = null;
+    beforeAll(() => {
+        let sendToClient:
+            | null
+            | ((channel: string, ...args: any[]) => void) = null;
 
         jest.spyOn(console, 'log').mockImplementation();
         jest.spyOn(console, 'info').mockImplementation();
@@ -49,7 +50,7 @@ describe('app/index', () => {
         process.env.ELECTRON_SECURITY_CHECK = ELECTRON_SECURITY_CHECK;
 
         jest.spyOn(
-            appSession.protocol,
+            session.fromPartition('ai-scanlation:partition').protocol,
             'interceptFileProtocol',
         ).mockImplementation((scheme, handler) => {
             if (scheme !== 'file') return;

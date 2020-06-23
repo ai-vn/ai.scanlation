@@ -6,6 +6,7 @@ import Vue from 'vue';
 import { Route } from 'vue-router';
 import Vuex from 'vuex';
 import { plugins } from '~/store';
+import Explorer from '~/store/explorer';
 
 Vue.use(Vuex);
 
@@ -26,8 +27,7 @@ function inject(key: string, value: any) {
     });
 }
 
-function getContext() {
-    const templateApp = new Vue();
+function getContext(): Context {
     const templateRoute: Route = {
         path: '/',
         hash: '',
@@ -36,8 +36,8 @@ function getContext() {
         fullPath: '/',
         matched: [],
     };
-    const context: Context = {
-        app: templateApp,
+    return {
+        app: new Vue(),
         base: '/',
         isClient: true,
         isServer: false,
@@ -46,7 +46,7 @@ function getContext() {
         isHMR: true,
         route: templateRoute,
         from: templateRoute,
-        store: new Vuex.Store({ plugins }),
+        store: new Vuex.Store({ plugins, modules: { explorer: Explorer } }),
         env: {},
         params: templateRoute.params,
         payload: undefined,
@@ -58,7 +58,6 @@ function getContext() {
         nuxtState: {},
         beforeNuxtRender: jest.fn(),
     };
-    return context;
 }
 
 export function installPlugin(plugin: Plugin) {
