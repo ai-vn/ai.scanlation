@@ -29,9 +29,10 @@ async function createWindow() {
         minHeight: 400,
         backgroundColor: '#FF000000',
         webPreferences: {
+            enableRemoteModule: true,
             nodeIntegration: true,
-            webSecurity: false,
             partition,
+            webSecurity: false,
         },
     });
 
