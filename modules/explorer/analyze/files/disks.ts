@@ -18,6 +18,7 @@ export const disks = async () => {
         .filter(line => line.length === 2)
         .map(([id, name], index) => ({
             index,
+            selected: false,
             key: name,
             name: `${id}: ${name}`,
             path: `${id}:\\`,

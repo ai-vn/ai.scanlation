@@ -4,6 +4,7 @@ import { mock } from '~/__tests__/__utils__/mock';
 
 const file: FileSystemObject = {
     index: 0,
+    selected: false,
     key: 'key',
     path: '',
     name: '',
