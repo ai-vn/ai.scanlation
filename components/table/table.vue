@@ -9,8 +9,8 @@
                             :key="field.key"
                             :data="field.key"
                             :class="[field.thClass, field.class]"
-                            @click="() => headClick(field)"
-                            @dblclick="() => headDblclick(field)"
+                            @click="event => headClick(field, event)"
+                            @dblclick="event => headDblclick(field, event)"
                         >
                             {{ field.label }}
                         </th>
@@ -25,8 +25,8 @@
                                 'table-custom-view-group-start':
                                     itemIndex === 0,
                             }"
-                            @click="() => rowClick(item)"
-                            @dblclick="() => rowDblclick(item)"
+                            @click="event => rowClick(item, event)"
+                            @dblclick="event => rowDblclick(item, event)"
                         >
                             <td
                                 v-for="field in fields"
@@ -89,20 +89,22 @@ export default class Table<T extends TableObject> extends Vue {
         );
     }
 
-    rowClick(item: T) {
-        this.options?.rowClick?.call(item, item);
+    rowClick(item: T, event: MouseEvent) {
+        const action = event.button === 2 ? 'rowContextMenu' : 'rowClick';
+        this.options?.[action]?.call(item, item, event);
     }
 
-    rowDblclick(item: T) {
-        this.options?.rowDblclick?.call(item, item);
+    rowDblclick(item: T, event: MouseEvent) {
+        this.options?.rowDblclick?.call(item, item, event);
     }
 
-    headClick(field: TableField<T>) {
-        this.options?.headClick?.call(field, field);
+    headClick(field: TableField<T>, event: MouseEvent) {
+        const action = event.button === 2 ? 'headContextMenu' : 'headClick';
+        this.options?.[action]?.call(field, field, event);
     }
 
-    headDblclick(field: TableField<T>) {
-        this.options?.headDblclick?.call(field, field);
+    headDblclick(field: TableField<T>, event: MouseEvent) {
+        this.options?.headDblclick?.call(field, field, event);
     }
 }
 </script>
@@ -141,7 +143,7 @@ export default class Table<T extends TableObject> extends Vue {
         }
 
         th {
-            @apply font-normal sticky top-0 z-10 font-medium;
+            @apply font-normal sticky top-0 z-10;
 
             background-color: var(--table-background-color);
             box-shadow: 0 1px 0 0 var(--line-color);

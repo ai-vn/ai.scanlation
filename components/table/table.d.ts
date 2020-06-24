@@ -15,11 +15,25 @@ export type TableField<T extends TableObject> = {
 export type TableFields<T extends TableObject> = Array<TableField<T>>;
 
 export type TableOptions<T extends TableObject> = {
-    rowClick?(this: T, item: T): void;
-    rowDblclick?(this: T, item: T): void;
+    rowClick?(this: T, item: T, event: MouseEvent): void;
+    rowContextMenu?(this: T, item: T, event: MouseEvent): void;
+    rowDblclick?(this: T, item: T, event: Event): void;
 
-    headClick?(this: TableField<T>, field: TableField<T>): void;
-    headDblclick?(this: TableField<T>, field: TableField<T>): void;
+    headClick?(
+        this: TableField<T>,
+        field: TableField<T>,
+        event: MouseEvent,
+    ): void;
+    headContextMenu?(
+        this: TableField<T>,
+        field: TableField<T>,
+        event: MouseEvent,
+    ): void;
+    headDblclick?(
+        this: TableField<T>,
+        field: TableField<T>,
+        event: Event,
+    ): void;
 };
 
 export type TableGroupItem<T> = Array<Array<T>>;

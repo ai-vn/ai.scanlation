@@ -74,11 +74,11 @@ describe('modules/explorer/analyze/table', () => {
         const { tableOptions } = await import('~/modules/explorer');
 
         const folder: FileSystemObject = { ...file, isFolder: true };
-        tableOptions.rowClick?.call(folder, folder);
-        tableOptions.rowDblclick?.call(folder, folder);
+        tableOptions.rowClick?.call(folder, folder, {} as MouseEvent);
+        tableOptions.rowDblclick?.call(folder, folder, {} as MouseEvent);
 
-        tableOptions.rowClick?.call(file, file);
-        tableOptions.rowDblclick?.call(file, file);
+        tableOptions.rowClick?.call(file, file, {} as MouseEvent);
+        tableOptions.rowDblclick?.call(file, file, {} as MouseEvent);
 
         expect(tableOptions).toBeDefined();
     });

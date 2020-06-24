@@ -55,21 +55,35 @@ describe('components/table/table', () => {
         );
         expect(row).toBeInstanceOf(HTMLTableRowElement);
 
-        row?.click();
-        row?.dispatchEvent(new Event('dblclick'));
+        row?.dispatchEvent(new MouseEvent('click', { button: 0 }));
+        row?.dispatchEvent(new MouseEvent('click', { button: 2 }));
+        row?.dispatchEvent(new MouseEvent('dblclick'));
 
-        expect(options.rowClick).toHaveBeenCalledWith(groupItems[0][0]);
-        expect(options.rowDblclick).toHaveBeenCalledWith(groupItems[0][0]);
+        expect(options.rowClick).toHaveBeenCalledWith(
+            groupItems[0][0],
+            new MouseEvent('click'),
+        );
+        expect(options.rowDblclick).toHaveBeenCalledWith(
+            groupItems[0][0],
+            new MouseEvent('dbclick'),
+        );
 
         const head = wrapper.vm.$el.querySelector<HTMLTableCellElement>(
             'thead > tr > th',
         );
         expect(head).toBeInstanceOf(HTMLTableCellElement);
 
-        head?.click();
-        head?.dispatchEvent(new Event('dblclick'));
+        head?.dispatchEvent(new MouseEvent('click', { button: 0 }));
+        head?.dispatchEvent(new MouseEvent('click', { button: 2 }));
+        head?.dispatchEvent(new MouseEvent('dblclick'));
 
-        expect(options.headClick).toHaveBeenCalledWith(fields[0]);
-        expect(options.headDblclick).toHaveBeenCalledWith(fields[0]);
+        expect(options.headClick).toHaveBeenCalledWith(
+            fields[0],
+            new MouseEvent('click'),
+        );
+        expect(options.headDblclick).toHaveBeenCalledWith(
+            fields[0],
+            new MouseEvent('dbclick'),
+        );
     });
 });
