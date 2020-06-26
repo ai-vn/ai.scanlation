@@ -35,7 +35,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.27.0",
     "mousetrap": "^1.6.5",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.13.1",
     "nuxt-property-decorator": "^2.7.2",
     "p-queue": "^6.4.0",
     "pem": "^1.14.4",
