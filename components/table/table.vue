@@ -21,10 +21,13 @@
                         <tr
                             v-for="(item, itemIndex) in group"
                             :key="'row-' + item.key"
-                            :class="{
-                                'table-custom-view-group-start':
-                                    itemIndex === 0,
-                            }"
+                            :class="[
+                                {
+                                    'table-custom-view-group-start':
+                                        itemIndex === 0,
+                                },
+                                rowClass(item),
+                            ]"
                             @click="event => rowClick(item, event)"
                             @dblclick="event => rowDblclick(item, event)"
                         >
@@ -87,6 +90,10 @@ export default class Table<T extends TableObject> extends Vue {
                 0,
             ) === 0
         );
+    }
+
+    rowClass(item: T) {
+        return this.options?.rowClass?.call(item, item) || undefined;
     }
 
     rowClick(item: T, event: MouseEvent) {

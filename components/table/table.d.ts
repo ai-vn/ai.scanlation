@@ -15,6 +15,11 @@ export type TableField<T extends TableObject> = {
 export type TableFields<T extends TableObject> = Array<TableField<T>>;
 
 export type TableOptions<T extends TableObject> = {
+    rowClass?(
+        this: T,
+        item: T,
+    ): string | string[] | Record<string, boolean> | Record<string, boolean>[];
+
     rowClick?(this: T, item: T, event: MouseEvent): void;
     rowContextMenu?(this: T, item: T, event: MouseEvent): void;
     rowDblclick?(this: T, item: T, event: Event): void;
