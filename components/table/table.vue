@@ -17,6 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr><td :colspan="fields.length" /></tr>
                     <template v-for="(group, groupIndex) in groupItems">
                         <tr
                             v-for="(item, itemIndex) in group"
@@ -117,9 +118,7 @@ export default class Table<T extends TableObject> extends Vue {
 </script>
 <style lang="postcss">
 .table-custom {
-    @apply rounded overflow-hidden;
-
-    font-size: 0.875rem;
+    @apply rounded overflow-hidden text-sm;
 
     &-wrapper {
         @apply max-h-full overflow-y-scroll overflow-x-hidden;
@@ -136,16 +135,10 @@ export default class Table<T extends TableObject> extends Vue {
             border-top-color: var(--line-color);
         }
 
-        tbody > tr:hover {
-            background-color: var(--table-background-color-hover);
-        }
-
         th,
         td {
-            @apply px-2 py-1 border-r truncate;
+            @apply px-2 py-1 border-r truncate h-5 leading-5;
 
-            height: 20px;
-            line-height: 20px;
             border-right-color: var(--line-color);
         }
 
@@ -153,10 +146,92 @@ export default class Table<T extends TableObject> extends Vue {
             @apply font-normal sticky top-0 z-10;
 
             background-color: var(--table-background-color);
-            box-shadow: 0 1px 0 0 var(--line-color);
+            box-shadow: 1px 0 0 0 var(--line-color), 0 1px 0 0 var(--line-color);
 
             &:hover {
                 background-color: var(--table-background-color-hover);
+            }
+        }
+
+        tbody > tr {
+            @apply border-t border-transparent;
+
+            &,
+            & > td {
+                @apply duration-200 transition-colors;
+            }
+
+            &:hover {
+                background-color: var(--table-background-color-hover);
+            }
+
+            > td {
+                &:first-child {
+                    @apply border-l;
+
+                    border-left-color: transparent;
+                }
+
+                &:last-child {
+                    border-right-color: transparent;
+                    box-shadow: 1px 0 0 0 var(--line-color);
+                }
+            }
+
+            &.table-custom-view-group-start {
+                border-top-color: var(--line-color);
+            }
+
+            &:first-child {
+                border-top-color: var(--line-color);
+
+                > td {
+                    @apply h-0 p-0;
+                }
+
+                + .table-custom-view-group-start {
+                    border-top-color: transparent;
+                }
+            }
+
+            &.selected {
+                background-color: var(--table-selected-background);
+
+                > td {
+                    &:last-child {
+                        border-right-color: var(--table-selected-line);
+                    }
+
+                    &:first-child {
+                        border-left-color: var(--table-selected-line);
+                    }
+                }
+            }
+
+            &:not(.selected) + .selected,
+            &.selected + :not(.selected),
+            &.selected:first-child {
+                border-top-color: var(--table-selected-line);
+            }
+
+            &:last-child {
+                @apply border-b;
+
+                > td:first-child::after {
+                    @apply absolute bottom-0 left-0 w-1 h-1;
+                    @apply border-solid border-transparent border-l border-b rounded-bl;
+                    @apply duration-200 transition-colors;
+
+                    content: '';
+                }
+
+                &.selected {
+                    border-bottom-color: var(--table-selected-line);
+
+                    > td:first-child::after {
+                        border-color: var(--table-selected-line);
+                    }
+                }
             }
         }
     }

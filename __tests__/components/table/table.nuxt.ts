@@ -51,7 +51,7 @@ describe('components/table/table', () => {
         expect(wrapper.vm.isEmpty).toStrictEqual(false);
 
         const row = wrapper.vm.$el.querySelector<HTMLTableRowElement>(
-            'tbody > tr',
+            'tbody > tr:nth-child(2)',
         );
         expect(row).toBeInstanceOf(HTMLTableRowElement);
 

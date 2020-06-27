@@ -25,6 +25,7 @@ describe('modules/explorer/analyze/table', () => {
         jest.mock('~/store', () => ({
             explorer: {
                 setFolderPath: jest.fn(),
+                toggleSelectedFile: jest.fn(),
             },
         }));
         jest.mock('moment', () =>
@@ -80,6 +81,9 @@ describe('modules/explorer/analyze/table', () => {
 
         tableOptions.rowClick?.call(file, file, {} as MouseEvent);
         tableOptions.rowDblclick?.call(file, file, {} as MouseEvent);
+
+        const rowClass = tableOptions.rowClass?.call(file, file);
+        expect(rowClass).toStrictEqual({ selected: false });
 
         expect(tableOptions).toBeDefined();
     });
