@@ -13,7 +13,9 @@ const copy = (from: string, to: string) => {
 };
 
 task('build:check-asar', callback => {
-    const { asar } = safeLoad(readFileSync('./electron-builder.yml', 'utf8'));
+    const { asar } = safeLoad(
+        readFileSync('./electron-builder.yml', 'utf8'),
+    ) as { asar: boolean } & Record<string, any>;
     if (asar !== false)
         throw new Error(
             `The config ${cyan('build.asar')} must be ${cyan('false')}`,
