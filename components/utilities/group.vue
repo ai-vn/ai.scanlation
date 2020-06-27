@@ -16,11 +16,11 @@
     }
 
     &.focus {
-        outline: -webkit-focus-ring-color auto 1px;
+        outline: -webkit-focus-ring-color solid 1px;
     }
 
     &.error {
-        outline: var(--error-color) auto 1px;
+        outline: var(--error-color) solid 1px;
     }
 }
 </style>

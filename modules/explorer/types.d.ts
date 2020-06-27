@@ -3,6 +3,7 @@ import { TableObject } from '~/components/table/table';
 
 export interface FileSystemObject extends TableObject {
     index: number;
+    selected: boolean;
     key: string;
     stat?: Stats;
 

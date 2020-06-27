@@ -52,6 +52,7 @@ describe('modules/explorer/analyze/explorer', () => {
             ): Promise<FileSystemObject | null> => {
                 const file: FileSystemObject = {
                     index: 0,
+                    selected: false,
                     key: 'key',
                     path: '',
                     name: '',
