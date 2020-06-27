@@ -50,6 +50,9 @@ describe('store/explorer', () => {
         });
         explorer.updateFile({ path: 'image-path', color: 'white' });
         explorer.updateFile({ path: 'photo-path', color: 'white' });
+
+        explorer.toggleSelectedFile({ path: 'image-path' });
+        explorer.toggleSelectedFile({ path: 'invalid-image-path' });
     });
 
     it('should watchFolderPath work', async () => {

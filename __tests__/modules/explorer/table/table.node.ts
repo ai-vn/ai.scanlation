@@ -4,6 +4,7 @@ import { mock } from '~/__tests__/__utils__/mock';
 
 const file: FileSystemObject = {
     index: 0,
+    selected: false,
     key: 'key',
     path: '',
     name: '',
@@ -24,6 +25,7 @@ describe('modules/explorer/analyze/table', () => {
         jest.mock('~/store', () => ({
             explorer: {
                 setFolderPath: jest.fn(),
+                toggleSelectedFile: jest.fn(),
             },
         }));
         jest.mock('moment', () =>
@@ -74,11 +76,14 @@ describe('modules/explorer/analyze/table', () => {
         const { tableOptions } = await import('~/modules/explorer');
 
         const folder: FileSystemObject = { ...file, isFolder: true };
-        tableOptions.rowClick?.call(folder, folder);
-        tableOptions.rowDblclick?.call(folder, folder);
+        tableOptions.rowClick?.call(folder, folder, {} as MouseEvent);
+        tableOptions.rowDblclick?.call(folder, folder, {} as MouseEvent);
 
-        tableOptions.rowClick?.call(file, file);
-        tableOptions.rowDblclick?.call(file, file);
+        tableOptions.rowClick?.call(file, file, {} as MouseEvent);
+        tableOptions.rowDblclick?.call(file, file, {} as MouseEvent);
+
+        const rowClass = tableOptions.rowClass?.call(file, file);
+        expect(rowClass).toStrictEqual({ selected: false });
 
         expect(tableOptions).toBeDefined();
     });

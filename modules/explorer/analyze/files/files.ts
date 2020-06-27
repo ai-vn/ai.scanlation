@@ -16,6 +16,7 @@ export const analyze = async (
 
     const result: FileSystemObject = {
         index: 0,
+        selected: false,
         key: path,
         name,
         stat: data,

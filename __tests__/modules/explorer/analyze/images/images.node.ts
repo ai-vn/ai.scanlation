@@ -2,6 +2,7 @@ import { FileSystemObject } from '~/modules/explorer/types';
 
 const file: FileSystemObject = {
     index: 0,
+    selected: false,
     key: 'key',
     path: '',
     name: '',
