@@ -48,6 +48,13 @@ export default class Explorer extends VuexModule {
         Object.assign(findedFile[0], file);
     }
 
+    @Mutation
+    toggleSelectedFile(file: Partial<FileSystemObject>) {
+        const findedFile = this.files.filter(f => f.path === file.path);
+        if (findedFile.length !== 1) return;
+        Object.assign(findedFile[0], { selected: !findedFile[0].selected });
+    }
+
     @Action
     @StoreWatch(Explorer, 'folderPath', 0)
     async watchFolderPath({ value: folderPath, oldValue }: Payload<string>) {

@@ -52,7 +52,11 @@ export const tableFields: TableFields<FileSystemObject> = [
 
 export const tableOptions: TableOptions<FileSystemObject> = {
     rowClick(item) {
-        if (item.isFolder) explorer.setFolderPath(item.path);
+        if (item.isFolder) {
+            explorer.setFolderPath(item.path);
+        } else {
+            explorer.toggleSelectedFile(item);
+        }
     },
 
     rowDblclick(item) {
