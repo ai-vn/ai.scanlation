@@ -6,19 +6,19 @@
         :class="{ root: isRoot }"
         @mouseenter="enter"
         @dbclick="leave"
-        @click="renderAction"
+        @click="action_"
     >
         <div class="menu-item-title">
             <icon- v-if="!isRoot" :i="icon" />
             <div class="menu-item-title-text flex-1">
-                {{ renderTitle }}
+                {{ title_ }}
             </div>
             <icon- v-if="!isRoot && $slots.default" i="chevron-right" />
             <div
-                v-if="!$slots.default && renderShortcut"
+                v-if="!$slots.default && shortcut_"
                 class="menu-item-title-shortcut"
             >
-                {{ renderShortcut }}
+                {{ shortcut_ }}
             </div>
         </div>
         <ul
@@ -32,18 +32,17 @@
     </li>
 </template>
 <script lang="ts">
-// eslint-disable-next-line max-classes-per-file
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { createPopper, Instance } from '@popperjs/core';
 import { isAction, Render } from '~/utils';
-import { ActionItem } from '~/modules/actions.type';
+import { ActionItem } from '~/actions/actions.type';
 
 @Component({ name: 'menu-item-' })
 export default class MenuItem extends Vue {
     @Prop({ type: Object, validator: isAction })
     @Render<MenuItem>(t => () => {
-        if (t.action) t.action.call.apply(t);
-        else t.$emit('click');
+        t.action?.call();
+        t.$emit('click');
     })
     action!: ActionItem;
 
@@ -143,7 +142,7 @@ export default class MenuItem extends Vue {
     }
 
     &-ul {
-        @apply py-1 hidden absolute;
+        @apply py-1 hidden absolute z-50;
 
         min-width: 150px;
         background-color: var(--menu-background-color);

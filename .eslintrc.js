@@ -1,11 +1,14 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-var isWin = require('os').platform() === 'win32';
+const isWin = require('os').platform() === 'win32';
 
 const packageDir = [
     path.join(__dirname),
     path.join(__dirname, 'node_modules/@nuxt/typescript-build'),
-    path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
     path.join(__dirname, 'node_modules/@nuxt/vue-app'),
+    path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
+    path.join(__dirname, 'node_modules/@nuxt/webpack'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
@@ -77,7 +80,13 @@ const config = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/prefer-interface': 'off',
         '@typescript-eslint/no-unused-expressions': ['error'],
+        '@typescript-eslint/no-unused-vars': [
+            'error',
+            { argsIgnorePattern: '_$' },
+        ],
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
 
+        'node/no-extraneous-require': 'off',
         'node/no-extraneous-import': 'off',
         'node/no-missing-import': 'off',
         'node/no-unpublished-import': 'off',
@@ -100,6 +109,7 @@ const config = {
             },
         ],
         'import/extensions': ['error', 'never', { json: 'always' }],
+        'import/no-cycle': ['error', { maxDepth: 2 }],
         'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
         'import/no-extraneous-dependencies': [
             'error',
@@ -124,8 +134,18 @@ const config = {
             },
         },
         {
+            files: ['**/__tests__/**/*.ts', '**/__mocks__/**/*.ts'],
+            rules: {
+                'import/namespace': 'off',
+                'jest/no-if': 'off',
+                'max-classes-per-file': 'off',
+                'node/no-unpublished-require': 'off',
+            },
+        },
+        {
             files: [
-                'test/**/*.ts',
+                '**/__tests__/**/*.ts',
+                '**/__mocks__/**/*.ts',
                 'types/*.d.ts',
                 'app/**/*.ts',
                 'nuxt.config.ts',
@@ -137,6 +157,17 @@ const config = {
                     {
                         devDependencies: true,
                         packageDir,
+                    },
+                ],
+                'jest/no-hooks': [
+                    'error',
+                    {
+                        allow: [
+                            'beforeAll',
+                            'beforeEach',
+                            'afterAll',
+                            'afterEach',
+                        ],
                     },
                 ],
             },
@@ -162,7 +193,7 @@ const config = {
     ],
 };
 
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV === 'development') {
     config.plugins.push('only-warn');
 }
 

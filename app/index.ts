@@ -6,7 +6,6 @@ import { format } from 'url';
 import { autoUpdater } from 'electron-updater';
 import { disableSecurity, isDev, isSecurityCheck } from './env';
 import { allowCertificate } from './helper/certificate';
-import { installDevtool } from './helper/installDevtool';
 import { listenAutoUpdaterEvents } from './updater/updater';
 
 if (!isSecurityCheck) disableSecurity();
@@ -21,8 +20,32 @@ function sendToClient(channel: string, ...args: any[]) {
     else console.error(`Send Message Failed: `, channel, ...args);
 }
 
-function createWindow() {
+async function createWindow() {
     if (window !== null) return;
+
+    window = new BrowserWindow({
+        frame: false,
+        minWidth: 400,
+        minHeight: 400,
+        backgroundColor: '#FF000000',
+        webPreferences: {
+            enableRemoteModule: true,
+            nodeIntegration: true,
+            partition,
+            webSecurity: false,
+        },
+    });
+
+    window.loadURL(
+        isDev
+            ? `https://localhost:${process.env.PORT}/`
+            : format({
+                  pathname: `/app/index.html`,
+                  protocol: `${fileProtocol}:`,
+                  slashes: true,
+              }),
+    );
+    window.on('closed', () => (window = null));
 
     session
         .fromPartition(partition)
@@ -39,40 +62,18 @@ function createWindow() {
             callback(normalize(filePath));
         });
 
-    window = new BrowserWindow({
-        frame: false,
-        minWidth: 400,
-        minHeight: 400,
-        backgroundColor: '#FF000000',
-        webPreferences: {
-            nodeIntegration: true,
-            webSecurity: false,
-            partition,
-        },
-    });
-
-    const url = isDev
-        ? `https://localhost:${process.env.PORT}/`
-        : format({
-              pathname: `/app/index.html`,
-              protocol: `${fileProtocol}:`,
-              slashes: true,
-          });
-
-    window.loadURL(url);
-    window.on('closed', () => (window = null));
-
     if (isDev) {
-        installDevtool(window);
-        allowCertificate();
+        (await import('./helper/devtool')).installDevtool(window);
+        await allowCertificate();
     }
 }
 
 listenAutoUpdaterEvents(sendToClient);
 
-app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
-app.on('activate', createWindow);
-app.on('ready', () => {
-    createWindow();
+app.allowRendererProcessReuse = false;
+app.on('ready', async () => {
+    await createWindow();
     autoUpdater.checkForUpdatesAndNotify();
 });
+app.on('activate', createWindow);
+app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());

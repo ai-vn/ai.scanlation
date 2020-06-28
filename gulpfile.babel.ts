@@ -1,9 +1,9 @@
 import { spawn } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { cyan, green } from 'chalk';
 import { dest, parallel, series, src, task } from 'gulp';
-// import packageJson from './package.json';
 import { safeLoad } from 'js-yaml';
+import { Icons } from './types/icon';
 
 const copy = (from: string, to: string) => {
     return () => {
@@ -13,7 +13,9 @@ const copy = (from: string, to: string) => {
 };
 
 task('build:check-asar', callback => {
-    const { asar } = safeLoad(readFileSync('./electron-builder.yml', 'utf8'));
+    const { asar } = safeLoad(
+        readFileSync('./electron-builder.yml', 'utf8'),
+    ) as { asar: boolean } & Record<string, any>;
     if (asar !== false)
         throw new Error(
             `The config ${cyan('build.asar')} must be ${cyan('false')}`,
@@ -50,3 +52,20 @@ task(
 );
 
 task('build:fast', parallel('build:nuxt:fast', 'build:electron:fast'));
+
+task('util:icon', async () => {
+    const json: Icons = JSON.parse(
+        readFileSync('./assets/fonts/aicon.json', 'utf8'),
+    );
+    const map = json.icons.reduce(
+        (obj, current) => ({
+            ...obj,
+            [current.properties.name]: String.fromCharCode(
+                current.properties.code,
+            ),
+        }),
+        {},
+    );
+    const mapString = JSON.stringify(map, undefined);
+    writeFileSync('./assets/fonts/aicon.map.json', mapString);
+});

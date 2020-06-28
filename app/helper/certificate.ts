@@ -24,7 +24,6 @@ export async function allowCertificate() {
         event.preventDefault();
         trust(true);
     };
-    if (app.listeners('certificate-error')[1] !== onCertificateError) {
-        app.on('certificate-error', onCertificateError);
-    }
+
+    app.on('certificate-error', onCertificateError);
 }

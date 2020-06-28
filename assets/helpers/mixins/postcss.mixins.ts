@@ -1,9 +1,10 @@
-import properties from './property';
-import { MixinsOptions } from '~/types/plugin.postcss';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { MixinsOptions } from 'postcss-mixins';
+import property from './property';
 
 const postcssMixinsOptions: MixinsOptions = {
     mixins: {
-        ...properties,
+        ...property,
     },
 };
 
