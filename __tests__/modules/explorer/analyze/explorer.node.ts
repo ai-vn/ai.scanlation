@@ -42,7 +42,7 @@ describe('modules/explorer/analyze/explorer', () => {
         jest.mock('util', () => ({
             promisify: (fn: Function) =>
                 fn === jest.requireActual('fs').readdir
-                    ? async () => ['file', 'folder', 'null']
+                    ? async () => ['file', 'file', 'folder', 'folder', 'null']
                     : jest.requireActual('util').promisify(fn),
         }));
         jest.mock('~/modules/explorer/analyze/files/files', () => ({
@@ -71,7 +71,7 @@ describe('modules/explorer/analyze/explorer', () => {
 
         const data = await explorer('a valid folder path');
         expect(data).toBeDefined();
-        expect(data?.files).toHaveLength(1);
-        expect(data?.folders).toHaveLength(1);
+        expect(data?.files).toHaveLength(2);
+        expect(data?.folders).toHaveLength(2);
     });
 });
