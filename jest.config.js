@@ -28,6 +28,7 @@ module.exports = {
         '!**/*.d.ts',
         '!**/gulpfile.babel.ts',
         '!**/node_modules/**',
+        '!**/.nuxt/**',
         '!**/__tests__/**',
         '!**/__mocks__/**',
         '!**/vendor/**',
