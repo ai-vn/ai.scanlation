@@ -33,6 +33,9 @@ describe('modules/explorer/table', () => {
                 fromNow: jest.fn().mockReturnValue('a few seconds ago'),
             }),
         );
+        jest.mock('~/modules/explorer/file/shortcut', () => ({
+            openShortcut: jest.fn(),
+        }));
         mock('~/utils', ['converts/nonNull', 'converts/toSize']);
     });
 
@@ -81,6 +84,9 @@ describe('modules/explorer/table', () => {
 
         tableOptions.rowClick?.call(file, file, {} as MouseEvent);
         tableOptions.rowDblclick?.call(file, file, {} as MouseEvent);
+
+        const shortcut = { ...file, ext: 'lnk' };
+        tableOptions.rowDblclick?.call(shortcut, shortcut, {} as MouseEvent);
 
         const rowClass = tableOptions.rowClass?.call(file, file);
         expect(rowClass).toStrictEqual({ selected: false });
