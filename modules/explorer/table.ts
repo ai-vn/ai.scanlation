@@ -1,9 +1,10 @@
 import { shell } from 'electron';
 import moment from 'moment';
+import { openShortcut } from './file/shortcut';
 import { FileSystemObject } from './types.d';
-import { nonNull, toSize } from '~/utils';
 import { TableFields, TableOptions } from '~/components/table/table';
 import { explorer } from '~/store';
+import { nonNull, toSize } from '~/utils';
 
 export const tableFields: TableFields<FileSystemObject> = [
     {
@@ -62,6 +63,9 @@ export const tableOptions: TableOptions<FileSystemObject> = {
     },
 
     rowDblclick(item) {
-        if (!item.isFolder) shell.openPath(item.path);
+        if (!item.isFolder) {
+            if (item.ext === 'lnk') openShortcut(item.path);
+            else shell.openPath(item.path);
+        }
     },
 };
