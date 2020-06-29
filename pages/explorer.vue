@@ -43,7 +43,7 @@
                 </div>
             </template>
             <template v-slot:empty>
-                This folder is empty
+                {{ isValid ? 'This folder is empty' : 'In valid folder path' }}
             </template>
         </table->
     </div>
