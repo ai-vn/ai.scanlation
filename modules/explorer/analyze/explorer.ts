@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 import { readdir } from 'fs';
+import { parse } from 'path';
 import { isError } from 'lodash';
 import { disks } from './files/disks';
 import { analyze } from './files/files';
@@ -25,6 +27,19 @@ export const explorer = async (folderPath: string) => {
             (result.isFolder ? folders : files).push(result);
         });
     await Promise.all(analyzeFileOrFolders);
+
+    const { compare } = new Intl.Collator(undefined, {
+        numeric: true,
+        sensitivity: 'base',
+    });
+
+    folders
+        .sort((a, b) => compare(a.name, b.name))
+        .forEach((folder, index) => (folder.index = index));
+    const folderLength = folders.length;
+    files
+        .sort((a, b) => compare(parse(a.name).name, parse(b.name).name))
+        .forEach((file, index) => (file.index = index + folderLength));
 
     return { files, folders };
 };
