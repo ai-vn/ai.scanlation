@@ -15,7 +15,7 @@ const file: FileSystemObject = {
     time: new Date(),
 };
 
-describe('modules/explorer/analyze/table', () => {
+describe('modules/explorer/table', () => {
     beforeAll(() => {
         jest.mock('electron', () => ({
             shell: {
