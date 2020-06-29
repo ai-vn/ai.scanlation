@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { normalize } from 'path';
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { explorer, analyzeImages } from '~/modules/explorer';
@@ -49,10 +50,8 @@ export default class Explorer extends VuexModule {
     }
 
     @Mutation
-    toggleSelectedFile(file: Partial<FileSystemObject>) {
-        const findedFile = this.files.filter(f => f.path === file.path);
-        if (findedFile.length !== 1) return;
-        Object.assign(findedFile[0], { selected: !findedFile[0].selected });
+    toggleSelectedFile(file: FileSystemObject) {
+        file.selected = !file.selected;
     }
 
     @Action
