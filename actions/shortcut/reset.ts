@@ -11,10 +11,18 @@ export const resetMousetrap: ActionItem = {
         for (const name in actions) {
             if (Object.prototype.hasOwnProperty.call(actions, name)) {
                 const action = actions[name as keyof typeof actions];
-                const { call, accelerator } = action;
+                const { call, accelerator, condition } = action;
+
+                const callback =
+                    condition === undefined
+                        ? call
+                        : async () => {
+                              if (await condition()) call();
+                          };
+
                 if (accelerator !== undefined) {
                     dictionary.set(accelerator, name);
-                    mousetrap.bind(accelerator, call);
+                    mousetrap.bind(accelerator, callback);
                 }
             }
         }

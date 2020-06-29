@@ -13,6 +13,17 @@ describe('actions/shortcut', () => {
         jest.resetModules();
         mousetrap.reset();
 
+        jest.mock('mousetrap', () => ({
+            reset: jest.requireActual('mousetrap').reset,
+            bind(
+                key_: string,
+                action: (e: ExtendedKeyboardEvent, combo: string) => any,
+            ) {
+                action({} as ExtendedKeyboardEvent, '');
+                return {} as MousetrapInstance;
+            },
+        }));
+
         Object.prototype.testExtendNative = '';
     });
 
@@ -25,8 +36,10 @@ describe('actions/shortcut', () => {
 
         jest.mock('~/actions/actions.import', () => ({
             actions: {
-                a: { call: () => {}, accelerator: 'A' },
-                b: { call: () => {} },
+                a: { call: () => {} },
+                b: { call: () => {}, accelerator: 'B' },
+                c: { call: () => {}, accelerator: 'C', condition: () => true },
+                d: { call: () => {}, accelerator: 'D', condition: () => false },
             },
         }));
 
