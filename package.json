@@ -47,7 +47,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/preset-typescript": "^7.10.1",
-    "@babel/register": "^7.10.3",
+    "@babel/register": "^7.10.4",
     "@jest-runner/electron": "^3.0.0",
     "@nuxt/typescript-build": "^1.0.3",
     "@nuxtjs/moment": "^1.6.1",
