@@ -10,3 +10,4 @@ export * from './decorators/render';
 
 export * from './system/async';
 export * from './system/execute';
+export * from './system/file';
