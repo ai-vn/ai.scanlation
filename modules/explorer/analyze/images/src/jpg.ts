@@ -1,16 +1,19 @@
 // http://vip.sugovica.hu/Sardi/kepnezo/JPEG%20File%20Layout%20and%20Format.htm
 // https://github.com/image-size/image-size/blob/master/lib/types/jpg.ts
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-await-in-loop */
 
 import { AnalyzeImage } from '../type';
+import { readBuffer } from '~/utils';
 
-function findSOFBlock(buffer: Buffer) {
-    buffer = buffer.slice(2);
+async function findSOFBlock(fd: number, size: number) {
+    let offset = 2;
+    let buffer: Buffer;
 
-    while (buffer.length) {
+    while (offset <= size) {
+        buffer = await readBuffer(fd, offset, 10);
         if (buffer[0] !== 0xff) return null;
         if ([0xc0, 0xc1, 0xc2].includes(buffer[1])) return buffer;
-        buffer = buffer.slice(buffer.readUIntBE(2, 2) + 2);
+        offset += buffer.readUIntBE(2, 2) + 2;
     }
     return null;
 }
@@ -22,9 +25,9 @@ const colorMap: Record<string, number | undefined> = {
 };
 
 export const jpg: AnalyzeImage = {
-    match: buffer => buffer.toString('hex', 0, 2) === 'ffd8',
-    data: buffer => {
-        const SOFBlock = findSOFBlock(buffer);
+    sign: 'ffd8',
+    data: async (fd, size) => {
+        const SOFBlock = await findSOFBlock(fd, size);
         return !SOFBlock
             ? {
                   dimensions: { x: 0, y: 0 },

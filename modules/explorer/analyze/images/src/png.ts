@@ -1,6 +1,7 @@
-// Documents: https://www.w3.org/TR/PNG/#11IHDR
+// https://www.w3.org/TR/PNG/#11IHDR
 
 import { AnalyzeImage } from '../type';
+import { readBuffer } from '~/utils';
 
 const colorMap: Record<string, number | undefined> = {
     0: 8,
@@ -11,12 +12,15 @@ const colorMap: Record<string, number | undefined> = {
 };
 
 export const png: AnalyzeImage = {
-    match: buffer => buffer.toString('hex', 0, 8) === '89504e470d0a1a0a',
-    data: buffer => ({
-        dimensions: {
-            x: buffer.readUIntBE(16, 4),
-            y: buffer.readUIntBE(20, 4),
-        },
-        color: `PNG-${colorMap[buffer.readUIntBE(25, 1)]}`,
-    }),
+    sign: '89504e470d0a1a0a',
+    data: async fd => {
+        const buffer = await readBuffer(fd, 0, 26);
+        return {
+            dimensions: {
+                x: buffer.readUIntBE(16, 4),
+                y: buffer.readUIntBE(20, 4),
+            },
+            color: `PNG-${colorMap[buffer.readUIntBE(25, 1)]}`,
+        };
+    },
 };

@@ -1,14 +1,21 @@
-import { psd } from '~/modules/explorer/analyze/images/src/psd';
-
 describe('modules/explorer/analyze/images/src/psd', () => {
-    it('should be psd', () => {
+    it('should be psd', async () => {
         expect.hasAssertions();
 
-        const buffer = Buffer.alloc(64);
-        buffer.write('38425053', 'hex');
+        jest.mock('~/utils', () => ({
+            readBuffer: async () => {
+                const buffer = Buffer.alloc(26);
+                buffer.write('38425053', 'hex');
 
-        expect(psd.match(buffer)).toBeTrue();
-        expect(psd.data(buffer)).toStrictEqual({
+                return buffer;
+            },
+        }));
+
+        const { psd } = await import(
+            '~/modules/explorer/analyze/images/src/psd'
+        );
+
+        expect(await psd.data(0, 0)).toStrictEqual({
             color: 'PSD-24',
             dimensions: { x: 0, y: 0 },
         });
