@@ -5,6 +5,6 @@ export type AnalyzeImageResult = Required<
 >;
 
 export interface AnalyzeImage {
-    match: (buffer: Buffer) => boolean;
-    data: (buffer: Buffer) => AnalyzeImageResult;
+    sign: string;
+    data: (fd: number, size: number) => Promise<AnalyzeImageResult>;
 }
