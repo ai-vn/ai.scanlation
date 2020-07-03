@@ -49,8 +49,10 @@ describe('store/explorer', () => {
             ],
             folders: [],
         });
-        explorer.updateFile({ path: 'image-path', color: 'white' });
-        explorer.updateFile({ path: 'photo-path', color: 'white' });
+        explorer.updateFile({
+            file: explorer.files[0],
+            data: { color: 'PNG' },
+        });
 
         explorer.toggleSelectedFile(explorer.files[0]);
     });
