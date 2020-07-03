@@ -43,10 +43,14 @@ export default class Explorer extends VuexModule {
     }
 
     @Mutation
-    updateFile(file: Partial<FileSystemObject>) {
-        const findedFile = this.files.filter(f => f.path === file.path);
-        if (findedFile.length !== 1) return;
-        Object.assign(findedFile[0], file);
+    updateFile({
+        file,
+        data,
+    }: {
+        file: FileSystemObject;
+        data: Partial<FileSystemObject>;
+    }) {
+        Object.assign(file, data);
     }
 
     @Mutation
