@@ -15,7 +15,6 @@
     "clean": "run-s clean:*",
     "clean:dist": "rimraf dist",
     "clean:key": "rimraf .certificate",
-    "release": "yarn build --publish always",
     "postinstall": "electron-builder install-app-deps",
     "prettier:fix": "prettier ** --write",
     "lint": "run-s lint:*",
