@@ -1,6 +1,7 @@
-import { camelCase, debounce } from 'lodash';
+import { debounce } from 'lodash';
 import { Store } from 'vuex';
 import { VuexModule } from 'vuex-module-decorators';
+import { StoreModules } from '~/store/-modules';
 import { NonFunctionPropertyNames, Payload } from '~/types/type';
 
 interface Watcher<T> {
@@ -12,9 +13,13 @@ const watchers: Watcher<any>[] = [];
 
 export const StoreWatch = <
     M extends VuexModule,
-    P extends NonFunctionPropertyNames<M>
+    P extends NonFunctionPropertyNames<M>,
+    Modules extends StoreModules
 >(
     module: { new (...args: any[]): M },
+    moduleName: {
+        [P in keyof Modules]: M extends Modules[P] ? P : never;
+    }[keyof Modules],
     property: P,
     wait = 0,
 ) => (
@@ -24,8 +29,6 @@ export const StoreWatch = <
         | TypedPropertyDescriptor<(payload: Payload<M[P]>) => void>
         | TypedPropertyDescriptor<(payload: Payload<M[P]>) => Promise<void>>,
 ): void => {
-    const moduleName = camelCase(module.name);
-
     watchers.push({
         getter: state => state[moduleName][property],
         watcher: (store: Store<any>) => {

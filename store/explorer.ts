@@ -59,7 +59,7 @@ export default class Explorer extends VuexModule {
     }
 
     @Action
-    @StoreWatch(Explorer, 'folderPath', 0)
+    @StoreWatch(Explorer, 'explorer', 'folderPath')
     async watchFolderPath({ value: folderPath, oldValue }: Payload<string>) {
         if (folderPath === oldValue) return;
 

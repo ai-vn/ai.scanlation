@@ -8,13 +8,17 @@ import {
     VuexModule,
     getModule,
 } from 'vuex-module-decorators';
+import { StoreModules } from '~/store/-modules';
 import { Payload } from '~/types/type';
 import { StoreWatch, watchInitializer } from '~/utils/decorators/store.watch';
+
+type ModulesWithType = StoreModules & {
+    temp: Temp;
+};
 
 @Module({ name: 'temp', stateFactory: true, namespaced: true })
 class Temp extends VuexModule {
     text = '';
-    isChanged = false;
 
     @Mutation
     setText(value: string) {
@@ -22,12 +26,12 @@ class Temp extends VuexModule {
     }
 
     @Action
-    @StoreWatch(Temp, 'text')
+    @StoreWatch<Temp, 'text', ModulesWithType>(Temp, 'temp', 'text')
     watchText(payload_: Payload<string>) {}
 
     @Action
-    @StoreWatch(Temp, 'text', 100)
-    watchTextWait(payload_: Payload<string>) {}
+    @StoreWatch<Temp, 'text', ModulesWithType>(Temp, 'temp', 'text', 100)
+    watchTextWait(payload_: Payload<any>) {}
 }
 
 describe('utils/decorators/store.watch', () => {
