@@ -14,6 +14,7 @@ export default async (): Promise<Configuration> => {
             title: 'Ai Scanlation',
             meta: [{ charset: 'utf-8' }],
         },
+        ignore: ['**/__tests__/**'],
         router: { mode: 'hash', base: !dev ? '/app/' : undefined },
         server: { https: { key, cert } },
         generate: { dir: 'dist/renderer' },
