@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/ban-types */
+import { Stats } from 'fs';
 import { FileSystemObject } from '~/modules/explorer/types';
 
 const file: FileSystemObject = {
@@ -8,48 +11,62 @@ const file: FileSystemObject = {
     name: '',
     ext: 'jpg',
     isFolder: false,
+    stat: {} as Stats,
 };
 
 describe('modules/explorer/analyze/images/images', () => {
+    const importAnalyze = () =>
+        import('~/modules/explorer/analyze/images/images');
+
     beforeEach(() => {
         jest.resetModules();
-    });
-
-    it("shouldn't analyze image", async () => {
-        expect.hasAssertions();
-
-        jest.mock('util', () => ({
-            promisify: jest
-                .fn()
-                .mockReturnValue(async () => Buffer.from('0000', 'hex')),
-        }));
-
-        const { analyzeImage } = await import(
-            '~/modules/explorer/analyze/images/images'
-        );
-        const image = await analyzeImage(file);
-        expect(image).toBeUndefined();
+        jest.resetAllMocks();
     });
 
     it('should analyze image', async () => {
         expect.hasAssertions();
 
         jest.mock('util', () => ({
-            promisify: jest
-                .fn()
-                .mockReturnValue(async () => Buffer.from('ffd8', 'hex')),
+            promisify: (input: Function) => {
+                if (input === jest.requireActual('fs').open) return () => 0;
+                return async () => {};
+            },
+        }));
+        jest.mock('~/utils', () => ({
+            readBuffer: async () => Buffer.from('9999', 'hex'),
+        }));
+        jest.mock('~/modules/explorer/analyze/images/src/psd', () => ({
+            psd: {
+                sign: '9999',
+                data: async () => ({ color: '', dimensions: { x: 0, y: 0 } }),
+            },
         }));
 
-        const { analyzeImage } = await import(
-            '~/modules/explorer/analyze/images/images'
-        );
+        const { analyzeImage } = await importAnalyze();
         const image = await analyzeImage(file);
-        expect(image).toBeDefined();
+        expect(image).toStrictEqual({ color: '', dimensions: { x: 0, y: 0 } });
+    });
+
+    it("shouldn't analyze image (no stat)", async () => {
+        expect.hasAssertions();
+
+        jest.mock('~/utils', () => ({
+            readBuffer: () => undefined,
+        }));
+
+        const { analyzeImage } = await importAnalyze();
+
+        await expect(() =>
+            analyzeImage({ ...file, stat: undefined }),
+        ).rejects.toThrow('File stat is undefined');
     });
 
     it('should analyze images', async () => {
         expect.hasAssertions();
 
+        jest.mock('~/utils', () => ({
+            readBuffer: async () => Buffer.from('0000', 'hex'),
+        }));
         jest.mock('util', () => ({
             promisify: jest
                 .fn()
@@ -64,12 +81,18 @@ describe('modules/explorer/analyze/images/images', () => {
         await analyzeImages([file], callback);
 
         expect(callback).toHaveBeenCalledWith({
-            path: '',
-            key: `key-analyzed`,
-            color: 'File Error',
-            dimensions: {
-                x: 0,
-                y: 0,
+            data: {
+                key: 'key-analyzed',
+            },
+            file: {
+                ext: 'jpg',
+                index: 0,
+                isFolder: false,
+                key: 'key',
+                name: '',
+                path: '',
+                selected: false,
+                stat: {},
             },
         });
     });

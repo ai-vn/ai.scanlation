@@ -4,7 +4,7 @@ import { getModule } from 'vuex-module-decorators';
 import { mock } from '~/__tests__/__utils__/mock';
 
 describe('store/explorer', () => {
-    let explorer: any;
+    let explorer: import('~/store/explorer').default;
 
     beforeAll(() => {
         mock('~/utils', ['decorators/store.watch']);
@@ -39,6 +39,7 @@ describe('store/explorer', () => {
             files: [
                 {
                     index: 0,
+                    selected: false,
                     key: 'image-path',
                     name: 'image',
                     path: 'image-path',
@@ -48,11 +49,12 @@ describe('store/explorer', () => {
             ],
             folders: [],
         });
-        explorer.updateFile({ path: 'image-path', color: 'white' });
-        explorer.updateFile({ path: 'photo-path', color: 'white' });
+        explorer.updateFile({
+            file: explorer.files[0],
+            data: { color: 'PNG' },
+        });
 
-        explorer.toggleSelectedFile({ path: 'image-path' });
-        explorer.toggleSelectedFile({ path: 'invalid-image-path' });
+        explorer.toggleSelectedFile(explorer.files[0]);
     });
 
     it('should watchFolderPath work', async () => {

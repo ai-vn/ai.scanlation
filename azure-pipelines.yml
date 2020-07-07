@@ -68,6 +68,10 @@ steps:
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
 
   - script: |
+      curl -s https://codecov.io/bash | bash
+    displayName: Publish code coverage to codecov.io
+
+  - script: |
       yarn build
     displayName: Build
     condition: and(succeeded(), notIn(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
@@ -77,7 +81,7 @@ steps:
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
 
   - script: |
-      yarn release --win
+      yarn build --publish onTag
     displayName: Release (Windows)
     condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:

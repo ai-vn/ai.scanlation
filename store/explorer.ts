@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { normalize } from 'path';
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { explorer, analyzeImages } from '~/modules/explorer';
@@ -42,21 +43,23 @@ export default class Explorer extends VuexModule {
     }
 
     @Mutation
-    updateFile(file: Partial<FileSystemObject>) {
-        const findedFile = this.files.filter(f => f.path === file.path);
-        if (findedFile.length !== 1) return;
-        Object.assign(findedFile[0], file);
+    updateFile({
+        file,
+        data,
+    }: {
+        file: FileSystemObject;
+        data: Partial<FileSystemObject>;
+    }) {
+        Object.assign(file, data);
     }
 
     @Mutation
-    toggleSelectedFile(file: Partial<FileSystemObject>) {
-        const findedFile = this.files.filter(f => f.path === file.path);
-        if (findedFile.length !== 1) return;
-        Object.assign(findedFile[0], { selected: !findedFile[0].selected });
+    toggleSelectedFile(file: FileSystemObject) {
+        file.selected = !file.selected;
     }
 
     @Action
-    @StoreWatch(Explorer, 'folderPath', 0)
+    @StoreWatch(Explorer, 'explorer', 'folderPath')
     async watchFolderPath({ value: folderPath, oldValue }: Payload<string>) {
         if (folderPath === oldValue) return;
 

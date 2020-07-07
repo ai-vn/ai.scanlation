@@ -2,6 +2,7 @@ import { remote } from 'electron';
 import { dirname } from 'path';
 import { isError } from 'lodash';
 import { ActionItem } from '~/actions/actions.type';
+import { isExplorer } from '~/actions/conditions';
 import { explorer } from '~/store';
 import { attemptAsync } from '~/utils';
 
@@ -15,6 +16,7 @@ export const selectFolder: ActionItem = {
         const folderPath = path.filePaths[0];
         if (folderPath !== undefined) explorer.setFolderPath(folderPath);
     },
+    condition: isExplorer,
     title: 'Open Folder',
     accelerator: 'ctrl+o',
 };
@@ -28,5 +30,6 @@ export const goToParentFolder: ActionItem = {
         const isRoot = /^\w:(\\|\/)$/i.test(explorer.folderPath);
         explorer.setFolderPath(isRoot ? '' : parentFolderPath);
     },
+    condition: isExplorer,
     accelerator: 'backspace',
 };

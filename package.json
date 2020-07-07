@@ -1,6 +1,6 @@
 {
   "name": "ai.scanlation",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "license": "MIT",
   "description": "Scanlation tool for Ai Scanlation",
   "author": "Phạm Hồng Phúc - phamhongphuc.info@gmail.com",
@@ -15,7 +15,6 @@
     "clean": "run-s clean:*",
     "clean:dist": "rimraf dist",
     "clean:key": "rimraf .certificate",
-    "release": "yarn build --publish always",
     "postinstall": "electron-builder install-app-deps",
     "prettier:fix": "prettier ** --write",
     "lint": "run-s lint:*",

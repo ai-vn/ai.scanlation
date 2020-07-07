@@ -4,7 +4,7 @@ import { getModule } from 'vuex-module-decorators';
 import { requireActual, mock } from '~/__tests__/__utils__/mock';
 
 describe('actions/folder/**', () => {
-    let explorer: any;
+    let explorer: import('~/store/explorer').default;
 
     beforeEach(async () => {
         jest.resetModules();

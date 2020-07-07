@@ -1,6 +1,7 @@
 // http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577409_pgfId-1037450
 
 import { AnalyzeImage } from '../type';
+import { readBuffer } from '~/utils';
 
 const colorMap: Record<string, string | number | undefined> = {
     0: 24,
@@ -14,12 +15,15 @@ const colorMap: Record<string, string | number | undefined> = {
 };
 
 export const psd: AnalyzeImage = {
-    match: buffer => buffer.toString('hex', 0, 4) === '38425053',
-    data: buffer => ({
-        dimensions: {
-            x: buffer.readUIntBE(18, 4),
-            y: buffer.readUIntBE(14, 4),
-        },
-        color: `PSD-${colorMap[buffer.readUIntBE(24, 2)]}`,
-    }),
+    sign: '38425053',
+    data: async fd => {
+        const buffer = await readBuffer(fd, 0, 26);
+        return {
+            dimensions: {
+                x: buffer.readUIntBE(18, 4),
+                y: buffer.readUIntBE(14, 4),
+            },
+            color: `PSD-${colorMap[buffer.readUIntBE(24, 2)]}`,
+        };
+    },
 };

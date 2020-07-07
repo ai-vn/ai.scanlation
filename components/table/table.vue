@@ -156,11 +156,6 @@ export default class Table<T extends TableObject> extends Vue {
         tbody > tr {
             @apply border-t border-transparent;
 
-            &,
-            & > td {
-                @apply duration-200 transition-colors;
-            }
-
             &:hover {
                 background-color: var(--table-background-color-hover);
             }
@@ -220,7 +215,6 @@ export default class Table<T extends TableObject> extends Vue {
                 > td:first-child::after {
                     @apply absolute bottom-0 left-0 w-1 h-1;
                     @apply border-solid border-transparent border-l border-b rounded-bl;
-                    @apply duration-200 transition-colors;
 
                     content: '';
                 }
