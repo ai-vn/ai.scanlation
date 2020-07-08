@@ -106,6 +106,17 @@ export default class extends Vue {
                 width: 100%;
                 max-width: 0;
             }
+
+            &[data='size'],
+            &[data='dimensions'],
+            &[data='color'],
+            &[data='time'] {
+                @apply hidden;
+
+                @screen sm {
+                    @apply table-cell;
+                }
+            }
         }
     }
 }
