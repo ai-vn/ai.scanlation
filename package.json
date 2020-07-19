@@ -36,7 +36,7 @@
     "mousetrap": "^1.6.5",
     "nuxt": "^2.13.3",
     "nuxt-property-decorator": "^2.7.2",
-    "p-queue": "^6.5.0",
+    "p-queue": "^6.6.0",
     "pem": "^1.14.4",
     "source-map-support": "^0.5.19",
     "ts-node": "^8.10.2",
