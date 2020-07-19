@@ -72,11 +72,10 @@ steps:
     displayName: Publish code coverage to codecov.io
 
   - script: |
-      yarn build
+      yarn build --publish never
     displayName: Build
     condition: and(succeeded(), notIn(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:
-      GH_TOKEN: $(GH_TOKEN)
       ELECTRON_CACHE: $(ELECTRON_CACHE)
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
 
