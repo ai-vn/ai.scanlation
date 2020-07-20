@@ -57,6 +57,7 @@ function getContext(): Context {
         error: jest.fn(),
         nuxtState: {},
         beforeNuxtRender: jest.fn(),
+        $config: {},
     };
 }
 

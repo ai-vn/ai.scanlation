@@ -20,6 +20,15 @@ const config = {
         es6: true,
         'jest/globals': true,
     },
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module',
+        ecmaVersion: 2017,
+        ecmaFeatures: {
+            jsx: false,
+        },
+    },
     extends: [
         'airbnb-base',
         'eslint:recommended',
@@ -35,19 +44,11 @@ const config = {
         'plugin:vue/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
+        'plugin:nuxt/recommended',
 
         'prettier/@typescript-eslint',
         'prettier/vue',
     ],
-    parser: 'vue-eslint-parser',
-    parserOptions: {
-        parser: '@typescript-eslint/parser',
-        sourceType: 'module',
-        ecmaVersion: 2017,
-        ecmaFeatures: {
-            jsx: false,
-        },
-    },
     plugins: [
         'standard',
         'import',
@@ -155,10 +156,7 @@ const config = {
             rules: {
                 'import/no-extraneous-dependencies': [
                     'error',
-                    {
-                        devDependencies: true,
-                        packageDir,
-                    },
+                    { devDependencies: true, packageDir },
                 ],
                 'jest/no-hooks': [
                     'error',
@@ -187,8 +185,12 @@ const config = {
         },
         {
             files: ['gulpfile.babel.ts'],
+            rules: { 'no-console': 'off' },
+        },
+        {
+            files: ['plugins/**.ts'],
             rules: {
-                'no-console': 'off',
+                'import/no-extraneous-dependencies': ['error', { packageDir }],
             },
         },
     ],
