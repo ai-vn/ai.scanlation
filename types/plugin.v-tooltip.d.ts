@@ -11,27 +11,47 @@ declare module 'v-tooltip' {
         | 'click hover focus'
         | 'manual';
 
+    type Placement =
+        | 'auto'
+        | 'auto-start'
+        | 'auto-end'
+        | 'top'
+        | 'top-start'
+        | 'top-end'
+        | 'right'
+        | 'right-start'
+        | 'right-end'
+        | 'bottom'
+        | 'bottom-start'
+        | 'bottom-end'
+        | 'left'
+        | 'left-start'
+        | 'left-end';
+
     export interface TooltipSettings {
         content: string;
-        loadingContent?: string;
         classes?: string[];
         targetClasses?: string[];
-        loadingClass?: string[];
         html?: boolean;
-        show?: boolean;
-        trigger?: Triggers;
-        autoHide?: boolean;
-        hideOnTargetClick?: boolean;
         delay?:
             | number
             | {
                   show: number;
                   hide: number;
               };
+        placement?: Placement;
+        trigger?: Triggers;
+        show?: boolean;
         offset?: number;
         container?: string;
+        boundariesElement?: HTMLElement;
+        template?: any;
         arrowSelector?: string;
         innerSelector?: string;
+        autoHide?: boolean;
+        hideOnTargetClick?: boolean;
+        loadingClass?: string[];
+        loadingContent?: string;
         popperOptions?: any;
     }
 
