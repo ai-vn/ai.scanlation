@@ -42,7 +42,7 @@
     "ts-node": "^8.10.2",
     "v-tooltip": "2.0.3",
     "vuex-module-decorators": "^0.17.0",
-    "vuex-persistedstate": "^3.0.1"
+    "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
