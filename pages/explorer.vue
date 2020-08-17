@@ -1,7 +1,7 @@
 <template>
-    <div class="explorer flex flex-col overflow-hidden">
-        <div class="explorer-action-bar m-3 flex">
-            <group- class="mr-2">
+    <div class="explorer flex flex-col overflow-hidden space-y-3 p-3">
+        <div class="flex space-x-2">
+            <group->
                 <button- v-tooltip="'Previous folder'" icon="chevron-left" />
                 <button- v-tooltip="'Next folder'" icon="chevron-right" />
                 <button-
@@ -31,7 +31,6 @@
             </group->
         </div>
         <table-
-            class="mx-3 mb-3"
             :group-items="[folders, files]"
             :fields="tableFields"
             :options="tableOptions"
@@ -88,13 +87,6 @@ export default class extends Vue {
 </script>
 <style lang="postcss">
 .explorer {
-    &-status-bar {
-        height: 1.75rem;
-        border-top-color: var(--line-color);
-
-        @apply border-t;
-    }
-
     table {
         th,
         td {
