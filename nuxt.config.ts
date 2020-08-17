@@ -40,7 +40,7 @@ export default async (): Promise<NuxtConfig> => {
         },
         purgeCSS: {},
         tailwindcss: {
-            configPath: '~/tailwind.config.js',
+            configPath: '~/assets/style/tailwind.config.ts',
             cssPath: '~/assets/style/tailwind.pcss',
         },
         build: {

@@ -10,6 +10,7 @@ const packageDir = [
     path.join(__dirname, 'node_modules/@nuxt/vue-app'),
     path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
     path.join(__dirname, 'node_modules/@nuxt/webpack'),
+    path.join(__dirname, 'node_modules/@nuxtjs/tailwindcss'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
