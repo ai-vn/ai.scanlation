@@ -1,5 +1,5 @@
-import createPersistedState from 'vuex-persistedstate';
 import { Plugin } from '@nuxt/types';
+import createPersistedState from 'vuex-persistedstate';
 
 const plugin: Plugin = ({ store }) => {
     window.onNuxtReady(() => {

@@ -3,12 +3,12 @@
 import { shallowMount } from '@vue/test-utils';
 import { Vue } from 'nuxt-property-decorator';
 import Vuex from 'vuex';
+import { mock } from '~/__tests__/__utils__/mock';
 import table from '~/components/table/table.vue';
 import button from '~/components/utilities/button.vue';
-import icon from '~/components/utilities/icon.vue';
-import { mock } from '~/__tests__/__utils__/mock';
-import input from '~/components/utilities/input.vue';
 import group from '~/components/utilities/group.vue';
+import icon from '~/components/utilities/icon.vue';
+import input from '~/components/utilities/input.vue';
 import '~/plugins/v-tooltip';
 
 describe('pages/explorer', () => {

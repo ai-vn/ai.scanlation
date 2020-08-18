@@ -1,6 +1,6 @@
+import { mock } from '~/__tests__/__utils__/mock';
 import { TableField } from '~/components/table/table';
 import { FileSystemObject } from '~/modules/explorer/types';
-import { mock } from '~/__tests__/__utils__/mock';
 
 const file: FileSystemObject = {
     index: 0,

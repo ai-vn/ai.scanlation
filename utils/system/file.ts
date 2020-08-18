@@ -1,5 +1,5 @@
-import { promisify } from 'util';
 import { read } from 'fs';
+import { promisify } from 'util';
 
 export const readBuffer = async (fd: number, start: number, length: number) => {
     const { buffer } = await promisify(read)(

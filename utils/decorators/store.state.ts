@@ -1,5 +1,5 @@
-import { VuexModule } from 'vuex-module-decorators';
 import { camelCase } from 'lodash';
+import { VuexModule } from 'vuex-module-decorators';
 import { NonFunctionPropertyNames } from '~/types/type';
 
 const toSet = (key: string) => camelCase(`set ${key}`);

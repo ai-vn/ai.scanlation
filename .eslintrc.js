@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
 const isWin = require('os').platform() === 'win32';
+const path = require('path');
 
 const packageDir = [
     path.join(__dirname),
@@ -108,6 +108,7 @@ const config = {
                     'sibling',
                     'index',
                 ],
+                alphabetize: { order: 'asc', caseInsensitive: true },
                 'newlines-between': 'never',
             },
         ],

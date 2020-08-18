@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron';
-import installer, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import devtron from 'devtron';
+import installer, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 
 export async function installDevtool(window: BrowserWindow) {
     window.webContents.openDevTools();

@@ -23,8 +23,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import { Action } from '~/utils';
 import { ActionItem } from '~/actions/actions.type';
+import { Action } from '~/utils';
 
 @Component({ name: 'menu-' })
 export default class extends Vue {

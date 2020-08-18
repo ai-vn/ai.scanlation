@@ -50,11 +50,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import { tableFields, tableOptions } from '~/modules/explorer';
-import { Action, StoreState, StoreAction } from '~/utils';
-import { explorer } from '~/store';
 import { ActionItem } from '~/actions/actions.type';
+import { tableFields, tableOptions } from '~/modules/explorer';
 import { FileSystemObject } from '~/modules/explorer/types';
+import { explorer } from '~/store';
+import { Action, StoreState, StoreAction } from '~/utils';
 
 @Component({ name: 'explorer-' })
 export default class extends Vue {
