@@ -20,13 +20,10 @@ import { TooltipSettings } from 'v-tooltip';
 
 @Component({ name: 'sidebar-' })
 export default class extends Vue {
-    tooltip = (content: string): TooltipSettings => {
-        return {
-            content,
-            placement: 'right',
-            trigger: 'hover',
-        };
-    };
+    tooltip = (content: string): TooltipSettings => ({
+        content,
+        placement: 'right',
+    });
 }
 </script>
 <style lang="postcss">

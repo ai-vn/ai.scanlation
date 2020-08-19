@@ -1,4 +1,5 @@
 declare module 'v-tooltip' {
+    import { Options as PopperOptions } from '@popperjs/core';
     import { PluginObject } from 'vue';
 
     type Triggers =
@@ -45,17 +46,57 @@ declare module 'v-tooltip' {
         offset?: number;
         container?: string;
         boundariesElement?: HTMLElement;
-        template?: any;
+        template?: string;
         arrowSelector?: string;
         innerSelector?: string;
         autoHide?: boolean;
         hideOnTargetClick?: boolean;
         loadingClass?: string[];
         loadingContent?: string;
-        popperOptions?: any;
+        popperOptions?: PopperOptions;
     }
 
-    const plugin: PluginObject<Record<string, unknown>>;
+    interface PluginPopoverOptions {
+        defaultPlacement: Placement;
+        defaultClass: string;
+        defaultBaseClass: string;
+        defaultWrapperClass: string;
+        defaultInnerClass: string;
+        defaultArrowClass: string;
+        defaultOpenClass: string;
+        defaultDelay: number;
+        defaultTrigger: Triggers;
+        defaultOffset: number;
+        defaultContainer: string;
+        defaultBoundariesElement: undefined | HTMLElement;
+        defaultPopperOptions: Record<string, unknown>;
+        defaultAutoHide: boolean;
+        defaultHandleResize: boolean;
+    }
+
+    export interface PluginOptions {
+        defaultPlacement?: Placement;
+        defaultClass?: string;
+        defaultTargetClass?: string;
+        defaultHtml?: boolean;
+        defaultTemplate?: string;
+        defaultArrowSelector?: string;
+        defaultInnerSelector?: string;
+        defaultDelay?: 0;
+        defaultTrigger?: Triggers;
+        defaultOffset?: 0;
+        defaultContainer?: string;
+        defaultBoundariesElement?: HTMLElement;
+        defaultPopperOptions?: PopperOptions;
+        defaultLoadingClass?: string;
+        defaultLoadingContent?: string;
+        autoHide?: boolean;
+        defaultHideOnTargetClick?: true;
+        disposeTimeout?: boolean;
+        popover?: Partial<PluginPopoverOptions>;
+    }
+
+    const plugin: PluginObject<PluginOptions>;
 
     export default plugin;
 }
