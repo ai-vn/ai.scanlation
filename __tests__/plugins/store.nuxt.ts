@@ -1,7 +1,16 @@
-import pluginStore from '~/plugins/store';
+import { mock } from '~/__tests__/__utils__/mock';
 
 describe('plugins/store', () => {
     beforeAll(() => {
+        mock('~/utils', [
+            'decorators/store.watch',
+            'system/async',
+            'system/execute',
+        ]);
+        mock('~/modules/explorer', [
+            'analyze/explorer',
+            'analyze/images/images',
+        ]);
         jest.mock('~/actions/actions.import', () => ({
             actions: {},
         }));
@@ -13,9 +22,10 @@ describe('plugins/store', () => {
         expect.hasAssertions();
 
         const { installPlugin } = await import('~/__tests__/__utils__/nuxt');
+        const pluginStore = await import('~/plugins/store');
 
         expect(() => {
-            installPlugin(pluginStore);
+            installPlugin(pluginStore.default);
         }).not.toThrow();
     });
 });
