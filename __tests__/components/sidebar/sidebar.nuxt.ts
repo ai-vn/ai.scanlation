@@ -1,22 +1,33 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { shallowMount } from '@vue/test-utils';
 import { Vue } from 'nuxt-property-decorator';
-import sidebar from '~/components/sidebar/sidebar.vue';
-import icon from '~/components/utilities/icon.vue';
-import '~/plugins/v-tooltip';
 
 describe('components/sidebar/sidebar', () => {
-    beforeAll(() => {
-        Vue.component('icon-', icon);
-        Vue.component('n-link', {
+    beforeAll(async () => {
+        jest.mock('~/actions/actions.import', () => ({
+            actions: {
+                goToHome: { call: () => {} },
+                goToExplorer: { call: () => {} },
+                goToReader: { call: () => {} },
+                goToSetting: { call: () => {} },
+            },
+        }));
+
+        Vue.component('sidebar-item-', {
             props: {
-                to: { type: [String, Location], required: true },
-                exact: { type: Boolean, default: false },
+                action: { type: Object, required: true },
+                path: { type: String, required: true },
             },
         });
     });
 
-    it('should mounted', () => {
+    it('should mounted', async () => {
         expect.hasAssertions();
+
+        const { default: sidebar } = await import(
+            '~/components/sidebar/sidebar.vue'
+        );
+
         const wrapper = shallowMount(sidebar);
         expect(wrapper.vm.$el.className).toStrictEqual('sidebar');
     });
