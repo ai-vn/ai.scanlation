@@ -6,17 +6,25 @@ const routerPush = (name: string) => () => {
 
 export const goToHome: ActionItem = {
     call: routerPush('/'),
+    title: 'Home',
+    icon: 'home',
     accelerator: 'q',
 };
 export const goToExplorer: ActionItem = {
     call: routerPush('/explorer'),
+    title: 'Explorer',
+    icon: 'file',
     accelerator: 'w',
 };
 export const goToReader: ActionItem = {
     call: routerPush('/reader'),
+    title: 'Reader',
+    icon: 'book-open',
     accelerator: 'e',
 };
 export const goToSetting: ActionItem = {
     call: routerPush('/settings'),
-    accelerator: 'r',
+    title: 'Settings',
+    icon: 'settings',
+    accelerator: 'ctrl+,',
 };

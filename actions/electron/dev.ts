@@ -7,4 +7,5 @@ export const toggleDevTools: ActionItem = {
     call: currentWindow.webContents.toggleDevTools,
     title: 'Toggle Developer Tools',
     accelerator: 'ctrl+shift+i',
+    icon: 'terminal',
 };
