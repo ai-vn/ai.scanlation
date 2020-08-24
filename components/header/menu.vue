@@ -1,23 +1,23 @@
 <template>
     <ul class="flex menu">
         <menu-item- title="File">
-            <menu-item- icon="folder" :action="selectFolder" />
+            <menu-item- :action="selectFolder" />
             <menu-item- hr />
-            <menu-item- icon="x" :action="close" shortcut="alt+f4" />
+            <menu-item- :action="close" shortcut="alt+f4" />
         </menu-item->
         <menu-item- title="Help">
             <menu-item- icon="star" title="Webcome" />
-            <menu-item- icon="package" title="Release Note" />
+            <menu-item- icon="package" title="Release Notes" />
             <menu-item- hr />
-            <menu-item- icon="globe" title="Website" />
-            <menu-item- icon="github" title="Github" />
-            <menu-item- icon="facebook" title="Facebook" />
-            <menu-item- icon="message-square" title="Feedback" />
+            <menu-item- :action="openWebsite" />
+            <menu-item- :action="openGithub" />
+            <menu-item- :action="openFacebook" />
+            <menu-item- :action="openFeedback" />
             <menu-item- hr />
-            <menu-item- icon="terminal" :action="toggleDevTools" />
+            <menu-item- :action="toggleDevTools" />
             <menu-item- hr />
-            <menu-item- icon="download-cloud" title="Check for Updates..." />
-            <menu-item- icon="info" title="About" shortcut="alt+i" />
+            <menu-item- :action="checkForUpdates" />
+            <menu-item- :action="helpAbout" />
         </menu-item->
     </ul>
 </template>
@@ -29,10 +29,28 @@ import { Action } from '~/utils';
 @Component({ name: 'menu-' })
 export default class extends Vue {
     @Action
+    checkForUpdates!: ActionItem;
+
+    @Action
     close!: ActionItem;
 
     @Action
     selectFolder!: ActionItem;
+
+    @Action
+    helpAbout!: ActionItem;
+
+    @Action
+    openFacebook!: ActionItem;
+
+    @Action
+    openFeedback!: ActionItem;
+
+    @Action
+    openGithub!: ActionItem;
+
+    @Action
+    openWebsite!: ActionItem;
 
     @Action
     toggleDevTools!: ActionItem;
