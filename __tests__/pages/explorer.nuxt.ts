@@ -14,8 +14,9 @@ describe('pages/explorer', () => {
     beforeAll(async () => {
         jest.mock('~/actions/actions.import', () => ({
             actions: {
-                selectFolder: { call: () => {} },
-                goToParentFolder: { call: () => {} },
+                explorerSelectFolder: { call: () => {} },
+                explorerGoToParentFolder: { call: () => {} },
+                explorerReload: { call: () => {} },
             },
         }));
 

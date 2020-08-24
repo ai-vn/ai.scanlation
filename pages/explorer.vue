@@ -4,23 +4,11 @@
             <group->
                 <button- v-tooltip="'Previous folder'" icon="chevron-left" />
                 <button- v-tooltip="'Next folder'" icon="chevron-right" />
-                <button-
-                    v-tooltip="'Parent folder'"
-                    icon="corner-right-up"
-                    @click="goToParentFolder.call"
-                />
-                <button-
-                    v-tooltip="'Reload'"
-                    icon="rotate-ccw"
-                    @click="watchFolderPath({ value: folderPath })"
-                />
+                <button- tooltip :action="explorerGoToParentFolder" />
+                <button- tooltip :action="explorerReload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button-
-                    v-tooltip="'Select folder'"
-                    icon="folder"
-                    @click="selectFolder.call"
-                />
+                <button- tooltip :action="explorerSelectFolder" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -72,14 +60,14 @@ export default class extends Vue {
     @StoreAction(explorer)
     updateFolderPath!: typeof explorer.updateFolderPath;
 
-    @StoreAction(explorer)
-    watchFolderPath!: typeof explorer.watchFolderPath;
+    @Action
+    explorerSelectFolder!: ActionItem;
 
     @Action
-    selectFolder!: ActionItem;
+    explorerGoToParentFolder!: ActionItem;
 
     @Action
-    goToParentFolder!: ActionItem;
+    explorerReload!: ActionItem;
 
     tableFields = tableFields;
     tableOptions = tableOptions;

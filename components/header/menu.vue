@@ -1,7 +1,7 @@
 <template>
     <ul class="flex menu">
         <menu-item- title="File">
-            <menu-item- :action="selectFolder" />
+            <menu-item- :action="explorerSelectFolder" />
             <menu-item- hr />
             <menu-item- :action="close" shortcut="alt+f4" />
         </menu-item->
@@ -35,7 +35,7 @@ export default class extends Vue {
     close!: ActionItem;
 
     @Action
-    selectFolder!: ActionItem;
+    explorerSelectFolder!: ActionItem;
 
     @Action
     helpAbout!: ActionItem;
