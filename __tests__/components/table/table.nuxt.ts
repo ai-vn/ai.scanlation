@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
 import { Vue } from 'nuxt-property-decorator';
-import table from '~/components/table/table.vue';
 import {
     TableOptions,
     TableGroupItem,
     TableFields,
     TableObject,
 } from '~/components/table/table';
+import table from '~/components/table/table.vue';
 
 interface TempObject extends TableObject {
     id: number;

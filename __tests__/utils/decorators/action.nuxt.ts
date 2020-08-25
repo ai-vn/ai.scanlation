@@ -1,6 +1,6 @@
 import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
 import { mock } from '~/__tests__/__utils__/mock';
+import { ActionItem } from '~/actions/actions.type';
 
 describe('utils/decorators/action', () => {
     beforeAll(() => {

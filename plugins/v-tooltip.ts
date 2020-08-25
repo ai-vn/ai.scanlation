@@ -1,4 +1,9 @@
+import tooltip, { PluginOptions } from 'v-tooltip';
 import Vue from 'vue';
-import tooltip from 'v-tooltip';
 
-Vue.use(tooltip);
+Vue.use<PluginOptions>(tooltip, {
+    defaultTrigger: 'hover',
+    popover: {
+        defaultTrigger: 'hover',
+    },
+});

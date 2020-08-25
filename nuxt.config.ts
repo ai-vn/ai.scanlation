@@ -1,8 +1,8 @@
 import { NuxtConfig } from '@nuxt/types';
 import { isDev as dev } from './app/env';
-import { getCertificate } from './utils/build/certificate';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
+import { getCertificate } from './utils/build/certificate';
 
 export default async (): Promise<NuxtConfig> => {
     const { key, cert } = await getCertificate();
@@ -40,7 +40,7 @@ export default async (): Promise<NuxtConfig> => {
         },
         purgeCSS: {},
         tailwindcss: {
-            configPath: '~/tailwind.config.js',
+            configPath: '~/assets/style/tailwind.config.ts',
             cssPath: '~/assets/style/tailwind.pcss',
         },
         build: {

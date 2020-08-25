@@ -9,7 +9,11 @@ describe('actions/folder/**', () => {
     beforeEach(async () => {
         jest.resetModules();
 
-        mock('~/utils', ['decorators/store.watch', 'system/async']);
+        mock('~/utils', [
+            'decorators/store.watch',
+            'system/async',
+            'system/execute',
+        ]);
         mock('~/modules/explorer', [
             'analyze/explorer',
             'analyze/images/images',
@@ -45,7 +49,7 @@ describe('actions/folder/**', () => {
 
         const { actions } = await import('~/actions/actions.import');
 
-        await actions.selectFolder.call();
+        await actions.explorerSelectFolder.call();
     });
 
     it('should throw error', async () => {
@@ -63,7 +67,7 @@ describe('actions/folder/**', () => {
 
         const { actions } = await import('~/actions/actions.import');
 
-        await actions.selectFolder.call();
+        await actions.explorerSelectFolder.call();
     });
 
     it.each([[''], ['C:/'], ['C:/manga']])(
@@ -74,7 +78,15 @@ describe('actions/folder/**', () => {
             const { actions } = await import('~/actions/actions.import');
 
             explorer.setFolderPath(folderPath);
-            actions.goToParentFolder.call();
+            actions.explorerGoToParentFolder.call();
         },
     );
+
+    it('shoud reload explorer', async () => {
+        expect.assertions(0);
+
+        const { actions } = await import('~/actions/actions.import');
+
+        actions.explorerReload.call();
+    });
 });

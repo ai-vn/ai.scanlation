@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-3 mb-3 table-custom">
+    <div class="table-custom">
         <div class="table-custom-wrapper">
             <table class="table-custom-view">
                 <thead>

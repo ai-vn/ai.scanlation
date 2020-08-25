@@ -1,26 +1,14 @@
 <template>
-    <div class="explorer flex flex-col overflow-hidden">
-        <div class="explorer-action-bar m-3 flex">
-            <group- class="mr-2">
+    <div class="explorer flex flex-col overflow-hidden space-y-3 p-3">
+        <div class="flex space-x-2">
+            <group->
                 <button- v-tooltip="'Previous folder'" icon="chevron-left" />
                 <button- v-tooltip="'Next folder'" icon="chevron-right" />
-                <button-
-                    v-tooltip="'Parent folder'"
-                    icon="corner-right-up"
-                    @click="goToParentFolder.call"
-                />
-                <button-
-                    v-tooltip="'Reload'"
-                    icon="rotate-ccw"
-                    @click="watchFolderPath({ value: folderPath })"
-                />
+                <button- tooltip :action="explorerGoToParentFolder" />
+                <button- tooltip :action="explorerReload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button-
-                    v-tooltip="'Select folder'"
-                    icon="folder"
-                    @click="selectFolder.call"
-                />
+                <button- tooltip :action="explorerSelectFolder" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -31,7 +19,6 @@
             </group->
         </div>
         <table-
-            class="mx-3 mb-3"
             :group-items="[folders, files]"
             :fields="tableFields"
             :options="tableOptions"
@@ -50,11 +37,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator';
-import { tableFields, tableOptions } from '~/modules/explorer';
-import { Action, StoreState, StoreAction } from '~/utils';
-import { explorer } from '~/store';
 import { ActionItem } from '~/actions/actions.type';
+import { tableFields, tableOptions } from '~/modules/explorer';
 import { FileSystemObject } from '~/modules/explorer/types';
+import { explorer } from '~/store';
+import { Action, StoreState, StoreAction } from '~/utils';
 
 @Component({ name: 'explorer-' })
 export default class extends Vue {
@@ -73,14 +60,14 @@ export default class extends Vue {
     @StoreAction(explorer)
     updateFolderPath!: typeof explorer.updateFolderPath;
 
-    @StoreAction(explorer)
-    watchFolderPath!: typeof explorer.watchFolderPath;
+    @Action
+    explorerSelectFolder!: ActionItem;
 
     @Action
-    selectFolder!: ActionItem;
+    explorerGoToParentFolder!: ActionItem;
 
     @Action
-    goToParentFolder!: ActionItem;
+    explorerReload!: ActionItem;
 
     tableFields = tableFields;
     tableOptions = tableOptions;
@@ -88,13 +75,6 @@ export default class extends Vue {
 </script>
 <style lang="postcss">
 .explorer {
-    &-status-bar {
-        height: 1.75rem;
-        border-top-color: var(--line-color);
-
-        @apply border-t;
-    }
-
     table {
         th,
         td {
@@ -105,6 +85,17 @@ export default class extends Vue {
             &[data='name'] {
                 width: 100%;
                 max-width: 0;
+            }
+
+            &[data='size'],
+            &[data='dimensions'],
+            &[data='color'],
+            &[data='time'] {
+                @apply hidden;
+
+                @screen sm {
+                    @apply table-cell;
+                }
             }
         }
     }

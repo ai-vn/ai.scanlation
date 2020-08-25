@@ -1,9 +1,9 @@
 import { shell } from 'electron';
 import { existsSync } from 'fs';
-import { isExplorer } from '~/actions/conditions';
 import { ActionItem } from '~/actions/actions.type';
-import { explorer } from '~/store';
+import { isExplorer } from '~/actions/conditions';
 import { isImage } from '~/modules/explorer/analyze/images/image.extension';
+import { explorer } from '~/store';
 import { execute } from '~/utils';
 
 export const showFolder: ActionItem = {

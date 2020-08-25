@@ -9,7 +9,7 @@
         @click="action_"
     >
         <div class="menu-item-title">
-            <icon- v-if="!isRoot" :i="icon" />
+            <icon- v-if="!isRoot" :i="icon_" />
             <div class="menu-item-title-text flex-1">
                 {{ title_ }}
             </div>
@@ -32,17 +32,17 @@
     </li>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { createPopper, Instance } from '@popperjs/core';
-import { isAction, Render } from '~/utils';
+import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { ActionItem } from '~/actions/actions.type';
+import { isAction, Render } from '~/utils';
 
 @Component({ name: 'menu-item-' })
 export default class MenuItem extends Vue {
     @Prop({ type: Object, validator: isAction })
-    @Render<MenuItem>(t => () => {
+    @Render<MenuItem>(t => (event: MouseEvent) => {
         t.action?.call();
-        t.$emit('click');
+        t.$emit('click', event);
     })
     action!: ActionItem;
 
@@ -55,6 +55,7 @@ export default class MenuItem extends Vue {
     shortcut!: string;
 
     @Prop({ type: String })
+    @Render<MenuItem>(t => t.action?.icon ?? t.icon)
     icon!: string;
 
     @Prop({ type: Boolean })
@@ -98,6 +99,8 @@ export default class MenuItem extends Vue {
 }
 
 .menu-item {
+    @apply cursor-pointer;
+
     &:hover {
         background-color: var(--menu-background-color-hover);
 

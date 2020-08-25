@@ -5,8 +5,8 @@ import { isError } from 'lodash';
 import { disks } from './files/disks';
 import { analyze } from './files/files';
 import { ignoreFilter } from './utils/ignore';
-import { attemptPromisify } from '~/utils';
 import { FileSystemObject } from '~/modules/explorer/types';
+import { attemptPromisify } from '~/utils';
 
 export const explorer = async (folderPath: string) => {
     if (folderPath === '') {

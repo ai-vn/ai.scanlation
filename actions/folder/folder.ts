@@ -6,7 +6,7 @@ import { isExplorer } from '~/actions/conditions';
 import { explorer } from '~/store';
 import { attemptAsync } from '~/utils';
 
-export const selectFolder: ActionItem = {
+export const explorerSelectFolder: ActionItem = {
     async call() {
         const path = await attemptAsync(remote.dialog.showOpenDialog)({
             properties: ['openDirectory'],
@@ -18,10 +18,11 @@ export const selectFolder: ActionItem = {
     },
     condition: isExplorer,
     title: 'Open Folder',
+    icon: 'folder',
     accelerator: 'ctrl+o',
 };
 
-export const goToParentFolder: ActionItem = {
+export const explorerGoToParentFolder: ActionItem = {
     call() {
         if (explorer.folderPath === '') return;
 
@@ -31,5 +32,16 @@ export const goToParentFolder: ActionItem = {
         explorer.setFolderPath(isRoot ? '' : parentFolderPath);
     },
     condition: isExplorer,
+    title: 'Go to parent folder',
+    icon: 'corner-right-up',
     accelerator: 'backspace',
+};
+
+export const explorerReload: ActionItem = {
+    call() {
+        explorer.watchFolderPath({ value: explorer.folderPath, oldValue: '~' });
+    },
+    condition: isExplorer,
+    title: 'Reload',
+    icon: 'rotate-ccw',
 };

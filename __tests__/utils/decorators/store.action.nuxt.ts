@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import { mount } from '@vue/test-utils';
 import { Vue, Component } from 'nuxt-property-decorator';
 import Vuex from 'vuex';
 import { Action, getModule, Module, VuexModule } from 'vuex-module-decorators';
-import { mount } from '@vue/test-utils';
 import { StoreAction } from '~/utils/decorators/store.action';
 
 @Module({ name: 'temp', stateFactory: true, namespaced: true })

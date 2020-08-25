@@ -29,8 +29,8 @@
 <script lang="ts">
 import { remote } from 'electron';
 import { Vue, Component } from 'nuxt-property-decorator';
-import { Action } from '~/utils';
 import { ActionItem } from '~/actions/actions.type';
+import { Action } from '~/utils';
 
 @Component({ name: 'title-bar-' })
 export default class extends Vue {

@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
 const isWin = require('os').platform() === 'win32';
+const path = require('path');
 
 const packageDir = [
     path.join(__dirname),
@@ -10,6 +10,7 @@ const packageDir = [
     path.join(__dirname, 'node_modules/@nuxt/vue-app'),
     path.join(__dirname, 'node_modules/@nuxt/vue-renderer'),
     path.join(__dirname, 'node_modules/@nuxt/webpack'),
+    path.join(__dirname, 'node_modules/@nuxtjs/tailwindcss'),
     path.join(__dirname, 'node_modules/nuxt'),
 ];
 
@@ -107,6 +108,7 @@ const config = {
                     'sibling',
                     'index',
                 ],
+                alphabetize: { order: 'asc', caseInsensitive: true },
                 'newlines-between': 'never',
             },
         ],

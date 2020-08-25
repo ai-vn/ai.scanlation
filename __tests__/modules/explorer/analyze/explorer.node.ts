@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { FileSystemObject } from '~/modules/explorer/types';
 import { mock } from '~/__tests__/__utils__/mock';
+import { FileSystemObject } from '~/modules/explorer/types';
 
 describe('modules/explorer/analyze/explorer', () => {
     beforeEach(() => {

@@ -1,6 +1,6 @@
+import { NuxtApp } from '@nuxt/types/app';
 import { createLocalVue } from '@vue/test-utils';
 import VueRouter from 'vue-router';
-import { NuxtApp } from '@nuxt/types/app';
 import { requireActual } from '~/__tests__/__utils__/mock';
 
 describe('actions/routers/**', () => {

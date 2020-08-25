@@ -2,8 +2,8 @@ import { stat } from 'fs';
 import { extname, join } from 'path';
 import { isError } from 'lodash';
 import { getFolderType } from '../utils/folder.extension';
-import { attemptPromisify } from '~/utils';
 import { FileSystemObject } from '~/modules/explorer/types';
+import { attemptPromisify } from '~/utils';
 
 export const analyze = async (
     folderPath: string,
