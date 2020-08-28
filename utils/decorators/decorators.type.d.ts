@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-export type VuePropertyDecorator<V extends Vue> = (
+export type VuePropertyDecorator<V extends Vue, K = string> = (
     target: V,
-    key: string,
+    key: K,
 ) => void;

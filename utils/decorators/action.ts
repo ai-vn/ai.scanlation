@@ -4,7 +4,6 @@ import { actions } from '~/actions/actions.import';
 import { ActionItem } from '~/actions/actions.type';
 
 type GetActionType = (actions_: typeof actions) => ActionItem;
-type VuePropertyDecorator<V extends Vue> = (target: V, key: string) => void;
 type KeyType = keyof typeof actions;
 
 export function Action<V extends Vue>(target: V, key: KeyType): void;
