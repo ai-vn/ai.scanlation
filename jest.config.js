@@ -8,6 +8,8 @@ const common = {
 
     moduleNameMapper: {
         '~/(.*)$': '<rootDir>/$1',
+        '@nuxtjs/composition-api':
+            '@nuxtjs/composition-api/lib/cjs/entrypoint.js',
     },
     reporters: ['default', 'jest-junit'],
     setupFilesAfterEnv: ['jest-extended'],

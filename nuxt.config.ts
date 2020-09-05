@@ -31,6 +31,7 @@ export default async (): Promise<NuxtConfig> => {
                 '@nuxt/typescript-build',
                 { typeCheck: true, ignoreNotFoundWarnings: true },
             ],
+            '@nuxtjs/composition-api',
             '@nuxtjs/tailwindcss',
             '@nuxtjs/moment',
         ],
