@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
 import icon from '~/components/utilities/icon.vue';

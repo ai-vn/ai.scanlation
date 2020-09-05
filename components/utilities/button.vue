@@ -14,7 +14,6 @@
     </div>
 </template>
 <script lang="ts">
-/* eslint-disable no-underscore-dangle */
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { TooltipSettings } from 'v-tooltip';
 import { ActionItem } from '~/actions/actions.type';
@@ -29,6 +28,8 @@ export default class Button extends Vue {
         t.$emit('click');
     })
     action!: ActionItem;
+
+    action_!: () => void;
 
     @Prop({ type: String })
     @Render<Button>(t => t.action?.title ?? t.title)
@@ -46,6 +47,8 @@ export default class Button extends Vue {
     @Render<Button>(t => t.action?.icon ?? t.icon)
     icon!: string;
 
+    icon_!: string;
+
     @Prop({ type: [Boolean, String, Object] })
     @Render<Button>(t => {
         if (['string', 'object'].includes(typeof t.tooltip)) return t.tooltip;
@@ -55,6 +58,8 @@ export default class Button extends Vue {
             : shortcut;
     })
     tooltip!: boolean | string | TooltipSettings;
+
+    tooltip_!: boolean | string | TooltipSettings;
 }
 </script>
 <style lang="postcss">

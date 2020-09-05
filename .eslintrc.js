@@ -76,6 +76,7 @@ const config = {
         'prefer-const': 'error',
         'no-useless-constructor': 'off',
         'no-unused-expressions': 'off',
+        'no-underscore-dangle': 'off',
         'class-methods-use-this': 'off',
 
         '@typescript-eslint/explicit-function-return-type': 'off',

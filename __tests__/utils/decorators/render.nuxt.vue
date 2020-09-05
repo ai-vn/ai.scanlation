@@ -12,5 +12,7 @@ export default class TemplateClassWithRender extends Vue {
     @Prop({ type: String })
     @Render<TemplateClassWithRender>(t => `render ${t.text}`)
     text!: string;
+
+    text_!: string;
 }
 </script>
