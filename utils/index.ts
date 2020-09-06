@@ -2,6 +2,10 @@ export * from './converts/nonNull';
 export * from './converts/toShortcut';
 export * from './converts/toSize';
 
+export * from './components/actions';
+export * from './components/tooltip';
+export * from './components/vue';
+
 export * from './decorators/store.action';
 export * from './decorators/store.state';
 export * from './decorators/store.watch';
