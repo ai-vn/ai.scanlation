@@ -41,4 +41,4 @@ export type TableOptions<T extends TableObject> = {
     ): void;
 };
 
-export type TableGroupItem<T> = Array<Array<T>>;
+export type TableGroupItem<T extends TableObject> = Array<Array<T>>;
