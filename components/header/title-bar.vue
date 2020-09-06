@@ -28,59 +28,56 @@
 </template>
 <script lang="ts">
 import { remote } from 'electron';
-import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
-import { Action } from '~/utils';
+import {
+    defineComponent,
+    onMounted,
+    onUnmounted,
+    Ref,
+    ref,
+} from '@nuxtjs/composition-api';
+import { actions } from '~/actions';
 
-@Component({ name: 'title-bar-' })
-export default class extends Vue {
-    $refs!: {
-        menu: Element;
-        title: Element;
-        controls: Element;
-    };
+export default defineComponent({
+    name: 'title-bar-',
+    setup() {
+        const isMaximize = ref(false);
+        const isTitlebarFloat = ref(false);
+        const menu = ref<HTMLElement>() as Ref<HTMLElement>;
+        const title = ref<HTMLElement>() as Ref<HTMLElement>;
+        const controls = ref<HTMLElement>() as Ref<HTMLElement>;
 
-    currentWindow = remote.getCurrentWindow();
-    isTitlebarFloat = false;
-    isMaximize = false;
-
-    @Action
-    minimize!: ActionItem;
-
-    @Action
-    maximize!: ActionItem;
-
-    @Action
-    unmaximize!: ActionItem;
-
-    @Action
-    close!: ActionItem;
-
-    resizeListener() {
-        const { menu, title, controls } = this.$refs;
-        const halfAvailableSpace =
-            window.innerWidth / 2 -
-            Math.max(menu.clientWidth, controls.clientWidth);
-        this.isTitlebarFloat = title.clientWidth < halfAvailableSpace * 2;
-    }
-
-    mounted() {
-        window.addEventListener('resize', this.resizeListener);
-        this.resizeListener();
-
-        const calcIsMaximize = () => {
-            this.isMaximize = this.currentWindow.isMaximized();
+        const resizeListener = () => {
+            const halfAvailableSpace =
+                window.innerWidth / 2 -
+                Math.max(menu.value.clientWidth, controls.value.clientWidth);
+            isTitlebarFloat.value =
+                title.value.clientWidth < halfAvailableSpace * 2;
         };
-        this.currentWindow
-            .on('unmaximize', calcIsMaximize)
-            .on('maximize', calcIsMaximize)
-            .on('ready-to-show', calcIsMaximize);
-    }
 
-    destroyed() {
-        window.removeEventListener('resize', this.resizeListener);
-    }
-}
+        onMounted(() => {
+            window.addEventListener('resize', resizeListener);
+            resizeListener();
+
+            const currentWindow = remote.getCurrentWindow();
+            const calcIsMaximize = () =>
+                (isMaximize.value = currentWindow.isMaximized());
+
+            currentWindow
+                .on('unmaximize', calcIsMaximize)
+                .on('maximize', calcIsMaximize)
+                .on('ready-to-show', calcIsMaximize);
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('resize', resizeListener);
+        });
+
+        return {
+            ...{ isTitlebarFloat, menu, title, controls, isMaximize },
+            ...actions.electron.windows,
+        };
+    },
+});
 </script>
 <style lang="postcss">
 .titlebar {
