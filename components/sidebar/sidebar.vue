@@ -7,24 +7,13 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
-import { Action } from '~/utils';
+import { defineComponent } from '@nuxtjs/composition-api';
+import { actions } from '~/actions';
 
-@Component({ name: 'sidebar-' })
-export default class extends Vue {
-    @Action
-    goToHome!: ActionItem;
-
-    @Action
-    goToExplorer!: ActionItem;
-
-    @Action
-    goToReader!: ActionItem;
-
-    @Action
-    goToSetting!: ActionItem;
-}
+export default defineComponent({
+    name: 'sidebar-',
+    setup: () => actions.routers,
+});
 </script>
 <style lang="postcss">
 .sidebar {
