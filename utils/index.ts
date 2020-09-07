@@ -6,12 +6,7 @@ export * from './components/actions';
 export * from './components/tooltip';
 export * from './components/vue';
 
-export * from './decorators/store.action';
-export * from './decorators/store.state';
 export * from './decorators/store.watch';
-
-export * from './decorators/action';
-export * from './decorators/render';
 
 export * from './store/store.binding';
 
