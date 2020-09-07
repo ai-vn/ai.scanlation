@@ -13,6 +13,8 @@ export * from './decorators/store.watch';
 export * from './decorators/action';
 export * from './decorators/render';
 
+export * from './store/store.binding';
+
 export * from './system/async';
 export * from './system/execute';
 export * from './system/file';
