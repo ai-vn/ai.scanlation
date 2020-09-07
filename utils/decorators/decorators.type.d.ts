@@ -1,4 +1,4 @@
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 
 export type VuePropertyDecorator<V extends Vue> = (
     target: V,

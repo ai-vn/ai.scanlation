@@ -1,12 +1,12 @@
 import { Plugin } from '@nuxt/types';
-import { actions } from '~/actions/actions.import';
+import { actions } from '~/actions';
 import { ActionItem } from '~/actions/actions.type';
 
 const actionInject = (getAction: (_actions: typeof actions) => ActionItem) =>
     getAction(actions).call();
 
 const plugin: Plugin = (context, inject) => {
-    actions.resetMousetrap.call();
+    actions.settings.shortcuts.reset.call();
     inject('action', actionInject);
 };
 

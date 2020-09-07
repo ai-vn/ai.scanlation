@@ -1,7 +1,7 @@
 <template>
     <ul class="flex menu">
         <menu-item- title="File">
-            <menu-item- :action="explorerSelectFolder" />
+            <menu-item- :action="open" />
             <menu-item- hr />
             <menu-item- :action="close" shortcut="alt+f4" />
         </menu-item->
@@ -9,15 +9,15 @@
             <menu-item- icon="star" title="Webcome" />
             <menu-item- icon="package" title="Release Notes" />
             <menu-item- hr />
-            <menu-item- :action="openWebsite" />
-            <menu-item- :action="openGithub" />
-            <menu-item- :action="openFacebook" />
-            <menu-item- :action="openFeedback" />
+            <menu-item- :action="website" />
+            <menu-item- :action="github" />
+            <menu-item- :action="facebook" />
+            <menu-item- :action="feedback" />
             <menu-item- hr />
             <menu-item- :action="toggleDevTools" />
             <menu-item- hr />
             <menu-item- :action="checkForUpdates" />
-            <menu-item- :action="helpAbout" />
+            <menu-item- :action="about" />
         </menu-item->
     </ul>
 </template>
@@ -35,22 +35,22 @@ export default class extends Vue {
     close!: ActionItem;
 
     @Action
-    explorerSelectFolder!: ActionItem;
+    open!: ActionItem;
 
     @Action
-    helpAbout!: ActionItem;
+    about!: ActionItem;
 
     @Action
-    openFacebook!: ActionItem;
+    facebook!: ActionItem;
 
     @Action
-    openFeedback!: ActionItem;
+    feedback!: ActionItem;
 
     @Action
-    openGithub!: ActionItem;
+    github!: ActionItem;
 
     @Action
-    openWebsite!: ActionItem;
+    website!: ActionItem;
 
     @Action
     toggleDevTools!: ActionItem;

@@ -18,7 +18,8 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { TooltipSettings } from 'v-tooltip';
 import { ActionItem } from '~/actions/actions.type';
-import { isAction, Render, toShortcut } from '~/utils';
+import { isAction } from '~/actions/isAction';
+import { Render, toShortcut } from '~/utils';
 
 @Component({ name: 'button-' })
 export default class Button extends Vue {

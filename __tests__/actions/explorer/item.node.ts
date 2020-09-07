@@ -1,30 +1,24 @@
-describe('actions/explorer/open', () => {
-    beforeEach(async () => {
+import { call, mock } from '~/__tests__/__utils__';
+
+describe('actions/explorer/item', () => {
+    beforeEach(() => {
         jest.resetModules();
-
-        jest.mock('~/store', () => ({ explorer: { folderPath: '' } }));
-        jest.mock('electron', () => ({
-            shell: { showItemInFolder: jest.fn() },
-        }));
-
-        jest.mock('~/utils', () => ({
-            execute: jest.fn(),
-        }));
     });
 
     it.each([[true], [false]])('should show item in folder', async isExist => {
         expect.assertions(0);
 
-        jest.doMock('fs', () => ({ existsSync: () => isExist }));
+        mock.fs({ existsSync: () => isExist });
+        mock.store({ explorer: { folderPath: '' } });
 
-        const { showFolder } = await import('~/actions/explorer/item');
-        showFolder.call();
+        await call(a => a.explorer.item.revealInFileExplorer);
     });
 
     it('should open in photoshop', async () => {
         expect.assertions(0);
 
-        jest.mock('~/store', () => ({
+        mock.utils({ execute: jest.fn() });
+        mock.store({
             explorer: {
                 files: [
                     {
@@ -38,18 +32,16 @@ describe('actions/explorer/open', () => {
                     },
                 ],
             },
-        }));
+        });
 
-        const { openInPhotoshop } = await import('~/actions/explorer/item');
-        openInPhotoshop.call();
+        await call(a => a.explorer.item.openInPhotoshop);
     });
 
     it('should not open in photoshop', async () => {
         expect.assertions(0);
 
-        jest.mock('~/store', () => ({ explorer: { files: [] } }));
+        mock.store({ explorer: { files: [] } });
 
-        const { openInPhotoshop } = await import('~/actions/explorer/item');
-        openInPhotoshop.call();
+        await call(a => a.explorer.item.openInPhotoshop);
     });
 });

@@ -1,7 +1,4 @@
-import { Vue } from 'nuxt-property-decorator';
-import Vuex from 'vuex';
-import { getModule } from 'vuex-module-decorators';
-import { mock, requireActual } from '~/__tests__/__utils__/mock';
+import { store } from '~/__tests__/__utils__';
 import { FileSystemObject } from '~/modules/explorer/types';
 
 const file: FileSystemObject = {
@@ -17,36 +14,17 @@ const file: FileSystemObject = {
 describe('actions/explorer/select', () => {
     let explorer: import('~/store/explorer').default;
 
-    beforeEach(async () => {
-        jest.resetModules();
-
-        mock('~/utils', ['decorators/store.watch']);
-        mock('~/modules/explorer', [
-            'analyze/explorer',
-            'analyze/images/images',
-        ]);
-        jest.mock('~/actions/actions.import', () => ({
-            actions: requireActual('~/actions/folder/folder'),
-        }));
-
-        const { default: Explorer } = await import('~/store/explorer');
-        const { plugins } = await import('~/store');
-
-        Vue.use(Vuex);
-        const store = new Vuex.Store({
-            plugins,
-            modules: { explorer: Explorer },
-        });
-        explorer = getModule(Explorer, store);
+    beforeAll(async () => {
+        explorer = await store('explorer');
     });
 
     it('should select all', async () => {
         expect.assertions(0);
 
-        const { selectAll } = await import('~/actions/explorer/select');
+        const { toggleAll } = await import('~/actions/explorer/select');
 
         explorer.setData({ files: [], folders: [] });
-        selectAll.call();
+        toggleAll.call();
 
         explorer.setData({
             files: [
@@ -55,8 +33,8 @@ describe('actions/explorer/select', () => {
             ],
             folders: [],
         });
-        selectAll.call();
-        selectAll.call();
-        selectAll.call();
+        toggleAll.call();
+        toggleAll.call();
+        toggleAll.call();
     });
 });

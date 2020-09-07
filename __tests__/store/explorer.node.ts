@@ -1,14 +1,11 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import { getModule } from 'vuex-module-decorators';
-import { mock } from '~/__tests__/__utils__/mock';
 
 describe('store/explorer', () => {
     let explorer: import('~/store/explorer').default;
 
     beforeAll(() => {
-        mock('~/utils', ['decorators/store.watch']);
-
         jest.mock('~/modules/explorer', () => ({
             explorer: jest.fn().mockReturnValue({ files: [], folders: [] }),
             analyzeImages: jest.fn(),

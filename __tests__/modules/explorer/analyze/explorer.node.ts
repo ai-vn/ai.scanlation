@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { mock } from '~/__tests__/__utils__/mock';
 import { FileSystemObject } from '~/modules/explorer/types';
 
 describe('modules/explorer/analyze/explorer', () => {
     beforeEach(() => {
         jest.resetModules();
-        mock('~/modules/explorer', ['analyze/explorer']);
-        mock('~/utils', ['system/async', 'system/execute']);
     });
 
     it('should explore disk', async () => {

@@ -7,7 +7,8 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
 import { TooltipSettings } from 'v-tooltip';
 import { ActionItem } from '~/actions/actions.type';
-import { isAction, toShortcut, Render } from '~/utils';
+import { isAction } from '~/actions/isAction';
+import { toShortcut, Render } from '~/utils';
 
 @Component({ name: 'sidebar-item-' })
 export default class SidebarItem extends Vue {

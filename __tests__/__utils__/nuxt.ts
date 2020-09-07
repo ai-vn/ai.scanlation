@@ -5,8 +5,6 @@ import { IncomingMessage } from 'connect';
 import Vue from 'vue';
 import { Route } from 'vue-router';
 import Vuex from 'vuex';
-import { plugins } from '~/store';
-import Explorer from '~/store/explorer';
 
 Vue.use(Vuex);
 
@@ -27,7 +25,10 @@ function inject(key: string, value: any) {
     });
 }
 
-function getContext(): Context {
+async function getContext(): Promise<Context> {
+    const { plugins } = await import('~/store');
+    const { default: Explorer } = await import('~/store/explorer');
+
     const templateRoute: Route = {
         path: '/',
         hash: '',
@@ -61,8 +62,8 @@ function getContext(): Context {
     };
 }
 
-export function installPlugin(plugin: Plugin) {
-    const context = getContext();
+export async function installPlugin(plugin: Plugin) {
+    const context = await getContext();
 
     plugin(context, inject);
 }

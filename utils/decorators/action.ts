@@ -1,9 +1,7 @@
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
+import { VuePropertyDecorator } from './decorators.type.d';
 import { actions } from '~/actions/actions.import';
 import { ActionItem } from '~/actions/actions.type';
-
-export const isAction = (action: Record<string, any>): action is ActionItem =>
-    typeof action === 'object' && typeof action.call === 'function';
 
 type GetActionType = (actions_: typeof actions) => ActionItem;
 type VuePropertyDecorator<V extends Vue> = (target: V, key: string) => void;

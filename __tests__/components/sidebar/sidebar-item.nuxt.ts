@@ -2,18 +2,10 @@
 import { shallowMount } from '@vue/test-utils';
 import { Vue } from 'nuxt-property-decorator';
 import '~/plugins/v-tooltip';
-import { mock } from '~/__tests__/__utils__/mock';
 import icon from '~/components/utilities/icon.vue';
 
 describe('components/sidebar/sidebar', () => {
     beforeAll(async () => {
-        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
-        mock('~/utils', [
-            'decorators/action',
-            'decorators/render',
-            'converts/toShortcut',
-        ]);
-
         Vue.component('icon-', icon);
         Vue.component('n-link', {
             props: {

@@ -6,13 +6,13 @@ import { isImage } from '~/modules/explorer/analyze/images/image.extension';
 import { explorer } from '~/store';
 import { execute } from '~/utils';
 
-export const showFolder: ActionItem = {
+export const revealInFileExplorer: ActionItem = {
     call() {
         if (!existsSync(explorer.folderPath)) return;
         shell.showItemInFolder(explorer.folderPath);
     },
     condition: isExplorer,
-    title: 'Show folder',
+    title: 'Reveal in File Explorer',
     accelerator: 'ctrl+e',
 };
 

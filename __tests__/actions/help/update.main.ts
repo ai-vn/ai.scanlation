@@ -1,4 +1,4 @@
-import { checkForUpdates } from '~/actions/help/checkForUpdates';
+import { checkForUpdates } from '~/actions/help/update';
 
 describe('actions/help/checkForUpdates', () => {
     beforeAll(() => {
@@ -7,6 +7,7 @@ describe('actions/help/checkForUpdates', () => {
 
     it('should check for updates', () => {
         expect.hasAssertions();
+
         checkForUpdates.call();
 
         // eslint-disable-next-line no-console

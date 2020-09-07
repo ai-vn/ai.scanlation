@@ -4,11 +4,11 @@
             <group->
                 <button- v-tooltip="'Previous folder'" icon="chevron-left" />
                 <button- v-tooltip="'Next folder'" icon="chevron-right" />
-                <button- tooltip :action="explorerGoToParentFolder" />
-                <button- tooltip :action="explorerReload" />
+                <button- tooltip :action="goToParent" />
+                <button- tooltip :action="reload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button- tooltip :action="explorerSelectFolder" />
+                <button- tooltip :action="open" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -61,13 +61,13 @@ export default class extends Vue {
     updateFolderPath!: typeof explorer.updateFolderPath;
 
     @Action
-    explorerSelectFolder!: ActionItem;
+    open!: ActionItem;
 
     @Action
-    explorerGoToParentFolder!: ActionItem;
+    goToParent!: ActionItem;
 
     @Action
-    explorerReload!: ActionItem;
+    reload!: ActionItem;
 
     tableFields = tableFields;
     tableOptions = tableOptions;

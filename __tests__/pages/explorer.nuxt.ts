@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable no-new */
 import { shallowMount } from '@vue/test-utils';
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import { mock } from '~/__tests__/__utils__/mock';
 import table from '~/components/table/table.vue';

@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { shallowMount } from '@vue/test-utils';
 import { Vue } from 'nuxt-property-decorator';
-import { mock } from '~/__tests__/__utils__/mock';
 
 describe('components/header/title-bar', () => {
     beforeAll(async () => {
@@ -14,7 +13,6 @@ describe('components/header/title-bar', () => {
                 close: { call: () => {} },
             },
         }));
-        mock('~/utils', ['decorators/action', 'decorators/render']);
 
         const icon = await import('~/components/utilities/icon.vue');
         const menu = await import('~/components/header/menu.vue');
@@ -23,20 +21,6 @@ describe('components/header/title-bar', () => {
         Vue.component('icon-', icon);
         Vue.component('menu-', menu);
         Vue.component('menu-item-', menuItem);
-
-        jest.mock('electron', () => ({
-            remote: {
-                getCurrentWindow: () => ({
-                    unmaximize() {},
-                    maximize() {},
-                    isMaximized: () => true,
-                    on(event: string, listener: Function) {
-                        listener({}, {});
-                        return this;
-                    },
-                }),
-            },
-        }));
     });
 
     it('should mounted', async () => {

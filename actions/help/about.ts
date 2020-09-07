@@ -1,6 +1,6 @@
 import { ActionItem } from '~/actions/actions.type';
 
-export const helpAbout: ActionItem = {
+export const about: ActionItem = {
     call() {
         // Open Popup
     },

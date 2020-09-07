@@ -1,4 +1,3 @@
-import { mock } from '~/__tests__/__utils__/mock';
 import { TableField } from '~/components/table/table';
 import { FileSystemObject } from '~/modules/explorer/types';
 
@@ -17,11 +16,6 @@ const file: FileSystemObject = {
 
 describe('modules/explorer/table', () => {
     beforeAll(() => {
-        jest.mock('electron', () => ({
-            shell: {
-                openPath: jest.fn(),
-            },
-        }));
         jest.mock('~/store', () => ({
             explorer: {
                 setFolderPath: jest.fn(),
@@ -36,7 +30,6 @@ describe('modules/explorer/table', () => {
         jest.mock('~/modules/explorer/file/shortcut', () => ({
             openShortcut: jest.fn(),
         }));
-        mock('~/utils', ['converts/nonNull', 'converts/toSize']);
     });
 
     it('should be valid table fields', async () => {

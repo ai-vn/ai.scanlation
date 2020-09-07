@@ -4,11 +4,12 @@ import { attempt, isError } from 'lodash';
 import { explorer } from '~/store';
 
 export const openShortcut = (filePath: string) => {
-    const path = attempt(() => {
-        const shortcut = shell.readShortcutLink(filePath);
-        return statSync(shortcut.target).isDirectory()
-            ? shortcut.target
-            : shortcut.cwd;
+    const error = attempt(() => {
+        const { target } = shell.readShortcutLink(filePath);
+
+        if (statSync(target).isDirectory()) explorer.setFolderPath(target);
+        else shell.openPath(target);
     });
-    if (path !== undefined && !isError(path)) explorer.setFolderPath(path);
+
+    if (isError(error)) console.error(error.message);
 };

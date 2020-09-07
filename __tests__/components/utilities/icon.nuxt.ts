@@ -1,4 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
+import Vue from 'vue';
 import icon from '~/components/utilities/icon.vue';
 
 describe('components/utilities/icon', () => {
@@ -19,7 +20,7 @@ describe('components/utilities/icon', () => {
     it('should mounted with error', () => {
         expect.hasAssertions();
         jest.spyOn(console, 'error').mockImplementation();
-        const wrapper = shallowMount<icon & { icon: string }>(icon, {
+        const wrapper = shallowMount<Vue & { icon: string }>(icon, {
             propsData: { i: 'not-found-this-icon' },
         });
         expect(wrapper.vm.icon).toStrictEqual('');
