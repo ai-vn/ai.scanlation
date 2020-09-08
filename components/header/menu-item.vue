@@ -2,6 +2,7 @@
     <div v-if="hr" class="menu-item-hr" />
     <li
         v-else
+        ref="el"
         class="menu-item"
         :class="{ root: isRoot }"
         @mouseenter="enter"
@@ -32,66 +33,56 @@
     </li>
 </template>
 <script lang="ts">
-import { createPopper, Instance } from '@popperjs/core';
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
-import { isAction, Render } from '~/utils';
+import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
+import { Instance, createPopper } from '@popperjs/core';
+import { actionRender, actionProps } from '~/utils';
 
-@Component({ name: 'menu-item-' })
-export default class MenuItem extends Vue {
-    @Prop({ type: Object, validator: isAction })
-    @Render<MenuItem>(t => (event: MouseEvent) => {
-        t.action?.call();
-        t.$emit('click', event);
-    })
-    action!: ActionItem;
+export default defineComponent({
+    name: 'menu-item-',
+    props: {
+        hr: { type: Boolean },
+        ...actionProps,
+    },
+    setup(props, context) {
+        const isRoot = ref(true);
+        const el = ref<HTMLElement | null>(null);
+        const ul = ref<HTMLElement | null>(null);
+        let popperInstance: Instance | null = null;
 
-    @Prop({ type: String })
-    @Render<MenuItem>(t => t.action?.title ?? t.title)
-    title!: string;
+        const enter = () => {
+            if (!context.slots.default || !el.value || !ul.value) return;
+            popperInstance = createPopper(
+                el.value,
+                ul.value,
+                isRoot.value
+                    ? { placement: 'bottom-start' }
+                    : {
+                          placement: 'right-start',
+                          modifiers: [
+                              {
+                                  name: 'offset',
+                                  options: { offset: [-4, 0] },
+                              },
+                          ],
+                      },
+            );
+        };
+        const leave = () => {
+            if (!popperInstance) return;
+            popperInstance.destroy();
+            popperInstance = null;
+        };
 
-    @Prop({ type: String })
-    @Render<MenuItem>(t => t.action?.accelerator ?? t.shortcut)
-    shortcut!: string;
+        onMounted(() => {
+            isRoot.value = context.parent?.$options.name !== 'menu-item-';
+        });
 
-    @Prop({ type: String })
-    @Render<MenuItem>(t => t.action?.icon ?? t.icon)
-    icon!: string;
-
-    @Prop({ type: Boolean })
-    hr!: boolean;
-
-    popperInstance: Instance | null = null;
-
-    isRoot = true;
-
-    mounted() {
-        this.isRoot = this.$parent.$options.name !== 'menu-item-';
-    }
-
-    enter() {
-        if (!this.$slots.default) return;
-        this.popperInstance = createPopper(
-            this.$el,
-            this.$refs.ul as HTMLElement,
-            this.isRoot
-                ? { placement: 'bottom-start' }
-                : {
-                      placement: 'right-start',
-                      modifiers: [
-                          { name: 'offset', options: { offset: [-4, 0] } },
-                      ],
-                  },
-        );
-    }
-
-    leave() {
-        if (this.popperInstance) {
-            this.popperInstance.destroy();
-            this.popperInstance = null;
-        }
-    }
-}
+        return {
+            ...{ isRoot, el, ul, enter, leave },
+            ...actionRender(props, context),
+        };
+    },
+});
 </script>
 <style lang="postcss">
 .menu-item > ul:not(.root) {

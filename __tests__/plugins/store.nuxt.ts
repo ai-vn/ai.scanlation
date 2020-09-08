@@ -1,20 +1,5 @@
-import { mock } from '~/__tests__/__utils__/mock';
-
 describe('plugins/store', () => {
     beforeAll(() => {
-        mock('~/utils', [
-            'decorators/store.watch',
-            'system/async',
-            'system/execute',
-        ]);
-        mock('~/modules/explorer', [
-            'analyze/explorer',
-            'analyze/images/images',
-        ]);
-        jest.mock('~/actions/actions.import', () => ({
-            actions: {},
-        }));
-
         window.onNuxtReady = (callback: () => void) => callback();
     });
 

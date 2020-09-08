@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import {
     Action,

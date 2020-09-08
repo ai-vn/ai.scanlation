@@ -14,47 +14,26 @@
     </div>
 </template>
 <script lang="ts">
-/* eslint-disable no-underscore-dangle */
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { defineComponent } from '@nuxtjs/composition-api';
 import { TooltipSettings } from 'v-tooltip';
-import { ActionItem } from '~/actions/actions.type';
-import { isAction, Render, toShortcut } from '~/utils';
+import { actionProps, actionRender, defineProp, tooltipRender } from '~/utils';
 
-@Component({ name: 'button-' })
-export default class Button extends Vue {
-    @Prop({ type: Object, validator: isAction })
-    @Render<Button>(t => () => {
-        t.action?.call();
-        t.$emit('click');
-    })
-    action!: ActionItem;
-
-    @Prop({ type: String })
-    @Render<Button>(t => t.action?.title ?? t.title)
-    title!: string;
-
-    title_!: string;
-
-    @Prop({ type: String })
-    @Render<Button>(t => t.action?.accelerator ?? t.shortcut)
-    shortcut!: string;
-
-    shortcut_!: string;
-
-    @Prop({ type: String })
-    @Render<Button>(t => t.action?.icon ?? t.icon)
-    icon!: string;
-
-    @Prop({ type: [Boolean, String, Object] })
-    @Render<Button>(t => {
-        if (['string', 'object'].includes(typeof t.tooltip)) return t.tooltip;
-        const shortcut = toShortcut(t.shortcut_);
-        return t.tooltip
-            ? [t.title_, shortcut].filter(i => i).join(' ')
-            : shortcut;
-    })
-    tooltip!: boolean | string | TooltipSettings;
-}
+export default defineComponent({
+    name: 'button-',
+    props: {
+        tooltip: defineProp<boolean | string | TooltipSettings>({
+            type: [Boolean, String, Object],
+        }),
+        ...actionProps,
+    },
+    setup(props, context) {
+        const render = actionRender(props, context);
+        return {
+            ...tooltipRender(props, render),
+            ...render,
+        };
+    },
+});
 </script>
 <style lang="postcss">
 .btn {

@@ -2,7 +2,7 @@ import { ActionItem } from '~/actions/actions.type';
 import { isExplorer } from '~/actions/conditions';
 import { explorer } from '~/store';
 
-export const selectAll: ActionItem = {
+export const toggleAll: ActionItem = {
     call() {
         const { files, folders } = explorer;
         if (files.length === 0) return;

@@ -2,13 +2,12 @@
     <div class="item-icon" :data-ext="ext" />
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { defineComponent } from '@nuxtjs/composition-api';
 
-@Component({ name: 'item-icon-' })
-export default class extends Vue {
-    @Prop({ required: true, type: String })
-    ext!: string;
-}
+export default defineComponent({
+    name: 'item-icon-',
+    props: { ext: { required: true, type: String } },
+});
 </script>
 <style lang="postcss">
 @define-mixin item-icon $ext, $file: $ext {

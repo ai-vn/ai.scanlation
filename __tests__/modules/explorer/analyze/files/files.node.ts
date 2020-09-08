@@ -1,5 +1,3 @@
-import { mock } from '~/__tests__/__utils__/mock';
-
 describe('modules/explorer/analyze/files/files', () => {
     const folderPath = 'C://project/chapter/01';
     const file = '01.jpg';
@@ -7,7 +5,6 @@ describe('modules/explorer/analyze/files/files', () => {
 
     beforeEach(() => {
         jest.resetModules();
-        mock('~/utils', ['system/async']);
     });
 
     it('should return null', async () => {

@@ -8,6 +8,6 @@ describe('components/utilities/item-icon', () => {
         const wrapper = shallowMount(itemIcon, {
             propsData: { ext: 'folder' },
         });
-        expect(wrapper.vm.$el.className).toStrictEqual('item-icon');
+        expect(wrapper.vm.$options.name).toStrictEqual('item-icon-');
     });
 });

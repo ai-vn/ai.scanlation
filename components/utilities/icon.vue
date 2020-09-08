@@ -2,26 +2,21 @@
     <span class="icon">{{ icon }}</span>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { computed, defineComponent } from '@nuxtjs/composition-api';
 import map from '~/assets/fonts/aicon.map.json';
 
-@Component({ name: 'icon-' })
-export default class extends Vue {
-    @Prop({ type: String })
-    i!: keyof typeof map;
-
-    get icon(): string {
-        if (!this.i) return '';
-
-        const character = map[this.i];
-        if (character === undefined) {
-            // eslint-disable-next-line no-console
-            console.error(`Not found name [${this.i}] in map`);
-            return '';
-        }
-        return character;
-    }
-}
+export default defineComponent<{ i: keyof typeof map }>({
+    name: 'icon-',
+    props: {
+        i: {
+            type: String,
+            validator: (value: string) =>
+                typeof value === 'string' &&
+                Object.prototype.hasOwnProperty.call(map, value),
+        },
+    },
+    setup: props => ({ icon: computed(() => map[props.i] || '') }),
+});
 </script>
 <style lang="postcss">
 .icon {

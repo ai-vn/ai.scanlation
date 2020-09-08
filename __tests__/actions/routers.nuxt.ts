@@ -1,32 +1,24 @@
 import { NuxtApp } from '@nuxt/types/app';
-import { createLocalVue } from '@vue/test-utils';
+import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { requireActual } from '~/__tests__/__utils__/mock';
+import { call } from '~/__tests__/__utils__';
+
+Vue.use(VueRouter);
 
 describe('actions/routers/**', () => {
     beforeAll(() => {
-        jest.mock('~/actions/actions.import', () => ({
-            actions: requireActual('~/actions/pages/routers'),
-        }));
-
-        const vue = createLocalVue();
-        vue.use(VueRouter);
-        const router = new VueRouter();
-        const nuxtApp = {
+        window.$nuxt = {
             $options: {},
-            $router: router,
+            $router: new VueRouter(),
         } as NuxtApp;
-        window.$nuxt = nuxtApp;
     });
 
     it('should go to routes', async () => {
-        expect.hasAssertions();
+        expect.assertions(0);
 
-        const { actions } = await import('~/actions/actions.import');
-
-        expect(actions.goToHome.call).not.toThrow();
-        expect(actions.goToExplorer.call).not.toThrow();
-        expect(actions.goToReader.call).not.toThrow();
-        expect(actions.goToSetting.call).not.toThrow();
+        await call(a => a.routers.goToHome);
+        await call(a => a.routers.goToExplorer);
+        await call(a => a.routers.goToReader);
+        await call(a => a.routers.goToSetting);
     });
 });

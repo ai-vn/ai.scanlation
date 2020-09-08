@@ -4,11 +4,11 @@
             <group->
                 <button- v-tooltip="'Previous folder'" icon="chevron-left" />
                 <button- v-tooltip="'Next folder'" icon="chevron-right" />
-                <button- tooltip :action="explorerGoToParentFolder" />
-                <button- tooltip :action="explorerReload" />
+                <button- tooltip :action="goToParent" />
+                <button- tooltip :action="reload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button- tooltip :action="explorerSelectFolder" />
+                <button- tooltip :action="open" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -36,42 +36,27 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
+import { defineComponent } from '@nuxtjs/composition-api';
+import { actions } from '~/actions';
 import { tableFields, tableOptions } from '~/modules/explorer';
-import { FileSystemObject } from '~/modules/explorer/types';
 import { explorer } from '~/store';
-import { Action, StoreState, StoreAction } from '~/utils';
+import { useBinding } from '~/utils';
 
-@Component({ name: 'explorer-' })
-export default class extends Vue {
-    @StoreState(explorer)
-    isValid!: boolean;
-
-    @StoreState(explorer)
-    folderPath!: string;
-
-    @StoreState(explorer)
-    files!: FileSystemObject[];
-
-    @StoreState(explorer)
-    folders!: FileSystemObject[];
-
-    @StoreAction(explorer)
-    updateFolderPath!: typeof explorer.updateFolderPath;
-
-    @Action
-    explorerSelectFolder!: ActionItem;
-
-    @Action
-    explorerGoToParentFolder!: ActionItem;
-
-    @Action
-    explorerReload!: ActionItem;
-
-    tableFields = tableFields;
-    tableOptions = tableOptions;
-}
+export default defineComponent({
+    name: 'explorer-',
+    setup() {
+        const { updateFolderPath } = explorer;
+        return {
+            updateFolderPath,
+            ...useBinding(explorer, 'folderPath'),
+            ...useBinding(explorer, 'isValid'),
+            ...useBinding(explorer, 'folders'),
+            ...useBinding(explorer, 'files'),
+            ...actions.explorer.folder,
+            ...{ tableFields, tableOptions },
+        };
+    },
+});
 </script>
 <style lang="postcss">
 .explorer {

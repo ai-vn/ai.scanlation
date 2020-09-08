@@ -3,8 +3,6 @@ import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('plugins/components-auto', () => {
     beforeAll(async () => {
-        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
-
         await importComponents();
     });
 

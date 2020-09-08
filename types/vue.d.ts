@@ -1,5 +1,6 @@
 declare module '*.vue' {
-    import Vue from 'vue';
+    import { defineComponent } from '@nuxtjs/composition-api';
 
-    export default Vue;
+    const Component: ReturnType<typeof defineComponent>;
+    export default Component;
 }

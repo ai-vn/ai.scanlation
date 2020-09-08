@@ -21,45 +21,38 @@
     />
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Model, Emit } from 'nuxt-property-decorator';
+import { defineComponent, onMounted } from '@nuxtjs/composition-api';
 
-@Component({ name: 'input-' })
-export default class extends Vue {
-    @Prop({
-        type: String,
-        default: 'text',
-        validator: (value: string) => ['number', 'text'].indexOf(value) !== -1,
-    })
-    type!: string;
+export default defineComponent({
+    name: 'input-',
+    props: {
+        type: {
+            type: String,
+            default: 'text',
+            validator: (value: string) => ['number', 'text'].includes(value),
+        },
+        value: { type: [String, Number] },
+        placeholder: { type: String },
+        min: { type: Number },
+        max: { type: Number },
+    },
+    model: { prop: 'value', event: 'input' },
+    setup(props, { emit, parent }) {
+        let inGroup = true;
+        onMounted(() => (inGroup = parent?.$options.name === 'group-'));
 
-    @Prop({ type: String })
-    placeholder!: string;
-
-    @Prop({ type: Number })
-    min!: number;
-
-    @Prop({ type: Number })
-    max!: number;
-
-    @Model('input', { type: [String, Number] })
-    value!: string | number;
-
-    inGroup = false;
-
-    mounted() {
-        this.inGroup = this.$parent.$options.name === 'group-';
-    }
-
-    @Emit('blur')
-    blur() {
-        if (this.inGroup) this.$parent.$el.classList.remove('focus');
-    }
-
-    @Emit('focus')
-    focus() {
-        if (this.inGroup) this.$parent.$el.classList.add('focus');
-    }
-}
+        return {
+            blur() {
+                emit('blur');
+                if (inGroup) parent?.$el.classList.remove('focus');
+            },
+            focus() {
+                emit('focus');
+                if (inGroup) parent?.$el.classList.add('focus');
+            },
+        };
+    },
+});
 </script>
 <style lang="postcss">
 input {

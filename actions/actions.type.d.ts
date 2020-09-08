@@ -7,3 +7,4 @@ export interface ActionItem {
     title?: string;
     icon?: keyof typeof map;
 }
+export type ActionTree = ActionItem | { [key: string]: ActionTree };

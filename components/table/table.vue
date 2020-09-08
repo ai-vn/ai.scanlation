@@ -64,7 +64,8 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { defineComponent, computed } from '@nuxtjs/composition-api';
+import { sumBy } from 'lodash';
 import {
     TableGroupItem,
     TableFields,
@@ -72,49 +73,38 @@ import {
     TableObject,
     TableField,
 } from './table';
+import { defineProp } from '~/utils';
 
-@Component({ name: 'table-' })
-export default class Table<T extends TableObject> extends Vue {
-    @Prop({ type: Array })
-    groupItems!: TableGroupItem<T>;
-
-    @Prop({ type: Array })
-    fields!: TableFields<T>;
-
-    @Prop({ type: Object })
-    options!: TableOptions<T>;
-
-    get isEmpty() {
-        return (
-            this.groupItems.reduce(
-                (sum, groupItem) => sum + groupItem.length,
-                0,
-            ) === 0
-        );
-    }
-
-    rowClass(item: T) {
-        return this.options?.rowClass?.call(item, item) || undefined;
-    }
-
-    rowClick(item: T, event: MouseEvent) {
-        const action = event.button === 2 ? 'rowContextMenu' : 'rowClick';
-        this.options?.[action]?.call(item, item, event);
-    }
-
-    rowDblclick(item: T, event: MouseEvent) {
-        this.options?.rowDblclick?.call(item, item, event);
-    }
-
-    headClick(field: TableField<T>, event: MouseEvent) {
-        const action = event.button === 2 ? 'headContextMenu' : 'headClick';
-        this.options?.[action]?.call(field, field, event);
-    }
-
-    headDblclick(field: TableField<T>, event: MouseEvent) {
-        this.options?.headDblclick?.call(field, field, event);
-    }
-}
+export default (<T extends TableObject>() =>
+    defineComponent({
+        name: 'table-',
+        props: {
+            groupItems: defineProp<TableGroupItem<T>>({ type: Array }),
+            fields: defineProp<TableFields<T>>({ type: Array }),
+            options: defineProp<TableOptions<T>>({ type: Object }),
+        },
+        setup: props => ({
+            isEmpty: computed(() => sumBy(props.groupItems, 'length') === 0),
+            rowClass: (item: T) =>
+                props.options?.rowClass?.call(item, item) || undefined,
+            rowClick(item: T, event: MouseEvent) {
+                const action =
+                    event.button === 2 ? 'rowContextMenu' : 'rowClick';
+                props.options?.[action]?.call(item, item, event);
+            },
+            rowDblclick(item: T, event: MouseEvent) {
+                props.options?.rowDblclick?.call(item, item, event);
+            },
+            headClick(field: TableField<T>, event: MouseEvent) {
+                const action =
+                    event.button === 2 ? 'headContextMenu' : 'headClick';
+                props.options?.[action]?.call(field, field, event);
+            },
+            headDblclick(field: TableField<T>, event: MouseEvent) {
+                props.options?.headDblclick?.call(field, field, event);
+            },
+        }),
+    }))();
 </script>
 <style lang="postcss">
 .table-custom {

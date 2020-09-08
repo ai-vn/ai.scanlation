@@ -4,30 +4,29 @@
     </n-link>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import {
+    computed,
+    ComputedRef,
+    defineComponent,
+} from '@nuxtjs/composition-api';
 import { TooltipSettings } from 'v-tooltip';
-import { ActionItem } from '~/actions/actions.type';
-import { isAction, toShortcut, Render } from '~/utils';
+import { toShortcut, actionProps } from '~/utils';
 
-@Component({ name: 'sidebar-item-' })
-export default class SidebarItem extends Vue {
-    @Prop({ type: Object, required: true, validator: isAction })
-    @Render<SidebarItem, TooltipSettings>(
-        t => ({
-            content: [t.action.title, toShortcut(t.action.accelerator)]
+export default defineComponent({
+    name: 'sidebar-item-',
+    props: {
+        action: { ...actionProps.action, required: true },
+        path: { type: String, required: true },
+    },
+    setup: (props): { tooltip: ComputedRef<TooltipSettings> } => ({
+        tooltip: computed(() => ({
+            placement: 'right',
+            content: [props.action.title, toShortcut(props.action.accelerator)]
                 .filter(i => i)
                 .join(' '),
-            placement: 'right',
-        }),
-        'tooltip',
-    )
-    action!: ActionItem;
-
-    tooltip!: TooltipSettings;
-
-    @Prop({ type: String, required: true })
-    path!: string;
-}
+        })),
+    }),
+});
 </script>
 <style lang="postcss">
 .sidebar-item {

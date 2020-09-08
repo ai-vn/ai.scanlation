@@ -6,7 +6,7 @@ import { isExplorer } from '~/actions/conditions';
 import { explorer } from '~/store';
 import { attemptAsync } from '~/utils';
 
-export const explorerSelectFolder: ActionItem = {
+export const open: ActionItem = {
     async call() {
         const path = await attemptAsync(remote.dialog.showOpenDialog)({
             properties: ['openDirectory'],
@@ -22,7 +22,7 @@ export const explorerSelectFolder: ActionItem = {
     accelerator: 'ctrl+o',
 };
 
-export const explorerGoToParentFolder: ActionItem = {
+export const goToParent: ActionItem = {
     call() {
         if (explorer.folderPath === '') return;
 
@@ -37,11 +37,12 @@ export const explorerGoToParentFolder: ActionItem = {
     accelerator: 'backspace',
 };
 
-export const explorerReload: ActionItem = {
+export const reload: ActionItem = {
     call() {
         explorer.watchFolderPath({ value: explorer.folderPath, oldValue: '~' });
     },
     condition: isExplorer,
     title: 'Reload',
     icon: 'rotate-ccw',
+    accelerator: 'f5',
 };

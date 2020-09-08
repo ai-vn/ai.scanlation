@@ -1,19 +1,10 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { shallowMount } from '@vue/test-utils';
-import { Vue } from 'nuxt-property-decorator';
-import '~/plugins/v-tooltip';
-import { mock } from '~/__tests__/__utils__/mock';
+import Vue from 'vue';
 import icon from '~/components/utilities/icon.vue';
+import '~/plugins/v-tooltip';
 
-describe('components/sidebar/sidebar', () => {
-    beforeAll(async () => {
-        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
-        mock('~/utils', [
-            'decorators/action',
-            'decorators/render',
-            'converts/toShortcut',
-        ]);
-
+describe('components/sidebar/sidebar-item', () => {
+    beforeAll(() => {
         Vue.component('icon-', icon);
         Vue.component('n-link', {
             props: {
@@ -31,8 +22,8 @@ describe('components/sidebar/sidebar', () => {
         );
 
         const wrapper = shallowMount(sidebarItem, {
-            propsData: { action: { call: () => {} }, path: '/' },
+            propsData: { action: { call: jest.fn() }, path: '/' },
         });
-        expect(wrapper.vm.$el.className).toStrictEqual('sidebar-item');
+        expect(wrapper.vm.$options.name).toStrictEqual('sidebar-item-');
     });
 });
