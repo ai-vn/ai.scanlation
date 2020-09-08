@@ -45,7 +45,7 @@
     "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.6",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/register": "^7.10.5",
     "@jest-runner/electron": "^3.0.0",
