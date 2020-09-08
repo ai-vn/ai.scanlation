@@ -22,39 +22,23 @@
     </ul>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
-import { Action } from '~/utils';
+import { defineComponent } from '@nuxtjs/composition-api';
+import { actions } from '~/actions';
 
-@Component({ name: 'menu-' })
-export default class extends Vue {
-    @Action
-    checkForUpdates!: ActionItem;
+const { open } = actions.explorer.folder;
+const { close } = actions.electron.windows;
 
-    @Action
-    close!: ActionItem;
-
-    @Action
-    open!: ActionItem;
-
-    @Action
-    about!: ActionItem;
-
-    @Action
-    facebook!: ActionItem;
-
-    @Action
-    feedback!: ActionItem;
-
-    @Action
-    github!: ActionItem;
-
-    @Action
-    website!: ActionItem;
-
-    @Action
-    toggleDevTools!: ActionItem;
-}
+export default defineComponent({
+    name: 'menu-',
+    setup: () => ({
+        open,
+        close,
+        ...actions.electron.dev,
+        ...actions.help.about,
+        ...actions.help.open,
+        ...actions.help.update,
+    }),
+});
 </script>
 <style lang="postcss">
 .menu {

@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+import { defineComponent } from '@nuxtjs/composition-api';
 import { shallowMount } from '@vue/test-utils';
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 import input from '~/components/utilities/input.vue';
 
 describe('components/utilities/input', () => {
@@ -9,25 +9,23 @@ describe('components/utilities/input', () => {
         async inGroup => {
             expect.hasAssertions();
 
-            const wrapper = shallowMount<
-                Vue & {
-                    inGroup: boolean;
-                    blur(): void;
-                    focus(): void;
-                }
-            >(input, {
-                propsData: {
-                    type: 'number',
-                    placeholder: 'placeholder',
-                    min: 0,
-                    max: 10,
+            const wrapper = shallowMount<Vue & { blur(): void; focus(): void }>(
+                input,
+                {
+                    propsData: {
+                        type: 'number',
+                        placeholder: 'placeholder',
+                        min: 0,
+                        max: 10,
+                    },
+                    parentComponent: inGroup
+                        ? defineComponent({ name: 'group-' })
+                        : undefined,
                 },
-            });
+            );
 
-            wrapper.vm.inGroup = inGroup;
             wrapper.vm.blur();
             wrapper.vm.focus();
-            await Vue.nextTick();
             expect(wrapper.vm.$options.name).toStrictEqual('input-');
         },
     );

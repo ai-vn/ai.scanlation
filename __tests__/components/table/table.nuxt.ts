@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import { Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 import {
     TableOptions,
     TableGroupItem,
@@ -23,12 +23,7 @@ describe('components/table/table', () => {
                 { id: 2, key: 'b' },
             ],
         ];
-        const fields: TableFields<TempObject> = [
-            {
-                key: 'id',
-                label: '#',
-            },
-        ];
+        const fields: TableFields<TempObject> = [{ key: 'id', label: '#' }];
         const options: TableOptions<TempObject> = {
             rowClick: jest.fn(),
             rowDblclick: jest.fn(),
@@ -36,16 +31,8 @@ describe('components/table/table', () => {
             headDblclick: jest.fn(),
         };
 
-        const wrapper = shallowMount<
-            Vue & {
-                isEmpty: boolean;
-            }
-        >(table, {
-            propsData: {
-                groupItems,
-                fields,
-                options,
-            },
+        const wrapper = shallowMount<Vue & { isEmpty: boolean }>(table, {
+            propsData: { groupItems, fields, options },
         });
         expect(wrapper.vm).toBeInstanceOf(Vue);
         expect(wrapper.vm.isEmpty).toStrictEqual(false);

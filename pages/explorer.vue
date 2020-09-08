@@ -36,42 +36,27 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator';
-import { ActionItem } from '~/actions/actions.type';
+import { defineComponent } from '@nuxtjs/composition-api';
+import { actions } from '~/actions';
 import { tableFields, tableOptions } from '~/modules/explorer';
-import { FileSystemObject } from '~/modules/explorer/types';
 import { explorer } from '~/store';
-import { Action, StoreState, StoreAction } from '~/utils';
+import { useBinding } from '~/utils';
 
-@Component({ name: 'explorer-' })
-export default class extends Vue {
-    @StoreState(explorer)
-    isValid!: boolean;
-
-    @StoreState(explorer)
-    folderPath!: string;
-
-    @StoreState(explorer)
-    files!: FileSystemObject[];
-
-    @StoreState(explorer)
-    folders!: FileSystemObject[];
-
-    @StoreAction(explorer)
-    updateFolderPath!: typeof explorer.updateFolderPath;
-
-    @Action
-    open!: ActionItem;
-
-    @Action
-    goToParent!: ActionItem;
-
-    @Action
-    reload!: ActionItem;
-
-    tableFields = tableFields;
-    tableOptions = tableOptions;
-}
+export default defineComponent({
+    name: 'explorer-',
+    setup() {
+        const { updateFolderPath } = explorer;
+        return {
+            updateFolderPath,
+            ...useBinding(explorer, 'folderPath'),
+            ...useBinding(explorer, 'isValid'),
+            ...useBinding(explorer, 'folders'),
+            ...useBinding(explorer, 'files'),
+            ...actions.explorer.folder,
+            ...{ tableFields, tableOptions },
+        };
+    },
+});
 </script>
 <style lang="postcss">
 .explorer {

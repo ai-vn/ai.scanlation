@@ -1,12 +1,13 @@
 import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
+import { store } from '~/__tests__/__utils__';
 import icon from '~/components/utilities/icon.vue';
 
 describe('components/header/menu-item', () => {
-    beforeAll(() => {
-        Vue.component('icon-', icon);
+    beforeAll(async () => {
+        await store('explorer');
 
-        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
+        Vue.component('icon-', icon);
     });
 
     it.each([
@@ -16,9 +17,7 @@ describe('components/header/menu-item', () => {
     ])('should mounted', async (slots, isRoot) => {
         expect.hasAssertions();
 
-        const { default: menuItem } = await import(
-            '~/components/header/menu-item.vue'
-        );
+        const menuItem = await import('~/components/header/menu-item.vue');
 
         const wrapper = shallowMount<
             Vue & {
@@ -26,7 +25,7 @@ describe('components/header/menu-item', () => {
                 leave(): void;
                 isRoot: boolean;
             }
-        >(menuItem, {
+        >(menuItem.default, {
             propsData: { action: { call: jest.fn() } },
             slots,
         });

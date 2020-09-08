@@ -1,14 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import { Vue } from 'nuxt-property-decorator';
-import { VueConstructor } from 'vue';
+import Vue, { VueConstructor } from 'vue';
 import icon from '~/components/utilities/icon.vue';
 import '~/plugins/v-tooltip';
 
 describe('components/utilities/button', () => {
     let button: VueConstructor<Vue>;
-    beforeAll(async () => {
-        jest.mock('~/actions/actions.import', () => ({ actions: {} }));
 
+    beforeAll(async () => {
         Vue.component('icon-', icon);
         button = (await import('~/components/utilities/button.vue')).default;
     });

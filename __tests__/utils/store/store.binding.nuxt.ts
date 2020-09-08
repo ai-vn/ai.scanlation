@@ -1,5 +1,6 @@
+import { defineComponent } from '@nuxtjs/composition-api';
 import { mount } from '@vue/test-utils';
-import { Component, Vue } from 'nuxt-property-decorator';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import {
     getModule,
@@ -7,7 +8,7 @@ import {
     Mutation,
     VuexModule,
 } from 'vuex-module-decorators';
-import { StoreState } from '~/utils/decorators/store.state';
+import { useBinding } from '~/utils';
 
 @Module({ name: 'no', stateFactory: true, namespaced: true })
 class NoSetter extends VuexModule {
@@ -35,28 +36,28 @@ describe('utils/decorators/store.state', () => {
     it('should support getter & setter', () => {
         expect.hasAssertions();
 
-        @Component({ template: '<div/>' })
-        class TempComponent extends Vue {
-            @StoreState(hasSetter)
-            text!: string;
-        }
-        const wrapper = mount(TempComponent);
+        const tempComponent = defineComponent({
+            template: '<div/>',
+            setup: () => useBinding(hasSetter, 'text'),
+        });
+
+        const wrapper = mount(tempComponent);
 
         expect(wrapper.vm.text).toStrictEqual('');
-        wrapper.vm.text = 'C://';
-        expect(store.state.has.text).toStrictEqual('C://');
-        expect(hasSetter.text).toStrictEqual('C://');
+        wrapper.vm.text = 'text';
+        expect(store.state.has.text).toStrictEqual('text');
+        expect(hasSetter.text).toStrictEqual('text');
     });
 
     it('should support getter only', () => {
         expect.hasAssertions();
 
-        @Component({ template: '<div/>' })
-        class TempComponent extends Vue {
-            @StoreState(noSetter)
-            text!: string;
-        }
-        const wrapper = mount(TempComponent);
+        const tempComponent = defineComponent({
+            template: '<div/>',
+            setup: () => useBinding(noSetter, 'text'),
+        });
+
+        const wrapper = mount(tempComponent);
 
         expect(wrapper.vm.text).toStrictEqual('');
         expect(() => {
