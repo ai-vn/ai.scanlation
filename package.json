@@ -39,7 +39,7 @@
     "p-queue": "^6.6.0",
     "pem": "^1.14.4",
     "source-map-support": "^0.5.19",
-    "ts-node": "^8.10.2",
+    "ts-node": "^9.0.0",
     "v-tooltip": "2.0.3",
     "vuex-module-decorators": "^0.17.0",
     "vuex-persistedstate": "^3.1.0"
