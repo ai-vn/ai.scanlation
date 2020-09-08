@@ -27,7 +27,7 @@
     "node": ">=12.18.0"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^1.0.0",
+    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/composition-api": "^0.12.3",
     "@popperjs/core": "^2.4.4",
     "electron-updater": "^4.3.4",
