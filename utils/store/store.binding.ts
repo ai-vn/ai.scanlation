@@ -12,7 +12,7 @@ export const useBinding = <
 ) => {
     const name = camelCase(`set ${key.toString()}`);
     const mutation = (module as T &
-        { [key in typeof name]: (value: T[K]) => void })[name];
+        { [moduleKey in typeof name]: (value: T[K]) => void })[name];
     return {
         [key]: customRef(() => ({
             get() {

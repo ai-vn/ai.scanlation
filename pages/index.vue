@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Ai Scanlation
-    </div>
+    <div>Ai Scanlation</div>
 </template>

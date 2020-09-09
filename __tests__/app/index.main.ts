@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { app, App, session } from 'electron';
+import { app, App, session, ProtocolRequest } from 'electron';
 import { env } from '~/__tests__/__utils__/utils.env';
 
 const { save, load } = env('NODE_ENV', 'ELECTRON_SECURITY_CHECK');
@@ -53,16 +53,17 @@ describe('app/index', () => {
             session.fromPartition('ai-scanlation:partition').protocol,
             'interceptFileProtocol',
         ).mockImplementation((scheme, handler) => {
-            if (scheme !== 'file') return;
-            handler(
-                {
-                    url:
-                        NODE_ENV === 'production'
-                            ? 'file:///app/code/'
-                            : 'https://localhost:3000',
-                } as Electron.Request,
-                () => {},
-            );
+            if (scheme === 'file')
+                handler(
+                    {
+                        url:
+                            NODE_ENV === 'production'
+                                ? 'file:///app/code/'
+                                : 'https://localhost:3000',
+                    } as ProtocolRequest,
+                    () => {},
+                );
+            return true;
         });
 
         await import('~/app');
