@@ -18,7 +18,9 @@ export const StoreWatch = <
 >(
     module: { new (...args: any[]): M },
     moduleName: {
-        [P in keyof Modules]: M extends Modules[P] ? P : never;
+        [ModuleName in keyof Modules]: M extends Modules[ModuleName]
+            ? ModuleName
+            : never;
     }[keyof Modules],
     property: P,
     wait = 0,

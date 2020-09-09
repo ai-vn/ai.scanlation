@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Reader
-    </div>
+    <div>Reader</div>
 </template>
