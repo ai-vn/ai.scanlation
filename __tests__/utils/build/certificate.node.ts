@@ -23,7 +23,7 @@ describe('utils/build/certificate', () => {
 
         expect(keys.certificate).toBeString();
         expect(keys.clientKey).toBeString();
-    });
+    }, 30000);
 
     describe('getCertificate', () => {
         const cleanCertificate = () => rimraf.sync(dir);
@@ -35,6 +35,6 @@ describe('utils/build/certificate', () => {
             const keys = await getCertificate();
             expect(keys.cert).toBeString();
             expect(keys.key).toBeString();
-        });
+        }, 30000);
     });
 });
