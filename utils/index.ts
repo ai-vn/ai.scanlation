@@ -8,7 +8,7 @@ export * from './components/vue';
 
 export * from './decorators/store.watch';
 
-export * from './store/store.binding';
+export * from './store/store';
 
 export * from './system/async';
 export * from './system/execute';
