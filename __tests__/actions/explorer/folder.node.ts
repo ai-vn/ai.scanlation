@@ -1,4 +1,3 @@
-import { remote } from 'electron';
 import { call, store } from '~/__tests__/__utils__';
 
 describe('actions/explorer/folder/**', () => {
@@ -8,31 +7,10 @@ describe('actions/explorer/folder/**', () => {
         explorer = await store('explorer');
     });
 
-    it.each([
-        [true, []],
-        [false, ['folderPath']],
-    ])('should open folder', async (canceled, filePaths) => {
+    it('should open folder', async () => {
         expect.assertions(0);
 
-        jest.spyOn(remote.dialog, 'showOpenDialog').mockImplementation(
-            async () => ({
-                canceled,
-                filePaths,
-            }),
-        );
-
-        await call(a => a.explorer.folder.open);
-    });
-
-    it('should throw error', async () => {
-        expect.assertions(0);
-
-        jest.spyOn(remote.dialog, 'showOpenDialog').mockImplementation(
-            async () => {
-                throw new Error();
-            },
-        );
-
+        jest.setMock('~/actions/utils', { openFolder: jest.fn() });
         await call(a => a.explorer.folder.open);
     });
 
@@ -46,7 +24,7 @@ describe('actions/explorer/folder/**', () => {
         },
     );
 
-    it('shoud reload explorer', async () => {
+    it('should reload explorer', async () => {
         expect.assertions(0);
 
         await call(a => a.explorer.folder.reload);

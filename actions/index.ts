@@ -3,9 +3,7 @@
 import * as dev from './electron/dev';
 import * as windows from './electron/windows';
 // Explorer
-import * as folder from './explorer/folder';
-import * as item from './explorer/item';
-import * as select from './explorer/select';
+import * as explorer from './explorer';
 // Help
 import * as about from './help/about';
 import * as open from './help/open';
@@ -20,11 +18,7 @@ export const actions = {
         dev,
         windows,
     },
-    explorer: {
-        folder,
-        item,
-        select,
-    },
+    explorer,
     help: {
         about,
         update,
