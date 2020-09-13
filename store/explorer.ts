@@ -75,6 +75,6 @@ export default class Explorer extends VuexModule {
         const data = await explorer(folderPath);
         this.setData(data);
 
-        await analyzeImages(this.files, this.updateFile);
+        await analyzeImages(this);
     }
 }

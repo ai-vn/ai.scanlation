@@ -7,6 +7,7 @@ import { psd } from './src/psd';
 import { AnalyzeImage } from './type';
 import { FileSystemObject } from '~/modules/explorer/types';
 import { queue } from '~/modules/queue';
+import type Explorer from '~/store/explorer';
 import { readBuffer } from '~/utils';
 
 const imageTypes: AnalyzeImage[] = [png, psd, jpg];
@@ -26,13 +27,7 @@ export const analyzeImage = async (file: FileSystemObject) => {
     return data;
 };
 
-export const analyzeImages = async (
-    files: FileSystemObject[],
-    updateFile: (payload: {
-        file: FileSystemObject;
-        data: Partial<FileSystemObject>;
-    }) => void,
-) => {
+export const analyzeImages = async ({ files, updateFile }: Explorer) => {
     queue.clear();
     await queue.addAll(
         files

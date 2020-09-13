@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { assign } from 'lodash';
 import { DeepPartial } from '~/types/type';
 
-type TStore = DeepPartial<typeof import('~/store')>;
-type TUtils = DeepPartial<typeof import('~/utils')>;
 type TFs = DeepPartial<typeof import('fs')>;
+type TStore = DeepPartial<typeof import('~/store')>;
+type TUtil = DeepPartial<typeof import('util')>;
+type TUtils = DeepPartial<typeof import('~/utils')>;
 
 export const requireActual = <T extends Record<string, any>>(path: string) =>
     jest.requireActual<T>(path);
@@ -20,6 +22,9 @@ const mockFactory = <T>(module: string) => (data: T) => {
     jest.setMock<TStore>(module, data);
 };
 
-mock.store = mockFactory<TStore>('~/store');
-mock.utils = mockFactory<TUtils>('~/utils');
 mock.fs = mockFactory<TFs>('fs');
+mock.store = mockFactory<TStore>('~/store');
+mock.util = mockFactory<TUtil>('util');
+mock.utils = mockFactory<TUtils>('~/utils');
+
+export const mockInstance = <T>(data: DeepPartial<T>) => data as T;
