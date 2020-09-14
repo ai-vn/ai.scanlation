@@ -4,8 +4,8 @@ import { parse } from 'path';
 import { isError } from 'lodash';
 import { disks } from './files/disks';
 import { analyze } from './files/files';
-import { ignoreFilter } from './utils/ignore';
 import { FileExplorerObject } from '~/modules/explorer/types';
+import { ignoreFilter } from '~/modules/ignore/ignore';
 import { attemptPromisify } from '~/utils';
 
 export const explorer = async (folderPath: string) => {

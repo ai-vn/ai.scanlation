@@ -1,6 +1,6 @@
-import { ignoreFilter } from '~/modules/explorer/analyze/utils/ignore';
+import { ignoreFilter } from '~/modules/ignore/ignore';
 
-describe('modules/explorer/analyze/utils/ignore', () => {
+describe('modules/ignore/ignore', () => {
     it('should return folder type', () => {
         expect.hasAssertions();
 
