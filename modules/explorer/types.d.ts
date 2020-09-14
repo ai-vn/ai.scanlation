@@ -1,7 +1,7 @@
 import { Stats } from 'fs';
 import { TableObject } from '~/components/table/table';
 
-export interface FileSystemObject extends TableObject {
+export interface FileExplorerObject extends TableObject {
     index: number;
     selected: boolean;
     key: string;

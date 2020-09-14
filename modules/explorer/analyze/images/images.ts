@@ -5,14 +5,14 @@ import { jpg } from './src/jpg';
 import { png } from './src/png';
 import { psd } from './src/psd';
 import { AnalyzeImage } from './type';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import { queue } from '~/modules/queue';
 import type Explorer from '~/store/explorer';
 import { readBuffer } from '~/utils';
 
 const imageTypes: AnalyzeImage[] = [png, psd, jpg];
 
-export const analyzeImage = async (file: FileSystemObject) => {
+export const analyzeImage = async (file: FileExplorerObject) => {
     if (!file.stat) throw new Error('File stat is undefined');
 
     const fd = await promisify(open)(file.path, 'r');

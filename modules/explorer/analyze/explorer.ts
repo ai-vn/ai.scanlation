@@ -5,7 +5,7 @@ import { isError } from 'lodash';
 import { disks } from './files/disks';
 import { analyze } from './files/files';
 import { ignoreFilter } from './utils/ignore';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import { attemptPromisify } from '~/utils';
 
 export const explorer = async (folderPath: string) => {
@@ -16,8 +16,8 @@ export const explorer = async (folderPath: string) => {
     const fileOrFolders = await attemptPromisify(readdir)(folderPath);
     if (isError(fileOrFolders)) return undefined;
 
-    const files: FileSystemObject[] = [];
-    const folders: FileSystemObject[] = [];
+    const files: FileExplorerObject[] = [];
+    const folders: FileExplorerObject[] = [];
 
     const analyzeFileOrFolders = fileOrFolders
         .filter(ignoreFilter)

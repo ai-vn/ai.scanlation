@@ -2,19 +2,19 @@ import { stat } from 'fs';
 import { extname, join } from 'path';
 import { isError } from 'lodash';
 import { getFolderType } from '../utils/folder.extension';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import { attemptPromisify } from '~/utils';
 
 export const analyze = async (
     folderPath: string,
     name: string,
-): Promise<FileSystemObject | null> => {
+): Promise<FileExplorerObject | null> => {
     const path = join(folderPath, name);
 
     const data = await attemptPromisify(stat)(path);
     if (isError(data)) return null;
 
-    const result: FileSystemObject = {
+    const result: FileExplorerObject = {
         index: 0,
         selected: false,
         key: path,

@@ -1,8 +1,8 @@
 import { isError } from 'lodash';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import { execute } from '~/utils';
 
-let cache: FileSystemObject[] = [];
+let cache: FileExplorerObject[] = [];
 
 const getDisks = 'wmic logicaldisk where drivetype=3 get DeviceID, VolumeName';
 

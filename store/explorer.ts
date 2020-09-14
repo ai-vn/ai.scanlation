@@ -2,7 +2,7 @@
 import { normalize } from 'path';
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { explorer, analyzeImages } from '~/modules/explorer';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import { Payload } from '~/types/type';
 import { StoreWatch } from '~/utils';
 
@@ -15,8 +15,8 @@ export default class Explorer extends VuexModule {
     folderPath = '';
     isValid = false;
 
-    files: FileSystemObject[] = [];
-    folders: FileSystemObject[] = [];
+    files: FileExplorerObject[] = [];
+    folders: FileExplorerObject[] = [];
 
     @Mutation
     setFolderPath(value: string) {
@@ -30,7 +30,10 @@ export default class Explorer extends VuexModule {
     }
 
     @Mutation
-    setData(data?: { files: FileSystemObject[]; folders: FileSystemObject[] }) {
+    setData(data?: {
+        files: FileExplorerObject[];
+        folders: FileExplorerObject[];
+    }) {
         if (!data) {
             this.files = [];
             this.folders = [];
@@ -47,14 +50,14 @@ export default class Explorer extends VuexModule {
         file,
         data,
     }: {
-        file: FileSystemObject;
-        data: Partial<FileSystemObject>;
+        file: FileExplorerObject;
+        data: Partial<FileExplorerObject>;
     }) {
         Object.assign(file, data);
     }
 
     @Mutation
-    toggleSelectedFile(file: FileSystemObject) {
+    toggleSelectedFile(file: FileExplorerObject) {
         file.selected = !file.selected;
     }
 

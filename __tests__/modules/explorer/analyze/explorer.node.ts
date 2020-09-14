@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 
 describe('modules/explorer/analyze/explorer', () => {
     beforeEach(() => {
@@ -46,8 +46,8 @@ describe('modules/explorer/analyze/explorer', () => {
             analyze: async (
                 folderPath: string,
                 fileOrFolder: string,
-            ): Promise<FileSystemObject | null> => {
-                const file: FileSystemObject = {
+            ): Promise<FileExplorerObject | null> => {
+                const file: FileExplorerObject = {
                     index: 0,
                     selected: false,
                     key: 'key',

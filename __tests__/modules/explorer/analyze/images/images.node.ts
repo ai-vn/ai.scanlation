@@ -4,10 +4,10 @@ import { Stats } from 'fs';
 import { mock } from '~/__tests__/__utils__';
 import { mockInstance } from '~/__tests__/__utils__/mock';
 import { AnalyzeImage } from '~/modules/explorer/analyze/images/type';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 import type Explorer from '~/store/explorer';
 
-const file: FileSystemObject = {
+const file: FileExplorerObject = {
     index: 0,
     selected: false,
     key: 'key',
