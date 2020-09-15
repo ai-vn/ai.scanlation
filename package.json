@@ -41,6 +41,7 @@
     "source-map-support": "^0.5.19",
     "ts-node": "^9.0.0",
     "v-tooltip": "2.0.3",
+    "vue-dragscroll": "^2.1.0",
     "vuex-module-decorators": "^0.17.0",
     "vuex-persistedstate": "^3.1.0"
   },

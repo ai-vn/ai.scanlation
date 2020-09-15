@@ -20,6 +20,7 @@ export default async (): Promise<NuxtConfig> => {
         generate: { dir: 'dist/renderer' },
         plugins: [
             '~/plugins/components-auto',
+            '~/plugins/v-dragscroll',
             '~/plugins/v-tooltip',
             '~/plugins/listen',
             '~/plugins/store',
