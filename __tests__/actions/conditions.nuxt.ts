@@ -1,18 +1,27 @@
 import { NuxtApp } from '@nuxt/types/app';
 
 describe('actions/conditions', () => {
-    beforeAll(() => {
+    const setRouterName = (name: string) => {
         window.$nuxt = {
-            $router: { currentRoute: { name: 'explorer' } },
+            $router: { currentRoute: { name } },
         } as NuxtApp;
-    });
+    };
 
-    it('should', async () => {
+    it('should is explorer', async () => {
         expect.hasAssertions();
 
+        setRouterName('explorer');
         const { isExplorer } = await import('~/actions/conditions');
 
-        const result = isExplorer();
-        expect(result).toBeTrue();
+        expect(isExplorer()).toBeTrue();
+    });
+
+    it('should is reader', async () => {
+        expect.hasAssertions();
+
+        setRouterName('reader');
+        const { isReader } = await import('~/actions/conditions');
+
+        expect(isReader()).toBeTrue();
     });
 });
