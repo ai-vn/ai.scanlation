@@ -1,4 +1,4 @@
-import { Plugin } from '@nuxt/types';
+import { defineNuxtPlugin } from '@nuxtjs/composition-api';
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 import createPersistedState from 'vuex-persistedstate';
@@ -13,11 +13,9 @@ const storeInitialize = (store: Store<any>) => {
     });
 };
 
-const plugin: Plugin = ({ store }) => {
+export default defineNuxtPlugin(({ store }) => {
     window.onNuxtReady(() => {
         createPersistedState({})(store);
         storeInitialize(store);
     });
-};
-
-export default plugin;
+});

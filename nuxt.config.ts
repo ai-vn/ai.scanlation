@@ -21,7 +21,6 @@ export default async (): Promise<NuxtConfig> => {
         plugins: [
             '~/plugins/components-auto',
             '~/plugins/v-tooltip',
-            '~/plugins/actions',
             '~/plugins/listen',
             '~/plugins/store',
         ],
