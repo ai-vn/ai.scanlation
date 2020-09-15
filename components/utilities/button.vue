@@ -15,21 +15,18 @@
 </template>
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import { TooltipSettings } from 'v-tooltip';
-import { actionProps, actionRender, defineProp, tooltipRender } from '~/utils';
+import { actionProps, useAction, tooltipProp, useTooltip } from '~/utils';
 
 export default defineComponent({
     name: 'button-',
     props: {
-        tooltip: defineProp<boolean | string | TooltipSettings>({
-            type: [Boolean, String, Object],
-        }),
+        tooltip: tooltipProp,
         ...actionProps,
     },
     setup(props, context) {
-        const render = actionRender(props, context);
+        const render = useAction(props, context);
         return {
-            ...tooltipRender(props, render),
+            ...useTooltip(props, render),
             ...render,
         };
     },

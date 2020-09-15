@@ -1,4 +1,5 @@
-import { tooltipRender } from '~/utils';
+import { toComputed } from '~/__tests__/__utils__';
+import { useTooltip } from '~/utils';
 
 describe('utils/components/tooltip', () => {
     it.each([[true], [false], [undefined]])(
@@ -6,9 +7,14 @@ describe('utils/components/tooltip', () => {
         tooltip => {
             expect.assertions(0);
 
-            tooltipRender(
+            useTooltip(
                 { tooltip },
-                { action_: jest.fn(), icon_: '', shortcut_: '', title_: '' },
+                {
+                    action_: toComputed(jest.fn()),
+                    icon_: toComputed(''),
+                    shortcut_: toComputed(''),
+                    title_: toComputed(''),
+                },
             );
         },
     );

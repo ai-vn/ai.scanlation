@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
 import { Instance, createPopper } from '@popperjs/core';
-import { actionRender, actionProps } from '~/utils';
+import { useAction, actionProps } from '~/utils';
 
 export default defineComponent({
     name: 'menu-item-',
@@ -79,7 +79,7 @@ export default defineComponent({
 
         return {
             ...{ isRoot, el, ul, enter, leave },
-            ...actionRender(props, context),
+            ...useAction(props, context),
         };
     },
 });
