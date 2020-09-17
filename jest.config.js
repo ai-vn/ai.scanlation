@@ -37,7 +37,7 @@ module.exports = {
     ],
     coverageDirectory: 'coverage',
     coveragePathIgnorePatterns: [],
-    coverageReporters: ['cobertura', 'text-summary', 'html'],
+    coverageReporters: ['cobertura', 'text-summary', 'html', 'lcov'],
     watchPlugins: ['jest-watch-select-projects'],
     projects: [
         {
