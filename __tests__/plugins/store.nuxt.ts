@@ -4,13 +4,11 @@ describe('plugins/store', () => {
     });
 
     it('should pass', async () => {
-        expect.hasAssertions();
+        expect.assertions(0);
 
         const { installPlugin } = await import('~/__tests__/__utils__/nuxt');
         const pluginStore = await import('~/plugins/store');
 
-        expect(() => {
-            installPlugin(pluginStore.default);
-        }).not.toThrow();
+        installPlugin(pluginStore.default);
     });
 });

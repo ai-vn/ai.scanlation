@@ -1,30 +1,28 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { assign } from 'lodash';
 import { DeepPartial } from '~/types/type';
 
-type TFs = DeepPartial<typeof import('fs')>;
-type TStore = DeepPartial<typeof import('~/store')>;
-type TUtil = DeepPartial<typeof import('util')>;
-type TUtils = DeepPartial<typeof import('~/utils')>;
+type TFs = typeof import('fs');
+type TStore = typeof import('~/store');
+type TUtil = typeof import('util');
+type TUtils = typeof import('~/utils');
 
-export const requireActual = <T extends Record<string, any>>(path: string) =>
-    jest.requireActual<T>(path);
+const actualFactory = <T>(module: string) => jest.requireActual<T>(module);
 
-export function mock(path: string, children: string[]) {
-    jest.unmock(path);
-    jest.doMock(path, () =>
-        assign({}, ...children.map(child => requireActual(`${path}/${child}`))),
-    );
-}
-
-const mockFactory = <T>(module: string) => (data: T) => {
-    jest.unmock(module);
-    jest.setMock<TStore>(module, data);
+export const actual = {
+    fs: actualFactory<TFs>('fs'),
+    util: actualFactory<TUtil>('util'),
 };
 
-mock.fs = mockFactory<TFs>('fs');
-mock.store = mockFactory<TStore>('~/store');
-mock.util = mockFactory<TUtil>('util');
-mock.utils = mockFactory<TUtils>('~/utils');
+const mockFactory = <T>(module: string) => (data: DeepPartial<T>) => {
+    jest.unmock(module);
+    jest.setMock<DeepPartial<T>>(module, data);
+};
+
+export const mock = {
+    fs: mockFactory<TFs>('fs'),
+    store: mockFactory<TStore>('~/store'),
+    util: mockFactory<TUtil>('util'),
+    utils: mockFactory<TUtils>('~/utils'),
+};
 
 export const mockInstance = <T>(data: DeepPartial<T>) => data as T;
