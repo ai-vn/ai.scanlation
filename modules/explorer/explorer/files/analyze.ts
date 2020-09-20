@@ -1,15 +1,15 @@
 import { stat } from 'fs';
-import { extname, join } from 'path';
+import { join } from 'path';
 import { isError } from 'lodash';
 import { getFolderType } from './folder.extension';
 import { FileExplorerObject } from '~/modules/explorer/types';
-import { attemptPromisify } from '~/utils';
+import { attemptPromisify, toExt } from '~/utils';
 
 export const analyze = async (
     folderPath: string,
-    name: string,
+    file: string,
 ): Promise<FileExplorerObject | null> => {
-    const path = join(folderPath, name);
+    const path = join(folderPath, file);
 
     const data = await attemptPromisify(stat)(path);
     if (isError(data)) return null;
@@ -18,7 +18,7 @@ export const analyze = async (
         index: 0,
         selected: false,
         key: path,
-        name,
+        name: file,
         stat: data,
         path,
         ext: '',
@@ -27,12 +27,12 @@ export const analyze = async (
     };
     if (data.isDirectory()) {
         result.isFolder = true;
-        result.ext = getFolderType(name);
+        result.ext = getFolderType(file);
     }
     if (data.isFile()) {
         result.isFolder = false;
         result.size = data.size;
-        result.ext = extname(`_${name}`).replace(/^\./, '').toLocaleLowerCase();
+        result.ext = toExt(file);
     }
     return result;
 };

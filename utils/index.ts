@@ -1,4 +1,5 @@
 export * from './converts/nonNull';
+export * from './converts/toExt';
 export * from './converts/toShortcut';
 export * from './converts/toSize';
 
