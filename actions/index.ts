@@ -8,6 +8,8 @@ import * as explorer from './explorer';
 import * as about from './help/about';
 import * as open from './help/open';
 import * as update from './help/update';
+// Reader
+import * as reader from './reader';
 // Routers
 import * as routers from './routers';
 // Settings
@@ -19,6 +21,7 @@ export const actions = {
         windows,
     },
     explorer,
+    reader,
     help: {
         about,
         update,
