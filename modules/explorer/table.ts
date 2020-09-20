@@ -1,6 +1,6 @@
 import { shell } from 'electron';
 import moment from 'moment';
-import { openShortcut } from './file/shortcut';
+import { openShortcut } from './actions/shortcut';
 import { FileExplorerObject } from './types.d';
 import { TableFields, TableOptions } from '~/components/table/table';
 import { explorer } from '~/store';

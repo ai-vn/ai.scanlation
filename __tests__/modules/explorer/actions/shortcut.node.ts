@@ -3,7 +3,7 @@ import fs, { Stats } from 'fs';
 import lodash from 'lodash';
 import { store } from '~/__tests__/__utils__';
 
-describe('modules/explorer/file/shortcut', () => {
+describe('modules/explorer/actions/shortcut', () => {
     beforeAll(async () => {
         await store('explorer');
     });
@@ -17,7 +17,7 @@ describe('modules/explorer/file/shortcut', () => {
         jest.spyOn(console, 'error').mockImplementation();
         jest.spyOn(lodash, 'attempt').mockImplementation(() => new Error());
 
-        (await import('~/modules/explorer/file/shortcut')).openShortcut('');
+        (await import('~/modules/explorer/actions/shortcut')).openShortcut('');
     });
 
     it.each([[true], [false]])('shortcut', async isDirectory => {
@@ -30,6 +30,6 @@ describe('modules/explorer/file/shortcut', () => {
             _ => ({ isDirectory: () => isDirectory } as Stats),
         );
 
-        (await import('~/modules/explorer/file/shortcut')).openShortcut('');
+        (await import('~/modules/explorer/actions/shortcut')).openShortcut('');
     });
 });

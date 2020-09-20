@@ -2,8 +2,8 @@
 import { readdir } from 'fs';
 import { parse } from 'path';
 import { isError } from 'lodash';
+import { analyze } from './files/analyze';
 import { disks } from './files/disks';
-import { analyze } from './files/files';
 import { FileExplorerObject } from '~/modules/explorer/types';
 import { ignoreFilter } from '~/modules/ignore/ignore';
 import { attemptPromisify } from '~/utils';

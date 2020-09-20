@@ -1,10 +1,10 @@
 import { extname } from 'path';
-import { isImage } from '~/modules/explorer/analyze/images/image.extension';
+import { isImage } from '~/modules/explorer/images/image.extension';
 
 const nameMapper = (name: string) =>
     extname(`_${name}`).replace(/^\./, '').toLocaleLowerCase();
 
-describe('modules/explorer/analyze/images/images.extension', () => {
+describe('modules/explorer/images/images.extension', () => {
     it('should be images', () => {
         expect.hasAssertions();
 

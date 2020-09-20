@@ -1,7 +1,7 @@
 import { stat } from 'fs';
 import { extname, join } from 'path';
 import { isError } from 'lodash';
-import { getFolderType } from '../utils/folder.extension';
+import { getFolderType } from './folder.extension';
 import { FileExplorerObject } from '~/modules/explorer/types';
 import { attemptPromisify } from '~/utils';
 

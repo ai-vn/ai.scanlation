@@ -1,4 +1,4 @@
-describe('modules/explorer/analyze/files/disks', () => {
+describe('modules/explorer/explorer/files/disks', () => {
     beforeEach(() => {
         jest.resetModules();
     });
@@ -20,7 +20,7 @@ describe('modules/explorer/analyze/files/disks', () => {
         }));
 
         const { disks } = await import(
-            '~/modules/explorer/analyze/files/disks'
+            '~/modules/explorer/explorer/files/disks'
         );
         await disks();
         const results = await disks();
@@ -35,7 +35,7 @@ describe('modules/explorer/analyze/files/disks', () => {
         }));
 
         const { disks } = await import(
-            '~/modules/explorer/analyze/files/disks'
+            '~/modules/explorer/explorer/files/disks'
         );
         const results = await disks();
         expect(results).toBeArrayOfSize(0);

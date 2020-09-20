@@ -1,6 +1,6 @@
-import { getFolderType } from '~/modules/explorer/analyze/utils/folder.extension';
+import { getFolderType } from '~/modules/explorer/explorer/files/folder.extension';
 
-describe('modules/explorer/analyze/utils/folder.extension', () => {
+describe('modules/explorer/explorer/files/folder.extension', () => {
     it('should return folder type', () => {
         expect.hasAssertions();
 

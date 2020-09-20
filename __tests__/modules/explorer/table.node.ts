@@ -1,3 +1,4 @@
+import { mock } from '~/__tests__/__utils__';
 import { TableField } from '~/components/table/table';
 import { FileExplorerObject } from '~/modules/explorer/types';
 
@@ -16,18 +17,18 @@ const file: FileExplorerObject = {
 
 describe('modules/explorer/table', () => {
     beforeAll(() => {
-        jest.mock('~/store', () => ({
+        mock.store({
             explorer: {
                 setFolderPath: jest.fn(),
                 toggleSelectedFile: jest.fn(),
             },
-        }));
+        });
         jest.mock('moment', () =>
             jest.fn().mockReturnValue({
                 fromNow: jest.fn().mockReturnValue('a few seconds ago'),
             }),
         );
-        jest.mock('~/modules/explorer/file/shortcut', () => ({
+        jest.mock('~/modules/explorer/actions/shortcut', () => ({
             openShortcut: jest.fn(),
         }));
     });

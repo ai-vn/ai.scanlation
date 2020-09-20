@@ -17,8 +17,8 @@ export const goToParent: ActionItem = {
         if (explorer.folderPath === '') return;
 
         const parentFolderPath = dirname(explorer.folderPath);
-
         const isRoot = /^\w:(\\|\/)$/i.test(explorer.folderPath);
+
         explorer.setFolderPath(isRoot ? '' : parentFolderPath);
     },
     condition: isExplorer,

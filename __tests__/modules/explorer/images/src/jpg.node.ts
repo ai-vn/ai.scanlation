@@ -1,13 +1,13 @@
-describe('modules/explorer/analyze/images/src/jpg', () => {
+import { mock } from '~/__tests__/__utils__';
+
+describe('modules/explorer/images/src/jpg', () => {
     const getJpg = async (buffer: Buffer) => {
         jest.resetModules();
         jest.resetAllMocks();
-        jest.doMock('~/utils', () => ({
+        mock.utils({
             readBuffer: async () => buffer,
-        }));
-        const { jpg } = await import(
-            '~/modules/explorer/analyze/images/src/jpg'
-        );
+        });
+        const { jpg } = await import('~/modules/explorer/images/src/jpg');
         return jpg;
     };
 

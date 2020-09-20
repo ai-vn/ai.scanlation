@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import { mock, actual } from '~/__tests__/__utils__';
 import { FileExplorerObject } from '~/modules/explorer/types';
 
-describe('modules/explorer/analyze/explorer', () => {
+describe('modules/explorer/explorer/explorer', () => {
     beforeEach(() => {
         jest.resetModules();
     });
@@ -9,9 +10,9 @@ describe('modules/explorer/analyze/explorer', () => {
     it('should explore disk', async () => {
         expect.hasAssertions();
 
-        jest.mock('~/modules/explorer/analyze/files/disks', () => ({
+        jest.setMock('~/modules/explorer/explorer/files/disks', {
             disks: async () => [],
-        }));
+        });
 
         const { explorer } = await import('~/modules/explorer');
 
@@ -21,12 +22,12 @@ describe('modules/explorer/analyze/explorer', () => {
     it('should explore invalid folder path', async () => {
         expect.hasAssertions();
 
-        jest.mock('util', () => ({
+        mock.util({
             promisify: (fn: Function) =>
-                fn === jest.requireActual('fs').readdir
+                fn === actual.fs.readdir
                     ? async () => new Error()
-                    : jest.requireActual('util').promisify(fn),
-        }));
+                    : actual.util.promisify(fn),
+        });
 
         const { explorer } = await import('~/modules/explorer');
 
@@ -36,13 +37,14 @@ describe('modules/explorer/analyze/explorer', () => {
     it('should explore valid folder path', async () => {
         expect.hasAssertions();
 
-        jest.mock('util', () => ({
+        mock.util({
             promisify: (fn: Function) =>
-                fn === jest.requireActual('fs').readdir
+                fn === actual.fs.readdir
                     ? async () => ['file', 'file', 'folder', 'folder', 'null']
-                    : jest.requireActual('util').promisify(fn),
-        }));
-        jest.mock('~/modules/explorer/analyze/files/files', () => ({
+                    : actual.util.promisify(fn),
+        });
+
+        jest.setMock('~/modules/explorer/explorer/files/analyze', {
             analyze: async (
                 folderPath: string,
                 fileOrFolder: string,
@@ -62,7 +64,7 @@ describe('modules/explorer/analyze/explorer', () => {
                     return { ...file, isFolder: true };
                 return null;
             },
-        }));
+        });
 
         const { explorer } = await import('~/modules/explorer');
 

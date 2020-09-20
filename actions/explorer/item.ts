@@ -2,7 +2,7 @@ import { shell } from 'electron';
 import { existsSync } from 'fs';
 import { ActionItem } from '~/actions/actions.type';
 import { isExplorer } from '~/actions/conditions';
-import { isImage } from '~/modules/explorer/analyze/images/image.extension';
+import { isImage } from '~/modules/explorer/images/image.extension';
 import { explorer } from '~/store';
 import { execute } from '~/utils';
 

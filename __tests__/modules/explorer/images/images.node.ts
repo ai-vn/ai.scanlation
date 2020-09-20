@@ -3,7 +3,7 @@
 import { Stats } from 'fs';
 import { mock } from '~/__tests__/__utils__';
 import { mockInstance } from '~/__tests__/__utils__/mock';
-import { AnalyzeImage } from '~/modules/explorer/analyze/images/type';
+import { AnalyzeImage } from '~/modules/explorer/images/type';
 import { FileExplorerObject } from '~/modules/explorer/types';
 import type Explorer from '~/store/explorer';
 
@@ -18,9 +18,8 @@ const file: FileExplorerObject = {
     stat: {} as Stats,
 };
 
-describe('modules/explorer/analyze/images/images', () => {
-    const importAnalyze = () =>
-        import('~/modules/explorer/analyze/images/images');
+describe('modules/explorer/images/images', () => {
+    const importAnalyze = () => import('~/modules/explorer/images/images');
 
     beforeEach(() => {
         jest.resetModules();
@@ -40,7 +39,7 @@ describe('modules/explorer/analyze/images/images', () => {
                 ),
         });
         jest.setMock<{ psd: AnalyzeImage }>(
-            '~/modules/explorer/analyze/images/src/psd',
+            '~/modules/explorer/images/src/psd',
             {
                 psd: {
                     sign: '9999',
@@ -87,7 +86,7 @@ describe('modules/explorer/analyze/images/images', () => {
         expect.hasAssertions();
 
         const { analyzeImages } = await import(
-            '~/modules/explorer/analyze/images/images'
+            '~/modules/explorer/images/images'
         );
         const explorer = mockInstance<Explorer>({
             files: [file],
