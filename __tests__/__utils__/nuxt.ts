@@ -28,6 +28,7 @@ function inject(key: string, value: any) {
 async function getContext(): Promise<Context> {
     const { plugins } = await import('~/store');
     const { default: Explorer } = await import('~/store/explorer');
+    const { default: Reader } = await import('~/store/reader');
 
     const templateRoute: Route = {
         path: '/',
@@ -47,7 +48,13 @@ async function getContext(): Promise<Context> {
         isHMR: true,
         route: templateRoute,
         from: templateRoute,
-        store: new Vuex.Store({ plugins, modules: { explorer: Explorer } }),
+        store: new Vuex.Store({
+            plugins,
+            modules: {
+                explorer: Explorer,
+                reader: Reader,
+            },
+        }),
         env: {},
         params: templateRoute.params,
         payload: undefined,

@@ -1,27 +1,19 @@
+/* eslint-disable no-new */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { getModule } from 'vuex-module-decorators';
+import { StoreModules } from '~/store/-modules';
 
 Vue.use(Vuex);
 
-type TExplorer = typeof import('~/store/explorer').default;
-
-type TStores = {
-    explorer: TExplorer;
-};
-
-export const store = async <T extends keyof TStores>(module: T) => {
-    type TDefault = new (args: any) => InstanceType<TStores[T]>;
-
+export const store = async <T extends keyof StoreModules>(name: T) => {
     const { plugins } = await import('~/store');
-    const { default: CurrentModule } = jest.requireActual<{
-        default: TDefault;
-    }>(`~/store/${module}`);
-
-    const localStore = new Vuex.Store({
+    new Vuex.Store({
         plugins,
-        modules: { [module]: CurrentModule as TStores[T] },
+        modules: {
+            explorer: (await import('~/store/explorer')).default,
+            reader: (await import('~/store/reader')).default,
+        },
     });
 
-    return getModule(CurrentModule, localStore);
+    return (await import('~/store'))[name];
 };

@@ -1,33 +1,18 @@
-import { createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
-import { getModule } from 'vuex-module-decorators';
+import { store } from '~/__tests__/__utils__';
 
 describe('store/explorer', () => {
     let explorer: import('~/store/explorer').default;
 
-    beforeAll(() => {
-        jest.mock('~/modules/explorer', () => ({
+    beforeAll(async () => {
+        jest.setMock('~/modules/explorer', {
             explorer: jest.fn().mockReturnValue({ files: [], folders: [] }),
             analyzeImages: jest.fn(),
-        }));
-    });
-
-    beforeEach(async () => {
-        const { default: Explorer } = await import('~/store/explorer');
-
-        const vue = createLocalVue();
-        vue.use(Vuex);
-        const store = new Vuex.Store({ modules: { explorer: Explorer } });
-        explorer = getModule(Explorer, store);
+        });
+        explorer = await store('explorer');
     });
 
     it('should update folderPath & data', () => {
-        expect.hasAssertions();
-
-        jest.resetModules();
-        jest.spyOn(explorer, 'watchFolderPath').mockImplementation();
-
-        expect(explorer.folderPath).toStrictEqual('');
+        expect.assertions(0);
 
         explorer.setFolderPath('C://folder');
         explorer.updateFolderPath();
@@ -55,16 +40,10 @@ describe('store/explorer', () => {
     });
 
     it('should watchFolderPath work', async () => {
-        expect.hasAssertions();
+        expect.assertions(0);
 
-        jest.resetModules();
-        jest.spyOn(explorer, 'setFolderPath').mockImplementation();
-
-        explorer.setData();
         await explorer.watchFolderPath({ value: '', oldValue: '~' });
         await explorer.watchFolderPath({ value: '', oldValue: '' });
         await explorer.watchFolderPath({ value: '.', oldValue: '' });
-
-        expect(explorer.folders).toHaveLength(0);
     });
 });
