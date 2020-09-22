@@ -12,3 +12,11 @@
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+.scroll {
+    @apply rounded overflow-hidden;
+
+    &-wrapper {
+        @apply max-h-full overflow-x-hidden overflow-y-scroll;
+    }
+}

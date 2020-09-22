@@ -1,6 +1,6 @@
 <template>
-    <div class="table-custom">
-        <div class="table-custom-wrapper">
+    <div class="table-custom scroll">
+        <div class="scroll-wrapper">
             <table class="table-custom-view">
                 <thead>
                     <tr>
@@ -108,13 +108,9 @@ export default (<T extends TableObject>() =>
 </script>
 <style lang="postcss">
 .table-custom {
-    @apply rounded overflow-hidden text-sm;
+    @apply text-sm;
 
-    &-wrapper {
-        @apply max-h-full overflow-y-scroll overflow-x-hidden;
-
-        background-color: var(--table-background-color);
-    }
+    background-color: var(--table-background-color);
 
     &-view {
         @apply w-full table-auto border-collapse relative cursor-pointer;

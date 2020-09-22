@@ -1,7 +1,7 @@
 import { store } from '~/__tests__/__utils__';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 
-const file: FileSystemObject = {
+const file: FileExplorerObject = {
     index: 0,
     selected: false,
     key: 'key',

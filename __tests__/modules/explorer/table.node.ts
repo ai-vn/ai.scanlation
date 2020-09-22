@@ -1,7 +1,8 @@
+import { mock } from '~/__tests__/__utils__';
 import { TableField } from '~/components/table/table';
-import { FileSystemObject } from '~/modules/explorer/types';
+import { FileExplorerObject } from '~/modules/explorer/types';
 
-const file: FileSystemObject = {
+const file: FileExplorerObject = {
     index: 0,
     selected: false,
     key: 'key',
@@ -16,18 +17,18 @@ const file: FileSystemObject = {
 
 describe('modules/explorer/table', () => {
     beforeAll(() => {
-        jest.mock('~/store', () => ({
+        mock.store({
             explorer: {
                 setFolderPath: jest.fn(),
                 toggleSelectedFile: jest.fn(),
             },
-        }));
+        });
         jest.mock('moment', () =>
             jest.fn().mockReturnValue({
                 fromNow: jest.fn().mockReturnValue('a few seconds ago'),
             }),
         );
-        jest.mock('~/modules/explorer/file/shortcut', () => ({
+        jest.mock('~/modules/explorer/actions/shortcut', () => ({
             openShortcut: jest.fn(),
         }));
     });
@@ -39,9 +40,9 @@ describe('modules/explorer/table', () => {
 
         const getField = (key: string) =>
             tableFields.find(field => field.key === key);
-        const fieldShow = (field?: TableField<FileSystemObject>) =>
+        const fieldShow = (field?: TableField<FileExplorerObject>) =>
             field?.show?.call(undefined, file, 1);
-        const fieldValue = (field?: TableField<FileSystemObject>) =>
+        const fieldValue = (field?: TableField<FileExplorerObject>) =>
             field?.converter?.call(undefined, file, 1);
 
         const fieldName = getField('name');
@@ -71,7 +72,7 @@ describe('modules/explorer/table', () => {
 
         const { tableOptions } = await import('~/modules/explorer');
 
-        const folder: FileSystemObject = { ...file, isFolder: true };
+        const folder: FileExplorerObject = { ...file, isFolder: true };
         tableOptions.rowClick?.call(folder, folder, {} as MouseEvent);
         tableOptions.rowDblclick?.call(folder, folder, {} as MouseEvent);
 

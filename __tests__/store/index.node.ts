@@ -6,13 +6,18 @@ describe('store/index', () => {
         expect.hasAssertions();
 
         const { default: Explorer } = await import('~/store/explorer');
+        const { default: Reader } = await import('~/store/reader');
         const { plugins } = await import('~/store');
 
         const vue = createLocalVue();
         vue.use(Vuex);
+
         const store = new Vuex.Store({
             plugins,
-            modules: { explorer: Explorer },
+            modules: {
+                explorer: Explorer,
+                reader: Reader,
+            },
         });
 
         expect(store).toBeInstanceOf(Store);

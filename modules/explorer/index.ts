@@ -1,3 +1,3 @@
-export * from './analyze/explorer';
-export * from './analyze/images/images';
+export * from './explorer/explorer';
+export * from './images/images';
 export * from './table';

@@ -1,12 +1,12 @@
 import { shell } from 'electron';
 import moment from 'moment';
-import { openShortcut } from './file/shortcut';
-import { FileSystemObject } from './types.d';
+import { openShortcut } from './actions/shortcut';
+import { FileExplorerObject } from './types.d';
 import { TableFields, TableOptions } from '~/components/table/table';
 import { explorer } from '~/store';
 import { nonNull, toSize } from '~/utils';
 
-export const tableFields: TableFields<FileSystemObject> = [
+export const tableFields: TableFields<FileExplorerObject> = [
     {
         key: 'index',
         label: '#',
@@ -51,7 +51,7 @@ export const tableFields: TableFields<FileSystemObject> = [
     },
 ];
 
-export const tableOptions: TableOptions<FileSystemObject> = {
+export const tableOptions: TableOptions<FileExplorerObject> = {
     rowClass: ({ selected }) => ({ selected }),
 
     rowClick(item) {

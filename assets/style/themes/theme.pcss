@@ -7,12 +7,17 @@ body {
 
     /* color */
     --error-color: #dc3545;
+    --background-color: #0a0a0d;
+    --background-color-hover: #161619;
+    --selected-color: #2980b9;
+    --selected-line-color: #2980b9;
+    --selected-background-color: #2980b933;
 
     /* table */
-    --table-background-color: #0a0a0d;
-    --table-background-color-hover: #161619;
-    --table-selected-line: #2980b9;
-    --table-selected-background: #2980b933;
+    --table-background-color: var(--background-color);
+    --table-background-color-hover: var(--background-color-hover);
+    --table-selected-line: var(--selected-line-color);
+    --table-selected-background: var(--selected-background-color);
 
     /* line */
     --line-color: #292933;
@@ -30,5 +35,5 @@ body {
     --component-size: 2.25rem;
     --component-font-size: 0.875rem;
     --component-color: #696c7eaa;
-    --component-background-color: #0a0a0d;
+    --component-background-color: var(--background-color);
 }

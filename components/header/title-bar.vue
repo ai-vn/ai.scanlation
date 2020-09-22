@@ -73,7 +73,7 @@ export default defineComponent({
         });
 
         return {
-            ...{ isTitlebarFloat, menu, title, controls, isMaximize },
+            ...{ isTitlebarFloat, isMaximize, menu, title, controls },
             ...actions.electron.windows,
         };
     },

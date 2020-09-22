@@ -2,9 +2,7 @@
     <div
         v-tooltip="tooltip_"
         class="btn"
-        :class="{
-            'no-icon': !icon,
-        }"
+        :class="{ active, 'no-icon': !icon }"
         @click="action_"
     >
         <icon- v-if="icon_" :i="icon_" class="btn-icon" />
@@ -15,21 +13,19 @@
 </template>
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import { TooltipSettings } from 'v-tooltip';
-import { actionProps, actionRender, defineProp, tooltipRender } from '~/utils';
+import { actionProps, tooltipProp, useAction, useTooltip } from '~/utils';
 
 export default defineComponent({
     name: 'button-',
     props: {
-        tooltip: defineProp<boolean | string | TooltipSettings>({
-            type: [Boolean, String, Object],
-        }),
+        tooltip: tooltipProp,
+        active: { default: false, type: Boolean },
         ...actionProps,
     },
     setup(props, context) {
-        const render = actionRender(props, context);
+        const render = useAction(props, context);
         return {
-            ...tooltipRender(props, render),
+            ...useTooltip(props, render),
             ...render,
         };
     },
@@ -45,6 +41,10 @@ export default defineComponent({
 
     &:hover {
         color: #fff;
+    }
+
+    &.active {
+        color: var(--selected-color);
     }
 
     &-icon {

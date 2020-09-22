@@ -19,7 +19,7 @@ describe('pages/explorer', () => {
         Vue.component('table-', table);
     });
 
-    it('should', async () => {
+    it('should render page explorer', async () => {
         expect.hasAssertions();
 
         const { default: explorer } = await import('~/pages/explorer.vue');

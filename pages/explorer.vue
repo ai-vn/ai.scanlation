@@ -40,22 +40,21 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import { actions } from '~/actions';
 import { tableFields, tableOptions } from '~/modules/explorer';
 import { explorer } from '~/store';
-import { useBinding } from '~/utils';
+import { useStore } from '~/utils';
 
 export default defineComponent({
     name: 'explorer-',
-    setup() {
-        const { updateFolderPath } = explorer;
-        return {
-            updateFolderPath,
-            ...useBinding(explorer, 'folderPath'),
-            ...useBinding(explorer, 'isValid'),
-            ...useBinding(explorer, 'folders'),
-            ...useBinding(explorer, 'files'),
-            ...actions.explorer.folder,
-            ...{ tableFields, tableOptions },
-        };
-    },
+    setup: () => ({
+        ...{ tableFields, tableOptions },
+        ...actions.explorer.folder,
+        ...useStore(explorer, [
+            'updateFolderPath',
+            'folderPath',
+            'isValid',
+            'folders',
+            'files',
+        ]),
+    }),
 });
 </script>
 <style lang="postcss">
