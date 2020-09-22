@@ -9,7 +9,7 @@ export default async (): Promise<NuxtConfig> => {
 
     return {
         dev,
-        mode: 'spa',
+        ssr: false,
         head: {
             title: 'Ai Scanlation',
             meta: [{ charset: 'utf-8' }],
