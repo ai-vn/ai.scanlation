@@ -21,6 +21,9 @@
                 />
                 <button- icon="chevron-down" />
             </group->
+            <group->
+                <button- tooltip :action="toggleSpace" :active="isSpace" />
+            </group->
         </div>
         <div
             :class="[
@@ -34,7 +37,7 @@
                     ref="images"
                     v-dragscroll
                     class="scroll-wrapper relative"
-                    :class="{ 'space-y-2': isSpace }"
+                    :class="{ 'space-y-3': isSpace }"
                     @scroll="onReaderScroll"
                 >
                     <div
@@ -130,7 +133,7 @@ export default defineComponent({
             }
 
             &-process {
-                @apply absolute inset-0 transition border;
+                @apply absolute inset-0 border;
 
                 background-color: var(--selected-background-color);
                 border-color: var(--selected-line-color);

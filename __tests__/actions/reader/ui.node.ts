@@ -10,4 +10,10 @@ describe('actions/reader/ui', () => {
 
         await call(a => a.reader.ui.toggleShowList);
     });
+
+    it('should toggle space', async () => {
+        expect.assertions(0);
+
+        await call(a => a.reader.ui.toggleSpace);
+    });
 });
