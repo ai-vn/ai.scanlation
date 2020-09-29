@@ -26,6 +26,7 @@
             </group->
         </div>
         <div
+            v-if="files.length !== 0"
             :class="[
                 'flex flex-1 flex-row-reverse',
                 'space-x-3 space-x-reverse',
@@ -71,6 +72,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div
+            v-else
+            :class="[
+                'reader-empty',
+                'rounded p-5 flex-1',
+                'flex items-center justify-center',
+            ]"
+        >
+            {{ isValid ? 'This folder is empty' : 'In valid folder path' }}
         </div>
     </div>
 </template>
@@ -166,6 +177,10 @@ export default defineComponent({
                 }
             }
         }
+    }
+
+    &-empty {
+        background-color: var(--component-background-color);
     }
 }
 </style>
