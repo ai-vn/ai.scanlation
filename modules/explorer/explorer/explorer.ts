@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { readdir } from 'fs';
-import { parse } from 'path';
 import { isError } from 'lodash';
 import { analyze } from './files/analyze';
 import { disks } from './files/disks';
+import { insert } from '~/modules/data';
 import { FileExplorerObject } from '~/modules/explorer/types';
 import { ignoreFilter } from '~/modules/ignore/ignore';
 import { attemptPromisify } from '~/utils';
@@ -24,22 +24,13 @@ export const explorer = async (folderPath: string) => {
         .map(async fileOrFolder => {
             const result = await analyze(folderPath, fileOrFolder);
             if (!result) return;
-            (result.isFolder ? folders : files).push(result);
+
+            insert(result.isFolder ? folders : files, result);
         });
     await Promise.all(analyzeFileOrFolders);
 
-    const { compare } = new Intl.Collator(undefined, {
-        numeric: true,
-        sensitivity: 'base',
-    });
-
-    folders
-        .sort((a, b) => compare(a.name, b.name))
-        .forEach((folder, index) => (folder.index = index));
-    const folderLength = folders.length;
-    files
-        .sort((a, b) => compare(parse(a.name).name, parse(b.name).name))
-        .forEach((file, index) => (file.index = index + folderLength));
+    folders.forEach((folder, index) => (folder.index = index));
+    files.forEach((file, index) => (file.index = index + folders.length));
 
     return { files, folders };
 };

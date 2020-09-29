@@ -1,9 +1,12 @@
 import { readdir } from 'fs';
 import { isError } from 'lodash';
 import { analyze } from './analyze';
+import { insert } from '~/modules/data';
 import { ignoreFilter } from '~/modules/ignore/ignore';
 import { FileReaderObject } from '~/modules/reader/types';
 import { attemptPromisify } from '~/utils';
+
+const allowExtensions = ['jpg', 'jpeg', 'gif', 'png', 'psd'];
 
 export const reader = async (folderPath: string) => {
     if (folderPath === '') return { files: [] };
@@ -15,10 +18,11 @@ export const reader = async (folderPath: string) => {
     const analyzeFiles = fileOrFolders
         .filter(ignoreFilter)
         .map(async fileOrFolder => {
-            const result = await analyze(folderPath, fileOrFolder);
-            const extensions = ['jpg', 'jpeg', 'png', 'psd'];
-            if (!result || !extensions.includes(result.ext)) return;
-            files.push(result);
+            const file = await analyze(folderPath, fileOrFolder);
+
+            if (!file || !allowExtensions.includes(file.ext)) return;
+
+            insert(files, file);
         });
     await Promise.all(analyzeFiles);
 
