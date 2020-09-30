@@ -9,3 +9,11 @@ export const toggleShowList: ActionItem = {
     icon: 'sidebar',
     accelerator: 'alt+t',
 };
+
+export const toggleSpace: ActionItem = {
+    call: () => reader.toggleSpace(),
+    condition: isReader,
+    title: 'Toggle Space',
+    icon: 'page-margin',
+    accelerator: 'alt+m',
+};

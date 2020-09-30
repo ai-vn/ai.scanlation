@@ -21,8 +21,12 @@
                 />
                 <button- icon="chevron-down" />
             </group->
+            <group->
+                <button- tooltip :action="toggleSpace" :active="isSpace" />
+            </group->
         </div>
         <div
+            v-if="files.length !== 0"
             :class="[
                 'flex flex-1 flex-row-reverse',
                 'space-x-3 space-x-reverse',
@@ -34,7 +38,7 @@
                     ref="images"
                     v-dragscroll
                     class="scroll-wrapper relative"
-                    :class="{ 'space-y-2': isSpace }"
+                    :class="{ 'space-y-3': isSpace }"
                     @scroll="onReaderScroll"
                 >
                     <div
@@ -68,6 +72,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div
+            v-else
+            :class="[
+                'reader-empty',
+                'rounded p-5 flex-1',
+                'flex items-center justify-center',
+            ]"
+        >
+            {{ isValid ? 'This folder is empty' : 'In valid folder path' }}
         </div>
     </div>
 </template>
@@ -130,7 +144,7 @@ export default defineComponent({
             }
 
             &-process {
-                @apply absolute inset-0 transition border;
+                @apply absolute inset-0 border;
 
                 background-color: var(--selected-background-color);
                 border-color: var(--selected-line-color);
@@ -163,6 +177,10 @@ export default defineComponent({
                 }
             }
         }
+    }
+
+    &-empty {
+        background-color: var(--component-background-color);
     }
 }
 </style>

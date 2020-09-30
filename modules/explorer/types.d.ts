@@ -1,17 +1,15 @@
 import { Stats } from 'fs';
 import { TableObject } from '~/components/table/table';
+import { FileObject } from '~/modules/data/type';
 
-export interface FileExplorerObject extends TableObject {
+export interface FileExplorerObject extends TableObject, FileObject {
     index: number;
     selected: boolean;
     key: string;
+    isFolder: boolean;
     stat?: Stats;
 
-    name: string;
-    path: string;
-
     time?: Date;
-    ext: string;
 
     size?: number;
     dimensions?: {
@@ -19,6 +17,4 @@ export interface FileExplorerObject extends TableObject {
         y: number;
     };
     color?: string;
-
-    isFolder: boolean;
 }

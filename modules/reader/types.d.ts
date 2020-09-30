@@ -1,9 +1,7 @@
-export interface FileReaderObject {
-    index: number;
+import { FileObject } from '~/modules/data/type';
 
-    name: string;
-    path: string;
-    ext: string;
+export interface FileReaderObject extends FileObject {
+    index: number;
 
     size: number;
     scroll: {
