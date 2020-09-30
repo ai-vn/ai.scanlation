@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable no-extend-native */
-import mousetrap from 'mousetrap';
+import mousetrap, { ExtendedKeyboardEvent, MousetrapInstance } from 'mousetrap';
 
 describe('actions/shortcut', () => {
     beforeAll(() => {
