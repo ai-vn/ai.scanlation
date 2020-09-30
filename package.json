@@ -29,7 +29,7 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/composition-api": "^0.12.5",
-    "@popperjs/core": "^2.4.4",
+    "@popperjs/core": "^2.5.3",
     "electron-updater": "^4.3.5",
     "ignore": "^5.1.8",
     "lodash": "^4.17.20",
