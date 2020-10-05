@@ -4,6 +4,7 @@
     </n-link>
 </template>
 <script lang="ts">
+/* eslint-disable vue/require-prop-types */
 import {
     computed,
     ComputedRef,
