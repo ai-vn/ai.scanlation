@@ -80,7 +80,7 @@ steps:
       ELECTRON_BUILDER_CACHE: $(ELECTRON_BUILDER_CACHE)
 
   - script: |
-      yarn build --publish onTag
+      yarn build --publish always
     displayName: Release (Windows)
     condition: and(succeeded(), in(variables['Build.SourceBranch'], 'refs/heads/dev', 'refs/heads/master'))
     env:

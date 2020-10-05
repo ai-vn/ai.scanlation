@@ -4,11 +4,6 @@ import { range } from 'lodash';
 import { mock } from '~/__tests__/__utils__';
 
 const component = defineComponent({
-    template: `
-        <div ref="images">
-            <div v-for="file in files" :key="file.key" />
-        </div>
-    `,
     setup() {
         const images = ref<HTMLElement>() as Ref<HTMLElement>;
 
@@ -17,6 +12,11 @@ const component = defineComponent({
             images,
         };
     },
+    template: `
+        <div ref="images">
+            <div v-for="file in files" :key="file.key" />
+        </div>
+    `,
 });
 
 describe('modules/reader/scroll/onReaderScroll', () => {

@@ -134,6 +134,7 @@ const config = {
             { html: { void: 'always', normal: 'always', component: 'always' } },
         ],
         'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+        'vue/component-definition-name-casing': ['error', 'kebab-case'],
     },
     overrides: [
         {

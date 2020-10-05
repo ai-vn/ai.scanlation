@@ -9,6 +9,7 @@ export default defineComponent<{ i: keyof typeof map }>({
     name: 'icon-',
     props: {
         i: {
+            required: true,
             type: String,
             validator: (value: string) =>
                 typeof value === 'string' &&

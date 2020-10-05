@@ -23,13 +23,13 @@
             :fields="tableFields"
             :options="tableOptions"
         >
-            <template v-slot:name="{ item }">
+            <template #name="{ item }">
                 <div class="flex items-center">
                     <item-icon- class="mr-2" :ext="item.ext" />
                     <div class="truncate">{{ item.name }}</div>
                 </div>
             </template>
-            <template v-slot:empty>
+            <template #empty>
                 {{ isValid ? 'This folder is empty' : 'In valid folder path' }}
             </template>
         </table->

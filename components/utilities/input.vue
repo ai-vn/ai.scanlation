@@ -25,18 +25,18 @@ import { defineComponent, onMounted } from '@nuxtjs/composition-api';
 
 export default defineComponent({
     name: 'input-',
+    model: { prop: 'value', event: 'input' },
     props: {
         type: {
             type: String,
             default: 'text',
             validator: (value: string) => ['number', 'text'].includes(value),
         },
-        value: { type: [String, Number] },
-        placeholder: { type: String },
-        min: { type: Number },
-        max: { type: Number },
+        value: { type: [String, Number], default: undefined },
+        placeholder: { type: String, default: undefined },
+        min: { type: Number, default: undefined },
+        max: { type: Number, default: undefined },
     },
-    model: { prop: 'value', event: 'input' },
     setup(props, { emit, parent }) {
         let inGroup = true;
         onMounted(() => (inGroup = parent?.$options.name === 'group-'));
