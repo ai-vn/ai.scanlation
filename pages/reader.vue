@@ -133,6 +133,7 @@ export default defineComponent({
 <style lang="postcss">
 .reader {
     &-list {
+        max-width: 33%;
         background-color: var(--component-background-color);
 
         &-file {
