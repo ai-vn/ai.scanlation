@@ -9,11 +9,12 @@ export default defineComponent<{ i: keyof typeof map }>({
     name: 'icon-',
     props: {
         i: {
-            required: true,
+            default: undefined,
             type: String,
             validator: (value: string) =>
-                typeof value === 'string' &&
-                Object.prototype.hasOwnProperty.call(map, value),
+                typeof value === 'undefined' ||
+                (typeof value === 'string' &&
+                    Object.prototype.hasOwnProperty.call(map, value)),
         },
     },
     setup: props => ({ icon: computed(() => map[props.i] || '') }),
