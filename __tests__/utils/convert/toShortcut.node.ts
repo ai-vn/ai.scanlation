@@ -7,6 +7,9 @@ describe('utils/convert/toShortcut', () => {
         expect(toShortcut('alt')).toStrictEqual(
             '<span class="capitalize">(alt)</span>',
         );
+        expect(toShortcut('alt', false)).toStrictEqual(
+            '<span class="capitalize">alt</span>',
+        );
         expect(toShortcut(undefined)).toBeUndefined();
     });
 });
