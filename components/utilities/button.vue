@@ -2,11 +2,11 @@
     <div
         v-tooltip="tooltip_"
         class="btn"
-        :class="{ active, 'no-icon': !icon }"
+        :class="{ active, disable, 'no-icon': !icon }"
         @click="action_"
     >
         <icon- v-if="icon_" :i="icon_" class="btn-icon" />
-        <div v-if="title_ && tooltip_ === true" class="btn-title">
+        <div v-if="title_ && tooltip === false" class="btn-title">
             {{ title_ }}
         </div>
     </div>
@@ -20,6 +20,7 @@ export default defineComponent({
     props: {
         tooltip: tooltipProp,
         active: { default: false, type: Boolean },
+        disable: { default: false, type: Boolean },
         ...actionProps,
     },
     setup(props, context) {
@@ -33,7 +34,8 @@ export default defineComponent({
 </script>
 <style lang="postcss">
 .btn {
-    @apply flex cursor-pointer rounded;
+    @apply flex rounded cursor-pointer overflow-hidden;
+    @apply items-center justify-center;
 
     height: var(--component-size);
     line-height: var(--component-size);
@@ -47,10 +49,23 @@ export default defineComponent({
         color: var(--selected-color);
     }
 
+    &.disable {
+        @apply cursor-not-allowed;
+    }
+
+    &.vertical {
+        @apply flex-col h-auto px-3;
+
+        > ^&-title {
+            @apply px-0 -mt-3 self-stretch;
+        }
+    }
+
     &-icon {
         @apply text-center;
 
         width: var(--component-size);
+        min-width: var(--component-size);
         font-size: calc(var(--component-size) * 0.5);
 
         + ^&-title {
@@ -59,7 +74,7 @@ export default defineComponent({
     }
 
     &-title {
-        @apply px-2;
+        @apply px-2 truncate;
     }
 }
 </style>
