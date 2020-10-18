@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
-import icon from '~/components/utilities/icon.vue';
+import icon from '~/components/utilities/icon/icon.vue';
 
 describe('components/utilities/icon', () => {
     it('should mounted', () => {

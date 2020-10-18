@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
 import { store } from '~/__tests__/__utils__';
-import icon from '~/components/utilities/icon.vue';
+import icon from '~/components/utilities/icon/icon.vue';
 
 describe('components/header/menu-item', () => {
     beforeAll(async () => {

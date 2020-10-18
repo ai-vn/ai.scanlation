@@ -3,9 +3,10 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { AIcon } from '~/assets/fonts/aicon';
 import map from '~/assets/fonts/aicon.map.json';
 
-export default defineComponent<{ i: keyof typeof map }>({
+export default defineComponent<{ i: AIcon }>({
     name: 'icon-',
     props: {
         i: {

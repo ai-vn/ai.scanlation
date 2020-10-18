@@ -5,7 +5,7 @@ import Vue from 'vue';
 
 describe('components/header/title-bar', () => {
     beforeAll(async () => {
-        const icon = await import('~/components/utilities/icon.vue');
+        const icon = await import('~/components/utilities/icon/icon.vue');
         const menu = await import('~/components/header/menu.vue');
         const menuItem = await import('~/components/header/menu-item.vue');
 
