@@ -46,4 +46,23 @@ describe('store/explorer', () => {
         await explorer.watchFolderPath({ value: '', oldValue: '' });
         await explorer.watchFolderPath({ value: '.', oldValue: '' });
     });
+
+    it('should update ui', () => {
+        expect.assertions(0);
+
+        explorer.setCurrentTab('redraw');
+        explorer.setProjectId(0);
+        explorer.setChapterId(0);
+        explorer.setStartNumber(0);
+
+        explorer.setRenamePattern('');
+
+        explorer.setConvertFormat('PNG');
+        explorer.toggleConvertFormat();
+
+        explorer.setConvertSubFolder(true);
+        explorer.toggleConvertSubFolder();
+
+        explorer.setConvertTargetFolderPath('');
+    });
 });
