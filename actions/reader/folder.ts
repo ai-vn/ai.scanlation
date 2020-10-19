@@ -3,7 +3,7 @@ import { isReader } from '~/actions/conditions';
 import { openFolder } from '~/actions/utils';
 import { reader } from '~/store';
 
-export const open: ActionItem = {
+export const selectFolderPath: ActionItem = {
     call: () => openFolder(reader.setFolderPath),
     condition: isReader,
     title: 'Open Folder',

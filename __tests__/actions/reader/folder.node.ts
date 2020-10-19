@@ -9,7 +9,7 @@ describe('actions/reader/folder/**', () => {
         expect.assertions(0);
 
         jest.setMock('~/actions/utils', { openFolder: jest.fn() });
-        await call(a => a.reader.folder.open);
+        await call(a => a.reader.folder.selectFolderPath);
     });
 
     it('should reload reader', async () => {
