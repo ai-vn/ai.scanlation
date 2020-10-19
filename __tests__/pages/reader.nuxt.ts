@@ -6,7 +6,7 @@ import { importComponents } from '~/__tests__/__utils__/component';
 
 describe('pages/explorer', () => {
     beforeAll(async () => {
-        await store('reader');
+        await store();
         await importComponents();
     });
 

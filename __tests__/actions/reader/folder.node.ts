@@ -2,7 +2,7 @@ import { call, store } from '~/__tests__/__utils__';
 
 describe('actions/reader/folder/**', () => {
     beforeAll(async () => {
-        await store('reader');
+        await store();
     });
 
     it('should open folder', async () => {

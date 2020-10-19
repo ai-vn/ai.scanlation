@@ -5,7 +5,7 @@ import { store } from '~/__tests__/__utils__';
 
 describe('modules/explorer/actions/shortcut', () => {
     beforeAll(async () => {
-        await store('explorer');
+        await store();
     });
     beforeEach(() => {
         jest.resetModules();

@@ -2,7 +2,7 @@ import { call, store } from '~/__tests__/__utils__';
 
 describe('actions/explorer/folder/tabs/convert', () => {
     beforeAll(async () => {
-        await store('explorer');
+        await store();
     });
 
     it('should select convert target folder', async () => {

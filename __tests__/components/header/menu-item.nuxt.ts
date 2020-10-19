@@ -5,7 +5,7 @@ import icon from '~/components/utilities/icon/icon.vue';
 
 describe('components/header/menu-item', () => {
     beforeAll(async () => {
-        await store('explorer');
+        await store();
 
         Vue.component('icon-', icon);
     });

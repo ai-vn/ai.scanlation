@@ -5,7 +5,11 @@ import { StoreModules } from '~/store/-modules';
 
 Vue.use(Vuex);
 
-export const store = async <T extends keyof StoreModules>(name: T) => {
+export async function store(): Promise<null>;
+export async function store<T extends keyof StoreModules>(
+    name: T,
+): Promise<typeof import('~/store')[T]>;
+export async function store<T extends keyof StoreModules>(name?: T) {
     const { plugins } = await import('~/store');
     new Vuex.Store({
         plugins,
@@ -14,6 +18,5 @@ export const store = async <T extends keyof StoreModules>(name: T) => {
             reader: (await import('~/store/reader')).default,
         },
     });
-
-    return (await import('~/store'))[name];
-};
+    return name ? (await import('~/store'))[name] : null;
+}

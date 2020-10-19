@@ -10,7 +10,7 @@ import '~/plugins/v-tooltip';
 
 describe('pages/explorer', () => {
     beforeAll(async () => {
-        await store('explorer');
+        await store();
 
         Vue.component('button-', button);
         Vue.component('group-', group);
