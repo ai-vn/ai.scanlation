@@ -15,7 +15,7 @@ describe('actions/explorer/folder/**', () => {
         expect.assertions(0);
 
         jest.setMock('~/actions/utils', { openFolder: jest.fn() });
-        await call(a => a.explorer.folder.open);
+        await call(a => a.explorer.folder.selectFolderPath);
     });
 
     it.each([[''], ['C:/'], ['C:/manga']])(

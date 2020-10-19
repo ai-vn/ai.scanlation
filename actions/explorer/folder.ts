@@ -4,7 +4,7 @@ import { isExplorer } from '~/actions/conditions';
 import { openFolder } from '~/actions/utils';
 import { explorer } from '~/store';
 
-export const open: ActionItem = {
+export const selectFolderPath: ActionItem = {
     call: () => openFolder(explorer.setFolderPath),
     condition: isExplorer,
     title: 'Open Folder',

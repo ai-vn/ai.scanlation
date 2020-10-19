@@ -8,7 +8,7 @@
                 <button- tooltip :action="reload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button- tooltip :action="open" />
+                <button- tooltip :action="selectFolderPath" />
                 <input-
                     v-model="folderPath"
                     type="text"
