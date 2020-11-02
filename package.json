@@ -53,7 +53,7 @@
     "@nuxt/types": "^2.14.6",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/moment": "^1.6.1",
-    "@nuxtjs/tailwindcss": "^3.1.0",
+    "@nuxtjs/tailwindcss": "^3.2.0",
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/gulp": "^4.0.7",
     "@types/jest": "^26.0.14",
