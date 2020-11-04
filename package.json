@@ -35,7 +35,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "mousetrap": "^1.6.5",
-    "nuxt": "^2.14.6",
+    "nuxt": "^2.14.7",
     "p-queue": "^6.6.2",
     "pem": "^1.14.4",
     "source-map-support": "^0.5.19",
