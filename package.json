@@ -58,7 +58,7 @@
     "@types/gulp": "^4.0.7",
     "@types/jest": "^26.0.14",
     "@types/js-yaml": "^3.12.5",
-    "@types/lodash": "^4.14.164",
+    "@types/lodash": "^4.14.165",
     "@types/mousetrap": "^1.6.4",
     "@types/node": "^14.14.6",
     "@types/pem": "^1.9.5",
