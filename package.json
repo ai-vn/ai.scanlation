@@ -97,7 +97,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^7.0.1",
     "gulp": "^4.0.2",
-    "jest": "^26.4.2",
+    "jest": "^26.6.3",
     "jest-extended": "^0.11.5",
     "jest-junit": "^12.0.0",
     "jest-watch-select-projects": "^2.0.0",
@@ -126,10 +126,10 @@
     "webpack": "^4.44.2"
   },
   "resolutions": {
-    "@jest-runner/electron/jest-haste-map": "^26.0.1",
-    "@jest-runner/electron/jest-mock": "^26.0.1",
-    "@jest-runner/electron/jest-runner": "^26.0.1",
-    "@jest-runner/electron/jest-runtime": "^26.0.1",
-    "@jest-runner/electron/jest-util": "^26.0.1"
+    "@jest-runner/electron/jest-haste-map": "^26.6.2",
+    "@jest-runner/electron/jest-mock": "^26.6.2",
+    "@jest-runner/electron/jest-runner": "^26.6.2", 
+    "@jest-runner/electron/jest-runtime": "^26.6.2",
+    "@jest-runner/electron/jest-util": "^26.6.2"
   }
 }
