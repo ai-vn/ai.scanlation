@@ -18,6 +18,11 @@
                 <button- icon="chevron-down" />
             </group->
         </div>
+        <div class="flex space-x-2">
+            <group->
+                <button- tooltip :action="readCurrentFolder" />
+            </group->
+        </div>
         <table-
             :group-items="[folders, files]"
             :fields="tableFields"
@@ -47,6 +52,7 @@ export default defineComponent({
     setup: () => ({
         ...{ tableFields, tableOptions },
         ...actions.explorer.folder,
+        ...actions.explorer.item,
         ...useStore(explorer, [
             'updateFolderPath',
             'folderPath',

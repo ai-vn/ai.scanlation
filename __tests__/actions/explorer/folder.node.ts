@@ -4,6 +4,10 @@ describe('actions/explorer/folder/**', () => {
     let explorer: import('~/store/explorer').default;
 
     beforeAll(async () => {
+        jest.setMock('~/actions/routers', {
+            goToReader: jest.fn(),
+        });
+
         explorer = await store('explorer');
     });
 
