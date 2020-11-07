@@ -34,7 +34,6 @@
 
     "prettier.disableLanguages": [],
 
-    "eslint.enable": true,
     "eslint.options": {
         "extensions": [".html", ".vue", ".js", ".jsx", ".ts", ".tsx"]
     },
