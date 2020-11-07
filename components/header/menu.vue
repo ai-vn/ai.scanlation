@@ -1,7 +1,7 @@
 <template>
     <ul class="flex menu">
         <menu-item- title="File">
-            <menu-item- :action="open" />
+            <menu-item- :action="selectFolderPath" />
             <menu-item- hr />
             <menu-item- :action="close" shortcut="alt+f4" />
         </menu-item->
@@ -25,13 +25,13 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import { actions } from '~/actions';
 
-const { open } = actions.explorer.folder;
+const { selectFolderPath } = actions.explorer.folder;
 const { close } = actions.electron.windows;
 
 export default defineComponent({
     name: 'menu-',
     setup: () => ({
-        open,
+        selectFolderPath,
         close,
         ...actions.electron.dev,
         ...actions.help.about,

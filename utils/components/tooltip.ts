@@ -18,12 +18,13 @@ export const useTooltip = (
         const { shortcut_, title_ } = render;
         const { tooltip } = props;
 
-        const shortcut = toShortcut(shortcut_.value);
         switch (tooltip) {
             case true:
-                return [title_.value, shortcut].filter(i => i).join(' ');
+                return [title_.value, toShortcut(shortcut_.value)]
+                    .filter(i => i)
+                    .join(' ');
             case false:
-                return shortcut;
+                return toShortcut(shortcut_.value, false);
             default:
                 return tooltip;
         }

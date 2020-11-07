@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import Vue, { VueConstructor } from 'vue';
-import icon from '~/components/utilities/icon.vue';
+import icon from '~/components/utilities/icon/icon.vue';
 import '~/plugins/v-tooltip';
 
 describe('components/utilities/button', () => {

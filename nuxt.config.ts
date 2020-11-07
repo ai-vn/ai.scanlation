@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/types';
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 import { isDev as dev } from './app/env';
 import postcssFunctionsOptions from './assets/helpers/functions/postcss.functions';
 import postcssMixinsOptions from './assets/helpers/mixins/postcss.mixins';
@@ -47,6 +48,10 @@ export default async (): Promise<NuxtConfig> => {
         },
         build: {
             extractCSS: !dev,
+            babel: {
+                plugins: ['lodash'],
+            },
+            plugins: [new LodashModuleReplacementPlugin({ shorthands: true })],
             postcss: {
                 plugins: {
                     'postcss-hexrgba': {},

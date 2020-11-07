@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 describe('components/header/menu', () => {
     beforeAll(async () => {
-        const icon = await import('~/components/utilities/icon.vue');
+        const icon = await import('~/components/utilities/icon/icon.vue');
         const menuItem = await import('~/components/header/menu-item.vue');
 
         Vue.component('icon-', icon);

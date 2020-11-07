@@ -3,17 +3,19 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { AIcon } from '~/assets/fonts/aicon';
 import map from '~/assets/fonts/aicon.map.json';
 
-export default defineComponent<{ i: keyof typeof map }>({
+export default defineComponent<{ i: AIcon }>({
     name: 'icon-',
     props: {
         i: {
-            required: true,
+            default: undefined,
             type: String,
             validator: (value: string) =>
-                typeof value === 'string' &&
-                Object.prototype.hasOwnProperty.call(map, value),
+                typeof value === 'undefined' ||
+                (typeof value === 'string' &&
+                    Object.prototype.hasOwnProperty.call(map, value)),
         },
     },
     setup: props => ({ icon: computed(() => map[props.i] || '') }),

@@ -8,7 +8,7 @@
                 <button- tooltip :action="reload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button- tooltip :action="open" />
+                <button- tooltip :action="selectFolderPath" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -16,6 +16,11 @@
                     @blur="updateFolderPath"
                 />
                 <button- icon="chevron-down" />
+            </group->
+        </div>
+        <div class="flex space-x-2">
+            <group->
+                <button- tooltip :action="readCurrentFolder" />
             </group->
         </div>
         <table-
@@ -47,6 +52,7 @@ export default defineComponent({
     setup: () => ({
         ...{ tableFields, tableOptions },
         ...actions.explorer.folder,
+        ...actions.explorer.item,
         ...useStore(explorer, [
             'updateFolderPath',
             'folderPath',

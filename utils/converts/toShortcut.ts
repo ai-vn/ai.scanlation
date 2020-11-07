@@ -1,4 +1,6 @@
-export const toShortcut = (accelerator?: string) =>
+export const toShortcut = (accelerator?: string, brackets = true) =>
     accelerator
-        ? `<span class="capitalize">(${accelerator})</span>`
+        ? `<span class="capitalize">${
+              brackets ? `(${accelerator})` : accelerator
+          }</span>`
         : undefined;

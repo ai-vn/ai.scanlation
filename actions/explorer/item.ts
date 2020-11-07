@@ -2,9 +2,21 @@ import { shell } from 'electron';
 import { existsSync } from 'fs';
 import { ActionItem } from '~/actions/actions.type';
 import { isExplorer } from '~/actions/conditions';
+import { goToReader } from '~/actions/routers';
 import { isImage } from '~/modules/explorer/images/image.extension';
-import { explorer } from '~/store';
+import { explorer, reader } from '~/store';
 import { execute } from '~/utils';
+
+export const readCurrentFolder: ActionItem = {
+    call() {
+        reader.setFolderPath(explorer.folderPath);
+        goToReader.call();
+    },
+    condition: isExplorer,
+    title: 'Read current folder',
+    icon: 'book-open',
+    accelerator: 'alt+e',
+};
 
 export const revealInFileExplorer: ActionItem = {
     call() {
@@ -13,6 +25,7 @@ export const revealInFileExplorer: ActionItem = {
     },
     condition: isExplorer,
     title: 'Reveal in File Explorer',
+    icon: 'folder',
     accelerator: 'ctrl+e',
 };
 
@@ -25,5 +38,6 @@ export const openInPhotoshop: ActionItem = {
     },
     condition: isExplorer,
     title: 'Open In Photoshop',
+    icon: 'image',
     accelerator: 'ctrl+p',
 };

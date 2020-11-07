@@ -73,6 +73,13 @@ input {
         &::-webkit-inner-spin-button {
             appearance: none;
         }
+
+        &.square {
+            @apply text-center px-0;
+
+            width: var(--component-size);
+            min-width: var(--component-size);
+        }
     }
 
     &::placeholder {

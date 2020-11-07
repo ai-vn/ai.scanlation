@@ -1,5 +1,9 @@
 <template>
-    <div class="reader flex flex-col overflow-hidden space-y-3 p-3">
+    <group-space-
+        :space="2"
+        class="reader p-3 overflow-hidden flex"
+        child-class="flex-col flex-1"
+    >
         <div class="flex space-x-2">
             <group->
                 <button-
@@ -12,7 +16,7 @@
                 <button- tooltip :action="reload" />
             </group->
             <group- class="flex-1" :class="{ error: !isValid }">
-                <button- tooltip :action="open" />
+                <button- tooltip :action="selectFolderPath" />
                 <input-
                     v-model="folderPath"
                     type="text"
@@ -83,7 +87,7 @@
         >
             {{ isValid ? 'This folder is empty' : 'In valid folder path' }}
         </div>
-    </div>
+    </group-space->
 </template>
 <script lang="ts">
 import {
@@ -133,6 +137,7 @@ export default defineComponent({
 <style lang="postcss">
 .reader {
     &-list {
+        max-width: 33%;
         background-color: var(--component-background-color);
 
         &-file {

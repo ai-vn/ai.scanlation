@@ -2,14 +2,14 @@ import { call, store } from '~/__tests__/__utils__';
 
 describe('actions/reader/folder/**', () => {
     beforeAll(async () => {
-        await store('reader');
+        await store();
     });
 
     it('should open folder', async () => {
         expect.assertions(0);
 
         jest.setMock('~/actions/utils', { openFolder: jest.fn() });
-        await call(a => a.reader.folder.open);
+        await call(a => a.reader.folder.selectFolderPath);
     });
 
     it('should reload reader', async () => {

@@ -1,10 +1,10 @@
-import map from '~/assets/fonts/aicon.map.json';
+import { AIcon } from '~/assets/fonts/aicon';
 
 export interface ActionItem {
     call: () => void | Promise<void>;
     condition?: () => boolean | Promise<boolean>;
     accelerator?: string;
     title?: string;
-    icon?: keyof typeof map;
+    icon?: AIcon;
 }
 export type ActionTree = ActionItem | { [key: string]: ActionTree };

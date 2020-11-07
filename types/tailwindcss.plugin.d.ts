@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
 declare module 'tailwindcss/plugin' {
+    import { Properties } from 'csstype';
     import { Rule, Root } from 'postcss';
     import { TailwindConfig } from 'tailwindcss';
 
@@ -6,6 +8,17 @@ declare module 'tailwindcss/plugin' {
         handler: (pluginHandler: TailwindPluginHandler) => void;
         config: Partial<TailwindConfig>;
     }
+
+    export type Utilities = UtilitiesSingle | UtilitiesSingle[];
+    export type UtilitiesSingle = { [key: string]: Properties };
+    export type UtilitiesOptionsSingle = {
+        variants?: string[];
+        respectPrefix?: boolean;
+        respectImportant?: boolean;
+    };
+    export type UtilitiesOptions =
+        | UtilitiesOptionsSingle
+        | UtilitiesOptionsSingle[];
 
     export interface GenerateVariantFunction {
         (options: {
@@ -19,7 +32,16 @@ declare module 'tailwindcss/plugin' {
     }
 
     export interface TailwindPluginHandler {
-        addVariant: (name: string, generator: GenerateVariantFunction) => void;
+        addUtilities: (
+            utilities: Utilities,
+            options?: UtilitiesOptions,
+        ) => void;
+        addVariant: (
+            name: string,
+            generator: GenerateVariantFunction,
+            options?: Object,
+        ) => void;
+        theme: (name: string) => any;
     }
 
     export default function (

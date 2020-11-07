@@ -12,9 +12,9 @@ export type ActionProps = {
 
 export const useAction = (props: ActionProps, { emit }: SetupContext) =>
     computeds({
-        title_: () => props.action?.title ?? props.title,
-        shortcut_: () => props.action?.accelerator ?? props.shortcut,
-        icon_: () => props.action?.icon ?? props.icon,
+        title_: () => props.title ?? props.action?.title,
+        shortcut_: () => props.shortcut ?? props.action?.accelerator,
+        icon_: () => props.icon ?? props.action?.icon,
         action_: () => (event: MouseEvent) => {
             props.action?.call();
             emit('click', event);
