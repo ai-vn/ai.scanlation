@@ -12,7 +12,7 @@ import { actions } from '~/actions';
 
 export default defineComponent({
     name: 'sidebar-',
-    setup: () => actions.routers,
+    setup: () => ({ ...actions.routers }),
 });
 </script>
 <style lang="postcss">
