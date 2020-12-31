@@ -119,7 +119,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.1.0",
     "ts-jest": "^26.4.1",
-    "ts-loader": "^8.0.10",
+    "ts-loader": "^8.0.13",
     "typescript": "4.0.5",
     "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.3",
