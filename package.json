@@ -64,7 +64,7 @@
     "@types/pem": "^1.9.5",
     "@types/rimraf": "^3.0.0",
     "@types/webpack-env": "^1.15.3",
-    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.3.0",
     "@vue/test-utils": "^1.1.0",
     "babel-eslint": "^10.1.0",
