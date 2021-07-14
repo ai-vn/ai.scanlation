@@ -1,6 +1,6 @@
 <template>
     <div class="group-space">
-        <div :class="[`group-space-${space}`, childClass]">
+        <div :class="['flex', `group-space-${space}`, childClass]">
             <slot />
         </div>
     </div>
@@ -16,10 +16,3 @@ export default defineComponent({
     },
 });
 </script>
-<style lang="postcss">
-.group-space {
-    > div {
-        @apply flex;
-    }
-}
-</style>
